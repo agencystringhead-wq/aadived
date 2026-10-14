@@ -1,4 +1,5 @@
 ---
+import { getSeo } from '../data/seo';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import InnerHero from '../components/page/InnerHero.astro';
 import Bento from '../components/page/Bento.astro';
@@ -33,17 +34,16 @@ const faqs = [
   { q: 'When are online classes?', a: `Classes run ${site.timings.days}, ${site.timings.time}. [To confirm with Anupriya: online schedule]` },
   { q: 'What does it cost?', a: '[Price] Plans and pricing will be listed on the Plans & Pricing page.' },
 ];
+const s = getSeo(Astro.url.pathname);
 ---
 <BaseLayout
-  title="Live Online Yoga Classes | AadiVed Yoga and Wellness"
-  description="Live online yoga and guided practice with real-time cues and corrections, for beginners and experienced practitioners."
   breadcrumbs={[{ name: 'Home', path: '/' }, { name: 'Online classes', path: '/online-classes/' }]}
 >
   <div class="page-bg">
     <InnerHero
       crumbs={crumbs}
       eyebrow="Live online sessions"
-      title="From your own mat"
+      title={s.h1} suffix={s.h1Suffix}
       intro="The same guided practice, wherever you are. Live classes with real-time cues and corrections, for beginners and experienced yogis alike."
       variant="wide"
       image={onlineImg}

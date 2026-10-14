@@ -19,24 +19,34 @@ import UtilityBar from '../components/UtilityBar.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { site } from '../data/site';
+import { getSeo, type PageSeo } from '../data/seo';
+import { websiteSchema } from '../data/schema';
 
 interface Crumb { name: string; path: string }
 interface Props {
-  title: string;
+  /** Normally omitted: title, description, OG image and robots come from src/data/seo.ts. */
+  title?: string;
   description?: string;
   ogImage?: string;
+  ogType?: 'website' | 'profile' | 'article';
+  noindex?: boolean;
   breadcrumbs?: Crumb[];
-  jsonLd?: Record<string, unknown>[];
+  jsonLd?: (Record<string, unknown> | null)[];
 }
 
-const { title, description = site.description, ogImage = '/og-image.jpg', breadcrumbs, jsonLd = [] } = Astro.props;
+const props = Astro.props;
+// Pages in src/data/seo.ts need no props. Dynamic pages (journal posts) pass their own.
+const entry: PageSeo | undefined = props.title ? undefined : getSeo(Astro.url.pathname);
+const title = props.title ?? entry!.title;
+const description = props.description ?? entry?.description ?? site.description;
+const ogImage = props.ogImage ?? entry?.ogImage ?? '/og-image.jpg';
+const ogType = props.ogType ?? entry?.ogType ?? 'website';
+const noindex = props.noindex ?? entry?.noindex ?? false;
+const { breadcrumbs, jsonLd = [] } = props;
 const canonical = new URL(Astro.url.pathname, Astro.site ?? site.url).href;
 const ogUrl = new URL(ogImage, Astro.site ?? site.url).href;
 
-const schemas: Record<string, unknown>[] = [
-  { '@context': 'https://schema.org', '@type': 'WebSite', name: site.name, url: site.url },
-  ...jsonLd,
-];
+const schemas: Record<string, unknown>[] = [websiteSchema(), ...jsonLd.filter((s): s is Record<string, unknown> => Boolean(s))];
 if (breadcrumbs?.length) {
   schemas.push({
     '@context': 'https://schema.org',
@@ -59,6 +69,7 @@ if (breadcrumbs?.length) {
     <ClientRouter />
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex" />}
     <meta name="theme-color" content="#4B5238" />
     {preloadFonts.map((href) => <link rel="preload" as="font" type="font/woff2" href={href} crossorigin />)}
 
@@ -68,7 +79,7 @@ if (breadcrumbs?.length) {
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="sitemap" href="/sitemap-index.xml" />
 
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content={site.name} />
     <meta property="og:locale" content="en_IN" />
     <meta property="og:title" content={title} />

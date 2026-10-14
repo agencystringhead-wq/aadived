@@ -1,4 +1,5 @@
 ---
+import { getSeo } from '../data/seo';
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import InnerHero from '../components/page/InnerHero.astro';
@@ -9,23 +10,22 @@ import { practices, formatLabels, type Category } from '../data/practices';
 import beach from '../assets/images/aadived/beach-yoga-portrait.webp';
 
 const crumbs = [{ label: 'Home', href: '/' }, { label: 'All classes' }];
-const groups: { name: Category; blurb: string }[] = [
-  { name: 'Yoga', blurb: 'Guided practice for every level, plus private and prenatal sessions.' },
-  { name: 'Mind & Sound', blurb: 'Meditation, breathwork, sound and grounding, to quiet the mind and steady the body.' },
-  { name: 'Wellness Programs', blurb: 'Practices shaped around hormonal balance, stress, anxiety, energy and daily routine.' },
+const groups: { name: Category; id: string; blurb: string }[] = [
+  { name: 'Yoga', id: 'yoga', blurb: 'Guided practice for every level, plus private and prenatal sessions.' },
+  { name: 'Mind & Sound', id: 'mind-and-sound', blurb: 'Meditation, breathwork, sound and grounding, to quiet the mind and steady the body.' },
+  { name: 'Wellness Programs', id: 'wellness-programmes', blurb: 'Practices shaped around hormonal balance, stress, anxiety, energy and daily routine.' },
 ];
 const titleFor = (slug: string) => stubPages.find((p) => p.slug === slug)?.title ?? slug;
+const s = getSeo(Astro.url.pathname);
 ---
 <BaseLayout
-  title="All Classes | AadiVed Yoga and Wellness"
-  description="Every way we practise together at AadiVed: yoga, meditation, breathwork, sound healing and wellness programmes, in Hinjawadi Phase 3 and online."
   breadcrumbs={[{ name: 'Home', path: '/' }, { name: 'All classes', path: '/classes/' }]}
 >
   <div class="page-bg">
     <InnerHero
       crumbs={crumbs}
       eyebrow="Classes and healing"
-      title="Ways we practise together"
+      title={s.h1} suffix={s.h1Suffix}
       intro="Yoga, meditation, breathwork, sound and wellness programmes, in the studio at Hinjawadi Phase 3 and live online. Pick a practice to read more."
       variant="arch"
       image={beach}
@@ -35,11 +35,11 @@ const titleFor = (slug: string) => stubPages.find((p) => p.slug === slug)?.title
     {groups.map((g) => {
       const items = practices.filter((p) => p.category === g.name);
       return (
-        <section class="wrap sec reveal" aria-labelledby={`h-${g.name}`}>
+        <section id={g.id} class="wrap sec reveal" aria-labelledby={`h-${g.id}`}>
           <div class="head">
             <div>
               <div class="eyebrow">{g.name}</div>
-              <h2 id={`h-${g.name}`} class="sec-title">{g.name === 'Yoga' ? 'Yoga' : g.name === 'Mind & Sound' ? 'Mind and sound' : 'Wellness programmes'}</h2>
+              <h2 id={`h-${g.id}`} class="sec-title">{g.name === 'Yoga' ? 'Yoga' : g.name === 'Mind & Sound' ? 'Mind and sound' : 'Wellness programmes'}</h2>
             </div>
             <p class="blurb">{g.blurb}</p>
           </div>

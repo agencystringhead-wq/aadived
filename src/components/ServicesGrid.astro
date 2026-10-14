@@ -11,6 +11,13 @@ import { services } from '../data/services';
       </div>
       <a class="link-arrow" href="/classes/">View all classes &#8594;</a>
     </div>
+    <ul class="pill-list cats" aria-label="Browse by category">
+      <li><a class="pill" href="/classes/#yoga">Yoga</a></li>
+      <li><a class="pill" href="/classes/#mind-and-sound">Mind &amp; Sound</a></li>
+      <li><a class="pill" href="/classes/#wellness-programmes">Wellness Programs</a></li>
+      <li><a class="pill" href="/online-classes/">Online classes</a></li>
+      <li><a class="pill" href="/one-on-one/">One-on-one</a></li>
+    </ul>
     <div class="grid">
       {services.map((s) => <ServiceCard service={s} />)}
     </div>
@@ -21,5 +28,7 @@ import { services } from '../data/services';
   .head { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; flex-wrap: wrap; }
   .title { max-width: 640px; }
   h2 { font-family: var(--font-display); font-weight: 400; font-size: clamp(36px, 4vw, 56px); line-height: 1.08; margin: 16px 0 0; }
+  .cats { margin-top: 28px; }
+  .cats a:hover { background: var(--olive); color: var(--ivory); }
   .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(330px, 100%), 1fr)); gap: 24px; margin-top: 56px; }
 </style>

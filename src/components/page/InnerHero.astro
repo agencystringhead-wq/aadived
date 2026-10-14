@@ -10,12 +10,14 @@ interface Props {
   crumbs: { label: string; href?: string }[];
   eyebrow: string;
   title: string;
+  /** Smaller second line inside the same H1, for example the location. */
+  suffix?: string;
   intro?: string;
   variant?: 'plain' | 'arch' | 'wide';
   image?: ImageMetadata;
   imageAlt?: string;
 }
-const { crumbs, eyebrow, title, intro, variant = 'plain', image, imageAlt = '' } = Astro.props;
+const { crumbs, eyebrow, title, suffix, intro, variant = 'plain', image, imageAlt = '' } = Astro.props;
 const hasImage = Boolean(image) && variant !== 'plain';
 ---
 <section class:list={['hero', `v-${variant}`]}>
@@ -23,7 +25,7 @@ const hasImage = Boolean(image) && variant !== 'plain';
   <div class="wrap grid">
     <div class="copy">
       <div class="eyebrow">{eyebrow}</div>
-      <h1>{title}</h1>
+      <h1>{title}{suffix && <span class="loc"> {suffix}</span>}</h1>
       {intro && <p class="intro">{intro}</p>}
       <div class="extra"><slot /></div>
     </div>
@@ -48,6 +50,7 @@ const hasImage = Boolean(image) && variant !== 'plain';
   .v-arch .grid { grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr); padding-bottom: 88px; }
   .v-wide .grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); align-items: end; padding-bottom: 48px; }
   h1 { font-family: var(--font-display); font-weight: 400; font-size: clamp(52px, 7vw, 104px); line-height: 0.98; letter-spacing: -0.015em; margin: 16px 0 0; color: var(--ink); }
+  h1 .loc { display: block; margin-top: 0.12em; font-size: 0.4em; font-style: italic; letter-spacing: 0; line-height: 1.15; color: var(--olive); }
   .v-plain .copy, .v-wide .copy { display: contents; }
   .v-plain .eyebrow, .v-wide .eyebrow { grid-column: 1 / -1; margin-bottom: -40px; }
   .v-plain h1, .v-wide h1 { grid-column: 1; }

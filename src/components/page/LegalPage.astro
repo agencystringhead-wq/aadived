@@ -12,7 +12,7 @@ interface Props {
 const { title, description, path, intro } = Astro.props;
 const crumbs = [{ label: 'Home', href: '/' }, { label: title }];
 ---
-<BaseLayout title={`${title} | AadiVed Yoga and Wellness`} description={description} breadcrumbs={[{ name: 'Home', path: '/' }, { name: title, path }]}>
+<BaseLayout breadcrumbs={[{ name: 'Home', path: '/' }, { name: title, path }]}>
   <div class="page-bg">
     <InnerHero crumbs={crumbs} eyebrow="Legal" title={title} intro={intro} />
     <div class="wrap legal">

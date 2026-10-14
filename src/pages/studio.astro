@@ -1,4 +1,5 @@
 ---
+import { getSeo } from '../data/seo';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import InnerHero from '../components/page/InnerHero.astro';
 import Bento from '../components/page/Bento.astro';
@@ -28,17 +29,16 @@ const faqs = [
   { q: 'What should I bring?', a: '[To confirm with Anupriya]' },
   { q: 'Is there parking?', a: '[To confirm with Anupriya]' },
 ];
+const s = getSeo(Astro.url.pathname);
 ---
 <BaseLayout
-  title="The Studio, Hinjawadi Phase 3 | AadiVed Yoga and Wellness"
-  description="Small, unhurried yoga, meditation and sound healing classes at Megapolis Serenity, Hinjawadi Phase 3, Pune."
   breadcrumbs={[{ name: 'Home', path: '/' }, { name: 'The Studio', path: '/studio/' }]}
 >
   <div class="page-bg">
     <InnerHero
       crumbs={crumbs}
       eyebrow="Hinjawadi Phase 3"
-      title="The studio"
+      title={s.h1} suffix={s.h1Suffix}
       intro="Small, unhurried classes at Megapolis Serenity in Hinjawadi Phase 3. Personal attention on every asana, with sound healing in a quiet, grounded space."
       variant="wide"
       image={studioImg}

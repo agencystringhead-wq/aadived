@@ -1,4 +1,5 @@
 ---
+import { getSeo } from '../data/seo';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import InnerHero from '../components/page/InnerHero.astro';
 import Faq from '../components/page/Faq.astro';
@@ -35,17 +36,16 @@ const faqs = [
   { q: 'How do I pay?', a: '[To confirm with Anupriya]' },
   { q: 'What is the cancellation policy?', a: '[To confirm with Anupriya]' },
 ];
+const s = getSeo(Astro.url.pathname);
 ---
 <BaseLayout
-  title="Plans and Pricing | AadiVed Yoga and Wellness"
-  description="Plans and pricing for studio sessions, live online classes and one-on-one coaching at AadiVed Yoga and Wellness in Hinjawadi, Pune."
   breadcrumbs={[{ name: 'Home', path: '/' }, { name: 'Plans and pricing', path: '/pricing/' }]}
 >
   <div class="page-bg">
     <InnerHero
       crumbs={crumbs}
       eyebrow="Join us"
-      title="Plans and pricing"
+      title={s.h1} suffix={s.h1Suffix}
       intro="Three ways to practise with us. Prices will be listed here soon. In the meantime, call and we will talk you through the options."
     />
 

@@ -9,6 +9,7 @@ import Bento from '../../components/page/Bento.astro';
 import Certificate from '../../components/page/Certificate.astro';
 import { site } from '../../data/site';
 import { reviews } from '../../data/reviews';
+import { personSchema } from '../../data/schema';
 import wide from '../../assets/images/anupriya/anupriya-wide.webp';
 import square from '../../assets/images/anupriya/anupriya-inhale-exhale-1080.webp';
 
@@ -39,8 +40,7 @@ const practices = [
 const path = ['Years of teaching', 'Teachers and lineage', 'Background and training story'];
 ---
 <BaseLayout
-  title="Meet Anupriya | AadiVed Yoga and Wellness"
-  description="Anupriya is the founder of AadiVed and a 500-hour Yoga Alliance Registered Practitioner. Meet your teacher in Hinjawadi, Pune."
+  jsonLd={[personSchema()]}
   breadcrumbs={[{ name: 'Home', path: '/' }, { name: 'About', path: '/about/' }, { name: 'Meet Anupriya', path: '/about/anupriya/' }]}
 >
   <article class="page">

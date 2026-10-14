@@ -1,4 +1,5 @@
 ---
+import { getSeo } from '../../data/seo';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import InnerHero from '../../components/page/InnerHero.astro';
 import Bento from '../../components/page/Bento.astro';
@@ -14,17 +15,16 @@ const approach = [
   { title: 'Every body welcome', text: 'From absolute beginners to experienced practitioners, with practice shaped around you.' },
   { title: 'Studio and online', text: 'Small, unhurried classes in Hinjawadi Phase 3, and live online sessions for wherever you are.' },
 ];
+const s = getSeo(Astro.url.pathname);
 ---
 <BaseLayout
-  title="Our Story and the Name | AadiVed Yoga and Wellness"
-  description="AadiVed is a women-owned holistic yoga and sound healing studio in Hinjawadi Phase 3, Pune. Aadi means beginning. Ved means knowledge."
   breadcrumbs={[{ name: 'Home', path: '/' }, { name: 'About', path: '/about/' }]}
 >
   <div class="page-bg">
     <InnerHero
       crumbs={crumbs}
-      eyebrow="About AadiVed"
-      title="Our story and the name"
+      eyebrow="Our story and the name"
+      title={s.h1} suffix={s.h1Suffix}
       intro="A return to the roots of wellbeing: mindful movement, breath and being, brought into everyday life."
       variant="wide"
       image={beach}

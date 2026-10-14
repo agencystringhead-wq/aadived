@@ -7,6 +7,8 @@ import ServicePage from '../components/page/ServicePage.astro';
 import { stubPages, site } from '../data/site';
 import type { StubPage } from '../data/site';
 import { getPractice } from '../data/practices';
+import { getSeo } from '../data/seo';
+import { serviceSchema, faqSchema } from '../data/schema';
 
 export function getStaticPaths() {
   // Routes that have their own page file
@@ -22,12 +24,21 @@ const practice = getPractice(page.slug);
 const crumbs = [{ name: 'Home', path: '/' }];
 if (page.parent) crumbs.push({ name: page.parent.label, path: page.parent.href });
 crumbs.push({ name: page.title, path: `/${page.slug}/` });
+
+const seo = getSeo(`/${page.slug}/`);
+const jsonLd = practice
+  ? [
+      serviceSchema({
+        path: `/${page.slug}/`,
+        name: `${seo.h1} ${seo.h1Suffix ?? ''}`.trim(),
+        serviceType: page.title,
+        description: seo.description,
+      }),
+      faqSchema(practice.faqs),
+    ]
+  : [];
 ---
-<BaseLayout
-  title={`${page.title} | ${site.shortName} Yoga and Wellness`}
-  description={practice ? practice.tagline : page.intro}
-  breadcrumbs={crumbs}
->
+<BaseLayout breadcrumbs={crumbs} jsonLd={jsonLd}>
   {practice ? (
     <ServicePage page={page} practice={practice} />
   ) : (

@@ -1,4 +1,5 @@
 ---
+import { getSeo } from '../data/seo';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import InnerHero from '../components/page/InnerHero.astro';
 import EnquiryForm from '../components/page/EnquiryForm.astro';
@@ -7,14 +8,13 @@ import Icon from '../components/Icon.astro';
 import { site } from '../data/site';
 
 const crumbs = [{ label: 'Home', href: '/' }, { label: 'Contact' }];
+const s = getSeo(Astro.url.pathname);
 ---
 <BaseLayout
-  title="Contact | AadiVed Yoga and Wellness"
-  description="Book a session or ask a question. Call, message on Instagram or send an enquiry to AadiVed in Hinjawadi Phase 3, Pune."
   breadcrumbs={[{ name: 'Home', path: '/' }, { name: 'Contact', path: '/contact/' }]}
 >
   <div class="page-bg">
-    <InnerHero crumbs={crumbs} eyebrow="Say hello" title="Book a session" intro="Call, send a message, or fill in the form. We usually reply within the day." />
+    <InnerHero crumbs={crumbs} eyebrow="Say hello" title={s.h1} suffix={s.h1Suffix} intro="Call, send a message, or fill in the form. We usually reply within the day." />
 
     <section id="book" class="wrap layout" aria-labelledby="form-h">
       <div class="formcol">

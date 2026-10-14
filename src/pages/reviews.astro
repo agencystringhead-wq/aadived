@@ -1,4 +1,5 @@
 ---
+import { getSeo } from '../data/seo';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import InnerHero from '../components/page/InnerHero.astro';
 import Icon from '../components/Icon.astro';
@@ -7,14 +8,13 @@ import { site } from '../data/site';
 import { reviews, rating } from '../data/reviews';
 
 const crumbs = [{ label: 'Home', href: '/' }, { label: 'Reviews' }];
+const s = getSeo(Astro.url.pathname);
 ---
 <BaseLayout
-  title="Reviews | AadiVed Yoga and Wellness"
-  description="5.0 average rating on Google Reviews. Read what students say about AadiVed Yoga and Wellness in Hinjawadi, Pune."
   breadcrumbs={[{ name: 'Home', path: '/' }, { name: 'Reviews', path: '/reviews/' }]}
 >
   <div class="page-bg">
-    <InnerHero crumbs={crumbs} eyebrow="Kind words" title="Loved in Hinjawadi" intro="What students say about practising with AadiVed, taken from Google Reviews." />
+    <InnerHero crumbs={crumbs} eyebrow="Kind words" title={s.h1} suffix={s.h1Suffix} intro="What students say about practising with AadiVed, taken from Google Reviews." />
 
     <section class="wrap sec score" aria-labelledby="score-h">
       <h2 id="score-h" class="sr-only">Average rating</h2>
