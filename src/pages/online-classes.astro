@@ -24,7 +24,7 @@ const why = [
 const steps = [
   { title: 'Reach out', text: 'Call, message us on Instagram or send an enquiry. Tell us what you would like to feel.' },
   { title: 'Find your fit', text: 'We match the practice to your body, goals and schedule, and tell you how to join.' },
-  { title: 'Join live', text: 'Log in at class time, roll out your mat and practise with live guidance. [Joining platform to confirm]' },
+  { title: 'Join live', text: 'Log in at class time, roll out your mat and practise with live guidance. We will tell you how to join.' },
 ];
 const faqs = [
   { q: 'Are the classes live?', a: 'Yes. Live online sessions with real-time cues and corrections.' },
@@ -71,7 +71,7 @@ const s = getSeo(Astro.url.pathname);
       <ul class="pill-list">
         {online.map((p) => <li><a class="pill" href={`/${p.slug}/`}>{titleFor(p.slug)}</a></li>)}
       </ul>
-      <p class="note-text">[To confirm with Anupriya: which practices run online]</p>
+      <p class="note-text">Call <a class="inline-link" href={`tel:${site.phone.tel}`}>{site.phone.display}</a> to check which practices are available online.</p>
     </section>
 
     <section class="wrap sec last reveal" aria-labelledby="faq-h">
