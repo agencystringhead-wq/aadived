@@ -1,0 +1,23 @@
+---
+// Stub pages for every route in the brief, generated from the registry in src/data/site.ts.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import { stubPages, site } from '../data/site';
+import type { StubPage } from '../data/site';
+
+export function getStaticPaths() {
+  return stubPages.map((page) => ({ params: { slug: page.slug }, props: { page } }));
+}
+
+const { page } = Astro.props as { page: StubPage };
+const crumbs = [{ name: 'Home', path: '/' }];
+if (page.parent) crumbs.push({ name: page.parent.label, path: page.parent.href });
+crumbs.push({ name: page.title, path: `/${page.slug}/` });
+---
+<BaseLayout
+  title={`${page.title} | ${site.shortName} Yoga and Wellness`}
+  description={page.intro}
+  breadcrumbs={crumbs}
+>
+  <PageHero eyebrow={page.eyebrow} title={page.title} intro={page.intro} crumb={page.parent} bookAnchor={page.slug === 'contact'} />
+</BaseLayout>
