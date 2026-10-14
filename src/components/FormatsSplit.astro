@@ -2,16 +2,20 @@
 import { Image } from 'astro:assets';
 import SectionHeading from './SectionHeading.astro';
 import { site } from '../data/site';
-// TODO: replace with original high-res photo (ig-guided.webp is a low-res Instagram crop)
-import guided from '../assets/images/ig-guided.webp';
+// Free stock photos (Pexels). Credits in design-source/stock-credits.md
+// TODO: replace formats-studio.webp with a real photo of the studio (Megapolis Serenity) when the client sends one
+import studio from '../assets/images/stock/formats-studio.webp';
+import online from '../assets/images/stock/formats-online.webp';
 ---
 <section class="formats">
   <div class="wrap section">
     <SectionHeading center eyebrow="Practice your way" title="In the studio, or from your own mat" />
     <div class="grid">
       <div class="card studio">
-        <!-- TODO: replace this placeholder with a real studio photo (Megapolis Serenity) -->
-        <div class="ph">[Studio photo · Megapolis Serenity]</div>
+        <div class="photo">
+          <Image src={studio} alt="Rolled grey yoga mats and a stack of folded striped blankets on a wooden shelf, with bolsters underneath"
+            format="webp" width={700} height={350} densities={[1, 2]} loading="lazy" />
+        </div>
         <div class="body">
           <h3>Studio sessions</h3>
           <p>Small, unhurried classes at Megapolis Serenity in Hinjawadi Phase 3. Personal attention on every asana, with sound healing in a quiet, grounded space.</p>
@@ -20,7 +24,8 @@ import guided from '../assets/images/ig-guided.webp';
       </div>
       <div class="card online">
         <div class="photo">
-          <Image src={guided} alt="Guided Yoga and Meditation for everyday well-being" format="webp" width={300} height={280} loading="lazy" />
+          <Image src={online} alt="Overhead view of a person in child pose on a jute rug beside a bed, with a laptop on the wooden floor next to them"
+            format="webp" width={700} height={350} densities={[1, 2]} loading="lazy" />
         </div>
         <div class="body">
           <h3>Live online sessions</h3>
@@ -37,9 +42,8 @@ import guided from '../assets/images/ig-guided.webp';
   .card { border-radius: 26px; overflow: hidden; display: flex; flex-direction: column; }
   .studio { background: var(--ivory); }
   .online { background: var(--olive); color: var(--sand); }
-  .ph { height: 280px; background: #DCD4C2; display: flex; align-items: center; justify-content: center; color: var(--olive-deep); font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; text-align: center; padding: 0 16px; }
-  .photo { height: 280px; overflow: hidden; background: #3B4130; display: flex; justify-content: center; }
-  .photo :global(img) { width: 100%; max-width: 300px; height: 100%; object-fit: cover; object-position: 50% 40%; display: block; }
+  .photo { aspect-ratio: 2 / 1; overflow: hidden; background: var(--sand); }
+  .photo :global(img) { width: 100%; height: 100%; object-fit: cover; display: block; }
   .body { padding: 36px 38px 40px; }
   h3 { font-family: var(--font-display); font-weight: 500; font-size: 34px; margin: 0; }
   p { margin: 12px 0 0; color: var(--text-muted); }

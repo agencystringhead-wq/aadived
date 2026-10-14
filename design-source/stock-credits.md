@@ -8,7 +8,11 @@ All photos are from Pexels under the [Pexels License](https://www.pexels.com/lic
 | --- | --- | --- | --- | --- |
 | `src/assets/images/stock/hero-mudra.webp` (880x1120) | Nataliya Vaitkevich | https://www.pexels.com/photo/hand-in-gyan-mudra-pose-4827960/ | Pexels License | 4:5 portrait crop of the 4160x6240 original, WebP quality 80 |
 | `src/assets/images/stock/hero-singing-bowls.webp` (400x500) | MikeGz | https://www.pexels.com/photo/cooper-mortar-and-pestle-15240821/ | Pexels License | 4:5 portrait crop of the 3559x5338 original, trimmed on the left to drop an unrelated object, WebP quality 80 |
+| `src/assets/images/stock/formats-studio.webp` (1400x700) | Yan Krukau | https://www.pexels.com/photo/still-life-photography-of-rolled-yoga-mats-8437013/ | Pexels License | 2:1 landscape crop of the 5843x3895 original, WebP quality 80 |
+| `src/assets/images/stock/formats-online.webp` (1400x700) | Mikael Blomkvist | https://www.pexels.com/photo/a-woman-on-the-yoga-mat-4151726/ | Pexels License | 2:1 landscape crop of the 8256x5504 original, WebP quality 80 |
 
-The Pexels page title for the second photo reads "cooper mortar and pestle", but the photo shows a copper singing bowl with a wooden mallet.
+The Pexels page title for the second hero photo reads "cooper mortar and pestle", but the photo shows a copper singing bowl with a wooden mallet.
 
-Where they are used: the hero main arch (`hero-mudra`) and the hero overlapping card (`hero-singing-bowls`) in `src/components/Hero.astro`.
+Where they are used:
+- `hero-mudra` (main arch) and `hero-singing-bowls` (overlapping card) in `src/components/Hero.astro`.
+- `formats-studio` (Studio sessions card) and `formats-online` (Live online sessions card) in `src/components/FormatsSplit.astro`. The studio photo is a stand-in and is not the Megapolis Serenity studio. Replace it with a real photo when the client sends one.
