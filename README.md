@@ -48,6 +48,10 @@ Every image on the site is WebP, rendered through `astro:assets` with `format="w
   - `ig-mono.webp`: `TeacherIntro.astro`, `InstagramStrip.astro`
   - `ig-guided.webp`: `FormatsSplit.astro`, `InstagramStrip.astro`
 - [ ] **Hero stock photos.** The hero uses free Pexels photos (credits in `design-source/stock-credits.md`). Replace with photos of the studio and Anupriya when available.
+- [ ] **Anupriya certificate.** Drop the scan at `src/assets/images/certificates/ryt-500.webp`. Until then `/about/anupriya/` shows a placeholder frame. Once the file exists the frame becomes a click-to-enlarge lightbox automatically.
+- [ ] **Anupriya facts.** Years teaching, teachers and lineage, background story, Yoga Alliance registration number and year certified are marked `[To confirm with Anupriya]` on `/about/anupriya/`.
+- [ ] **Sound Healing session flow.** The three "what a session looks like" steps in `src/data/practices.ts` are general wording and need confirming with Anupriya (marked with a TODO).
+- [ ] **Remaining service pages.** Only Sound Healing has full copy so far. The other 13 service routes still show the "coming soon" stub until their entries are added to `src/data/practices.ts`.
 - [ ] **WhatsApp.** Confirm `+91 82084 69389` is on WhatsApp (`site.whatsapp`, footer icon). Remove the icon if not.
 - [ ] **Final domain.** `https://aadived.com` is a placeholder in `astro.config.mjs` and `site.ts`.
 - [ ] **Newsletter and booking form provider.** The footer form posts to `site.newsletterAction` (`#`). Wire it to JotForm or a Cloudflare Worker. The `/contact/#book` anchor needs a real booking form or contact block.
