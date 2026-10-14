@@ -1,9 +1,9 @@
 ---
 import { Image } from 'astro:assets';
 import Icon from './Icon.astro';
-// TODO: replace with original high-res photo (ig-yogaday.webp, ig-sanskrit.webp are low-res Instagram crops)
-import main from '../assets/images/ig-yogaday.webp';
-import small from '../assets/images/ig-sanskrit.webp';
+// Free stock photos (Pexels). Credits in design-source/stock-credits.md
+import main from '../assets/images/stock/hero-mudra.webp';
+import small from '../assets/images/stock/hero-singing-bowls.webp';
 import { site } from '../data/site';
 ---
 <section class="hero">
@@ -27,11 +27,11 @@ import { site } from '../data/site';
     <div class="visual">
       <div class="circle" aria-hidden="true"></div>
       <div class="arch">
-        <Image src={main} alt="AadiVed instructor holding a dancer pose on a garden path" format="webp"
-          width={440} height={560} loading="eager" fetchpriority="high" />
+        <Image src={main} alt="A hand resting in a gyan mudra on a crossed knee, with a soft green garden behind" format="webp"
+          width={440} height={560} densities={[1, 2]} loading="eager" fetchpriority="high" />
       </div>
       <div class="mini">
-        <Image src={small} alt="Low lunge back-bend, Namaste" format="webp" width={200} height={250} loading="lazy" />
+        <Image src={small} alt="A copper singing bowl with a wooden mallet in warm sunlight" format="webp" width={200} height={250} densities={[1, 2]} loading="lazy" />
       </div>
     </div>
   </div>
@@ -52,9 +52,9 @@ import { site } from '../data/site';
   .visual { flex: 1 1 420px; min-width: 0; position: relative; display: flex; justify-content: center; padding-bottom: 40px; }
   .circle { position: absolute; width: 420px; height: 420px; border-radius: 50%; background: var(--accent); opacity: 0.55; top: 40px; right: -40px; }
   .arch { position: relative; width: 100%; max-width: 440px; height: 560px; border-radius: 240px 240px 24px 24px; overflow: hidden; background: var(--olive); }
-  .arch :global(img) { width: 100%; height: 100%; object-fit: cover; object-position: 50% 78%; display: block; }
+  .arch :global(img) { width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; display: block; }
   .mini { position: absolute; left: 0; bottom: 0; width: 200px; height: 250px; border-radius: 18px; overflow: hidden; border: 6px solid var(--ivory); box-shadow: 0 20px 40px -18px rgba(47,52,36,0.45); }
-  .mini :global(img) { width: 100%; height: 100%; object-fit: cover; object-position: 50% 85%; display: block; }
+  .mini :global(img) { width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; display: block; }
 
   @media (max-width: 768px) {
     .inner { padding-top: 48px; padding-bottom: 64px; gap: 48px; }
