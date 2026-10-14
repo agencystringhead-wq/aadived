@@ -1,0 +1,38 @@
+---
+// Cloudflare Pages serves dist/404.html with a real 404 status for unknown URLs.
+// SEO (noindex, title, description) comes from the "/404/" entry in src/data/seo.ts.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import { site } from '../data/site';
+import { getSeo } from '../data/seo';
+
+const s = getSeo('/404/');
+---
+<BaseLayout>
+  <section class="nf">
+    <div class="circle" aria-hidden="true"></div>
+    <div class="wrap inner">
+      <div class="eyebrow">Error 404</div>
+      <h1>{s.h1}</h1>
+      <p class="help">The page you were looking for is not here. Head back to a calmer place and we will help you find what you need.</p>
+      <div class="buttons">
+        <a class="btn btn-primary" href="/">Home</a>
+        <a class="btn btn-secondary" href="/classes/">Classes</a>
+        <a class="btn btn-secondary" href="/contact/">Contact</a>
+      </div>
+      <p class="phone">Or call us on <a href={`tel:${site.phone.tel}`}><Icon name="phone" size={15} />{site.phone.display}</a></p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .nf { position: relative; overflow: hidden; background: var(--ivory); min-height: 62vh; display: flex; align-items: center; }
+  .circle { position: absolute; width: 520px; height: 520px; border-radius: 50%; background: var(--accent); opacity: 0.45; right: -120px; top: 50%; transform: translateY(-50%); }
+  .inner { position: relative; width: 100%; padding-top: 96px; padding-bottom: 96px; }
+  h1 { font-family: var(--font-display); font-weight: 400; font-size: clamp(48px, 7vw, 104px); line-height: 0.98; letter-spacing: -0.015em; margin: 18px 0 0; max-width: 11em; color: var(--ink); }
+  .help { font-size: 20px; line-height: 1.65; color: var(--text-muted); max-width: 30em; margin: 26px 0 0; }
+  .buttons { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; }
+  .phone { margin: 28px 0 0; color: var(--text-muted); }
+  .phone a { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-weight: 500; border-bottom: 1px solid currentColor; }
+  @media (max-width: 768px) { .inner { padding-top: 56px; padding-bottom: 64px; } .circle { width: 320px; height: 320px; right: -140px; } .help { font-size: 18px; } }
+</style>

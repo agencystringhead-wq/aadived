@@ -7,7 +7,8 @@ export default defineConfig({
   output: 'static',
   trailingSlash: 'always',
   build: { inlineStylesheets: 'always' },
-  integrations: [sitemap()],
+  // Keep noindex pages out of the sitemap
+  integrations: [sitemap({ filter: (page) => !/\/(404|privacy|terms)\/?$/.test(page) })],
   image: {
     service: { entrypoint: 'astro/assets/services/sharp' },
   },
