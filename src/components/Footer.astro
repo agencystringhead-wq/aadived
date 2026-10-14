@@ -1,0 +1,105 @@
+---
+import { Image } from 'astro:assets';
+import Icon from './Icon.astro';
+import { site, footerColumns, legalLinks } from '../data/site';
+import logo from '../assets/images/aadived-logo-white-2400.webp';
+const year = new Date().getFullYear();
+const cols = [
+  { heading: 'Yoga', links: footerColumns.yoga },
+  { heading: 'Healing & Wellness', links: footerColumns.healing },
+  { heading: 'The Studio', links: footerColumns.studio },
+];
+---
+<footer class="foot on-dark">
+  <div class="wrap pad">
+    <div class="top">
+      <div class="pitch">
+        <div class="big">Calm, delivered gently to your inbox.</div>
+        <div class="sub">Class updates, new batches and simple practices to try at home.</div>
+      </div>
+      <!-- TODO: wire to the real newsletter provider (JotForm or a Cloudflare Worker) -->
+      <form class="news" action={site.newsletterAction} method="post">
+        <label for="foot-email" class="sr-only">Email address</label>
+        <input id="foot-email" name="email" type="email" placeholder="Your email address" autocomplete="email" required />
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+
+    <div class="cols">
+      <div class="brand">
+        <Image src={logo} alt="AadiVed, Mind. Body. Soul" format="webp" width={170} height={142} densities={[1, 2]} loading="lazy" />
+        <p>Holistic yoga and sound healing studio in Hinjawadi, Pune. Rooted in ancient Indian wisdom, built for modern lives.</p>
+        <div class="social">
+          <a href={site.instagram.url} aria-label="AadiVed on Instagram"><Icon name="instagram" /></a>
+          <a href={site.google.profile} aria-label="AadiVed on Google"><Icon name="google" /></a>
+          <!-- TODO: confirm the studio number is on WhatsApp before launch -->
+          <a href={site.whatsapp} aria-label="Message AadiVed on WhatsApp"><Icon name="whatsapp" /></a>
+        </div>
+      </div>
+
+      {cols.map((c) => (
+        <div>
+          <div class="head">{c.heading}</div>
+          <div class="links">
+            {c.links.map((l) => <a href={l.href}>{l.label}</a>)}
+          </div>
+        </div>
+      ))}
+
+      <div>
+        <div class="head">Visit</div>
+        <div class="links visit">
+          <span>{site.address.lines.map((l, i) => <>{i > 0 && <br />}{l}</>)}</span>
+          <a href={`tel:${site.phone.tel}`}>{site.phone.display}</a>
+          <span>{site.timings}</span>
+          <a class="dir" href={site.google.directions}>Get directions &#8594;</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="bottom">
+      <span>&#169; {year} {site.name}. All rights reserved.</span>
+      <span class="legal">
+        {legalLinks.map((l) => <a href={l.href}>{l.label}</a>)}
+        <span>Website by wwiser</span>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .foot { background: var(--olive-deep); color: var(--footer-text); font-size: 15.5px; }
+  .foot a { color: var(--on-dark); }
+  .foot a:hover { color: #fff; }
+  .pad { padding-top: 96px; padding-bottom: 56px; }
+  .top { display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between; align-items: center; padding-bottom: 56px; border-bottom: 1px solid rgba(220,215,198,0.18); }
+  .pitch { max-width: 560px; }
+  .big { font-family: var(--font-display); font-size: 36px; line-height: 1.15; color: var(--ivory); }
+  .sub { margin-top: 8px; color: var(--footer-muted); }
+  .news { display: flex; gap: 10px; flex-wrap: wrap; flex: 0 1 460px; }
+  .news input { flex: 1 1 240px; min-height: 52px; padding: 0 22px; border-radius: var(--radius-pill); border: 1px solid rgba(220,215,198,0.35); background: transparent; color: var(--ivory); font: inherit; }
+  .news input::placeholder { color: var(--footer-muted); }
+  .news button { min-height: 52px; padding: 0 28px; border-radius: var(--radius-pill); border: 0; background: var(--ivory); color: var(--olive-deep); font: inherit; font-weight: 500; cursor: pointer; }
+  .news button:hover { background: #fff; }
+
+  .cols { display: grid; grid-template-columns: 1.4fr repeat(3, minmax(0, 1fr)) minmax(190px, 1.3fr); gap: 40px; padding-top: 64px; }
+  .brand { min-width: 0; }
+  .brand :global(img) { width: 170px; height: auto; display: block; }
+  .brand p { margin: 22px 0 0; color: var(--footer-muted); font-size: 15px; }
+  .social { display: flex; gap: 12px; margin-top: 22px; }
+  .social a { width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(220,215,198,0.35); display: inline-flex; align-items: center; justify-content: center; }
+  .head { font-size: 12.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ivory); font-weight: 500; margin-bottom: 18px; }
+  .links { display: flex; flex-direction: column; gap: 0; }
+  .links a { display: inline-flex; align-items: center; min-height: 44px; }
+  .visit { gap: 14px; color: var(--footer-muted); }
+  .visit .dir { color: var(--ivory); font-weight: 500; }
+
+  .bottom { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-top: 72px; padding-top: 28px; border-top: 1px solid rgba(220,215,198,0.18); font-size: 13.5px; color: #B5B09E; }
+  .legal { display: flex; gap: 24px; flex-wrap: wrap; align-items: center; }
+  .legal a { color: #B5B09E; display: inline-flex; align-items: center; min-height: 44px; }
+  .legal a:hover { color: #fff; }
+
+  @media (max-width: 1100px) { .cols { grid-template-columns: repeat(3, minmax(0, 1fr)); } .brand { grid-column: 1 / -1; max-width: 460px; } }
+  @media (max-width: 768px) { .pad { padding-top: 64px; } .cols { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px 24px; } .big { font-size: 30px; } }
+  @media (max-width: 480px) { .cols { grid-template-columns: 1fr; } }
+</style>

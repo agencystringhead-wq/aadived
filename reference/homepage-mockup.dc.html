@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>AadiVed Yoga and Wellness | Homepage</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Jost:wght@300;400;500&amp;family=Tiro+Devanagari+Hindi&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F3EEE4}
+a{color:#4B5238;text-decoration:none}a:hover{color:#2F3424}
+.wrap{max-width:1240px;margin:0 auto;padding:0 40px;box-sizing:border-box}
+.navlink{background:none;border:0;cursor:pointer;font:inherit;color:inherit;padding:10px 0;display:inline-flex;align-items:center;gap:6px;min-height:44px}
+.navlink:hover{color:#4B5238}
+.menu-btn{display:none}
+.mm-link{display:block;padding:7px 0;color:#2F3424}
+.mm-link:hover{color:#4B5238;text-decoration:underline;text-underline-offset:4px}
+.foot a{color:#E4E0D2}.foot a:hover{color:#ffffff}
+.card:hover{transform:translateY(-3px)}
+@media (max-width:960px){.nav-links{display:none!important}.menu-btn{display:inline-flex}.wrap{padding:0 20px}.util-extra{display:none!important}}
+</style>
+</helmet>
+
+<div style="font-family: 'Jost', sans-serif; color: #23261C; background: #F3EEE4; font-size: 17px; line-height: 1.65; font-weight: 400">
+
+<!-- ============ UTILITY BAR ============ -->
+<div style="background: #2F3424; color: #E4E0D2; font-size: 13.5px; letter-spacing: 0.02em">
+<div class="wrap" style="display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; padding-top: 9px; padding-bottom: 9px">
+<div style="display: flex; gap: 22px; align-items: center; flex-wrap: wrap">
+<span style="display: inline-flex; align-items: center; gap: 8px"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg>Megapolis Serenity, Hinjawadi Phase 3, Pune</span>
+<span class="util-extra" style="display: inline-flex; align-items: center; gap: 8px">Studio &amp; online sessions</span>
+</div>
+<div style="display: flex; gap: 22px; align-items: center">
+<a href="tel:+918208469389" style="color: #E4E0D2; display: inline-flex; align-items: center; gap: 8px"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"></path></svg>+91 82084 69389</a>
+<a href="https://www.instagram.com/aadivedwellness/" class="util-extra" style="color: #E4E0D2; display: inline-flex; align-items: center; gap: 8px"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor"></circle></svg>@aadivedwellness</a>
+</div>
+</div>
+</div>
+
+<!-- ============ HEADER + MEGA MENU ============ -->
+<header style="position: relative; background: #FBF8F2; border-bottom: 1px solid #E2DACB; z-index: 20">
+<div class="wrap" style="display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 116px">
+<a href="#" aria-label="AadiVed Yoga and Wellness, home" style="display: flex; align-items: center">
+<img src="/_blob/b8d5a9f1702522b3df5d7a2c68bb0f3a" alt="AadiVed, Mind. Body. Soul" style="height: 88px; width: auto; display: block">
+</a>
+<nav class="nav-links" aria-label="Main" style="display: flex; align-items: center; gap: 34px; font-size: 15.5px; font-weight: 500; letter-spacing: 0.01em; color: #2F3424">
+<button class="navlink" onClick="{{toggleAbout}}" aria-expanded="{{aboutOpen}}">About <svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"></path></svg></button>
+<button class="navlink" onClick="{{toggleServices}}" aria-expanded="{{servicesOpen}}" style="color: {{servicesColor}}">Yoga &amp; Healing <svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"></path></svg></button>
+<a class="navlink" href="#">Online Classes</a>
+<a class="navlink" href="#">Reviews</a>
+<a class="navlink" href="#">Journal</a>
+<a class="navlink" href="#">Contact</a>
+</nav>
+<div style="display: flex; align-items: center; gap: 12px">
+<a href="#book" style="background: #4B5238; color: #FBF8F2; padding: 13px 24px; border-radius: 999px; font-size: 15px; font-weight: 500; letter-spacing: 0.02em; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center">Book a session</a>
+<button class="menu-btn" aria-label="Open menu" onClick="{{toggleServices}}" style="background: none; border: 1px solid #C9C1AE; border-radius: 999px; width: 46px; height: 46px; align-items: center; justify-content: center; cursor: pointer; color: #2F3424"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></button>
+</div>
+</div>
+
+<!-- Mega menu: Yoga & Healing -->
+<sc-if value="{{servicesOpen}}" hint-placeholder-val="{{ true }}">
+<div style="position: absolute; left: 0; right: 0; top: 100%; background: #FBF8F2; border-top: 1px solid #E2DACB; box-shadow: 0 30px 60px -20px rgba(47,52,36,0.28)">
+<div class="wrap" style="padding-top: 44px; padding-bottom: 48px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px">
+
+<div>
+<div style="font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: #6B6F5A; font-weight: 500; margin-bottom: 14px; display: flex; align-items: center; gap: 10px"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4B5238" stroke-width="1.5"><circle cx="12" cy="5" r="2"></circle><path d="M4 12c3-1 5-2 8-2s5 1 8 2M12 10v5M8 21c1-3 2.5-5 4-6 1.5 1 3 3 4 6"></path></svg>Yoga</div>
+<a class="mm-link" href="#">Guided Yoga</a>
+<a class="mm-link" href="#">Yoga for Beginners</a>
+<a class="mm-link" href="#">Experienced Practitioners</a>
+<a class="mm-link" href="#">Prenatal Yoga (1:1)</a>
+<a class="mm-link" href="#">Private Sessions</a>
+</div>
+
+<div>
+<div style="font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: #6B6F5A; font-weight: 500; margin-bottom: 14px; display: flex; align-items: center; gap: 10px"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4B5238" stroke-width="1.5"><path d="M3 12h2M7 8v8M11 5v14M15 8v8M19 11v2"></path></svg>Mind &amp; Sound</div>
+<a class="mm-link" href="#">Meditation</a>
+<a class="mm-link" href="#">Breathwork</a>
+<a class="mm-link" href="#">Sound Healing</a>
+<a class="mm-link" href="#">Grounding Practices</a>
+</div>
+
+<div>
+<div style="font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: #6B6F5A; font-weight: 500; margin-bottom: 14px; display: flex; align-items: center; gap: 10px"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4B5238" stroke-width="1.5"><path d="M12 20c-4-3-7-6-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 4-3 7-7 10z"></path></svg>Wellness Programs</div>
+<a class="mm-link" href="#">Hormonal Balance</a>
+<a class="mm-link" href="#">Stress Management</a>
+<a class="mm-link" href="#">Anxiety Relief</a>
+<a class="mm-link" href="#">Energy Reset</a>
+<a class="mm-link" href="#">Build a Daily Practice</a>
+</div>
+
+<div>
+<div style="font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: #6B6F5A; font-weight: 500; margin-bottom: 14px; display: flex; align-items: center; gap: 10px"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4B5238" stroke-width="1.5"><rect x="3" y="5" width="18" height="12" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg>Ways to Join</div>
+<a class="mm-link" href="#">Studio Sessions, Hinjawadi</a>
+<a class="mm-link" href="#">Live Online Sessions</a>
+<a class="mm-link" href="#">One-on-One Coaching</a>
+<a class="mm-link" href="#">Plans &amp; Pricing</a>
+<a class="mm-link" href="#" style="font-weight: 500; color: #4B5238">All classes &#8594;</a>
+</div>
+
+<a href="#book" class="card" style="display: block; border-radius: 180px 180px 18px 18px; overflow: hidden; position: relative; min-height: 300px; background: #4B5238; color: #FBF8F2; transition: transform .3s">
+<img src="/_blob/2390e07303b36c7b42bc7acb5cdc989b" alt="AadiVed instructor in a standing balance pose outdoors" style="width: 100%; height: 300px; object-fit: cover; object-position: 50% 70%; display: block; opacity: 0.82">
+<div style="position: absolute; left: 0; right: 0; bottom: 0; padding: 22px; background: linear-gradient(to top, rgba(47,52,36,0.92), rgba(47,52,36,0))">
+<div style="font-family: 'Cormorant Garamond', serif; font-size: 26px; line-height: 1.1; font-style: italic">New here?</div>
+<div style="font-size: 14px; margin-top: 4px">Start with a 1:1 intro session &#8594;</div>
+</div>
+</a>
+
+</div>
+</div>
+</sc-if>
+
+<!-- Dropdown: About -->
+<sc-if value="{{aboutOpen}}" hint-placeholder-val="{{ false }}">
+<div style="position: absolute; left: 0; right: 0; top: 100%; background: #FBF8F2; border-top: 1px solid #E2DACB; box-shadow: 0 30px 60px -20px rgba(47,52,36,0.28)">
+<div class="wrap" style="padding-top: 36px; padding-bottom: 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 40px">
+<div>
+<a class="mm-link" href="#">Our Story &amp; the Name</a>
+<a class="mm-link" href="#">Meet Anupriya</a>
+<a class="mm-link" href="#">Credentials (500-hr RYT)</a>
+<a class="mm-link" href="#">The Studio</a>
+</div>
+<div style="font-family: 'Cormorant Garamond', serif; font-size: 26px; line-height: 1.3; color: #2F3424; font-style: italic">&#8220;Aadi&#8221; means beginning. &#8220;Ved&#8221; means knowledge. A return to the roots of wellbeing.</div>
+</div>
+</div>
+</sc-if>
+</header>
+
+<!-- ============ HERO ============ -->
+<section style="background: #FBF8F2; overflow: hidden">
+<div class="wrap" style="display: flex; flex-wrap: wrap; align-items: center; gap: 64px; padding-top: 88px; padding-bottom: 104px">
+<div style="flex: 1 1 520px; min-width: 0">
+<div style="font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: #5E634C; font-weight: 500">Holistic Yoga &amp; Sound Healing · Hinjawadi, Pune</div>
+<h1 style="font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: clamp(48px, 6vw, 86px); line-height: 1.02; letter-spacing: -0.01em; margin: 22px 0 0; color: #23261C">A return to the <span style="font-style: italic; color: #4B5238">roots</span> of wellbeing.</h1>
+<p style="font-size: 19px; line-height: 1.7; color: #4A4E3E; max-width: 540px; margin: 28px 0 0">Guided yoga, meditation and sound healing, rooted in ancient Indian wisdom and built for modern lives. Ease stress, restore hormonal balance, and find a calm that carries off the mat.</p>
+<div style="display: flex; gap: 14px; flex-wrap: wrap; margin-top: 38px">
+<a href="#book" style="background: #4B5238; color: #FBF8F2; padding: 16px 30px; border-radius: 999px; font-weight: 500; letter-spacing: 0.02em">Book your first session</a>
+<a href="#classes" style="border: 1px solid #4B5238; color: #2F3424; padding: 15px 30px; border-radius: 999px; font-weight: 500; letter-spacing: 0.02em">Explore classes</a>
+</div>
+<div style="display: flex; align-items: center; gap: 14px; margin-top: 40px; font-size: 15px; color: #4A4E3E">
+<span aria-label="5 out of 5 stars" role="img" style="display: inline-flex; gap: 2px; color: #B8862B">
+<svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"></path></svg>
+<svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"></path></svg>
+<svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"></path></svg>
+<svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"></path></svg>
+<svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"></path></svg>
+</span>
+<span><strong style="font-weight: 500; color: #23261C">5.0</strong> on Google · Women-led studio · 500-hr Yoga Alliance certified</span>
+</div>
+</div>
+
+<div style="flex: 1 1 420px; min-width: 0; position: relative; display: flex; justify-content: center; padding-bottom: 40px">
+<div style="position: absolute; width: 420px; height: 420px; border-radius: 50%; background: {{accent}}; opacity: 0.55; top: 40px; right: -40px"></div>
+<div style="position: relative; width: 100%; max-width: 440px; height: 560px; border-radius: 240px 240px 24px 24px; overflow: hidden; background: #4B5238">
+<img src="/_blob/2390e07303b36c7b42bc7acb5cdc989b" alt="AadiVed instructor holding a dancer pose on a garden path" style="width: 100%; height: 100%; object-fit: cover; object-position: 50% 78%; display: block">
+</div>
+<div style="position: absolute; left: 0; bottom: 0; width: 200px; height: 250px; border-radius: 18px; overflow: hidden; border: 6px solid #FBF8F2; box-shadow: 0 20px 40px -18px rgba(47,52,36,0.45)">
+<img src="/_blob/3d57826613c0589f47d190cf591aa2c7" alt="Low lunge back-bend, Namaste" style="width: 100%; height: 100%; object-fit: cover; object-position: 50% 85%; display: block">
+</div>
+</div>
+</div>
+</section>
+
+<!-- ============ TRUST STRIP ============ -->
+<section style="background: #4B5238; color: #F3EEE4">
+<div class="wrap" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; padding-top: 30px; padding-bottom: 30px; font-size: 15px; letter-spacing: 0.02em">
+<div style="display: flex; align-items: center; gap: 12px"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="9" r="6"></circle><path d="M8.5 14L7 22l5-3 5 3-1.5-8"></path></svg>500-hr Yoga Alliance certified</div>
+<div style="display: flex; align-items: center; gap: 12px"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="7" r="3"></circle><path d="M6 21c0-4 2.7-7 6-7s6 3 6 7"></path></svg>Women-owned &amp; women-led</div>
+<div style="display: flex; align-items: center; gap: 12px"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="5" width="18" height="12" rx="2"></rect><path d="M8 21h8"></path></svg>Studio &amp; online sessions</div>
+<div style="display: flex; align-items: center; gap: 12px"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 21c0-6 0-9 0-12M12 9c0-3 2-5 6-5 0 3-2 5-6 5zM12 13c0-3-2-5-6-5 0 3 2 5 6 5z"></path></svg>Beginners to experienced</div>
+</div>
+</section>
+
+<!-- ============ MEANING OF THE NAME ============ -->
+<section style="background: #F3EEE4">
+<div class="wrap" style="padding-top: 120px; padding-bottom: 120px; display: flex; flex-wrap: wrap; gap: 72px; align-items: center">
+<div style="flex: 1 1 460px; min-width: 0; display: flex; gap: 28px; align-items: flex-end; flex-wrap: wrap">
+<div>
+<div style="font-family: 'Tiro Devanagari Hindi', serif; font-size: 120px; line-height: 1; color: #4B5238">आदि</div>
+<div style="font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: #5E634C; margin-top: 14px">Aadi · Beginning</div>
+</div>
+<div style="font-family: 'Cormorant Garamond', serif; font-size: 72px; line-height: 1; color: #8A8C77; padding-bottom: 44px">+</div>
+<div>
+<div style="font-family: 'Tiro Devanagari Hindi', serif; font-size: 120px; line-height: 1; color: #4B5238">वेद</div>
+<div style="font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: #5E634C; margin-top: 14px">Ved · Knowledge</div>
+</div>
+</div>
+<div style="flex: 1 1 440px; min-width: 0">
+<div style="font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: #5E634C; font-weight: 500">Our name, our way</div>
+<h2 style="font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: clamp(36px, 4vw, 54px); line-height: 1.1; margin: 16px 0 0">Deeply rooted. Gently guided.</h2>
+<p style="color: #4A4E3E; margin: 22px 0 0">AadiVed brings mindful movement, breath and being into everyday life. Every class blends asana, breathwork and grounding practices so the calm carries off the mat and into your day.</p>
+<a href="#" style="display: inline-flex; align-items: center; gap: 8px; margin-top: 26px; font-weight: 500; border-bottom: 1px solid #4B5238; padding-bottom: 4px">Read our story &#8594;</a>
+</div>
+</div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section id="classes" style="background: #FBF8F2">
+<div class="wrap" style="padding-top: 120px; padding-bottom: 120px">
+<div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; flex-wrap: wrap">
+<div style="max-width: 640px">
+<div style="font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: #5E634C; font-weight: 500">Classes &amp; healing</div>
+<h2 style="font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: clamp(36px, 4vw, 56px); line-height: 1.08; margin: 16px 0 0">Ways we practice together</h2>
+</div>
+<a href="#" style="font-weight: 500; border-bottom: 1px solid #4B5238; padding-bottom: 4px">View all classes &#8594;</a>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); gap: 24px; margin-top: 56px">
+<sc-for list="{{services}}" as="s" hint-placeholder-count="6">
+<a href="#" class="card" style="display: flex; flex-direction: column; gap: 14px; background: #F3EEE4; border-radius: 22px; padding: 36px 34px 32px; color: #23261C; transition: transform .3s; min-height: 260px; box-sizing: border-box">
+<div style="width: 60px; height: 60px; border-radius: 50%; background: {{s.bg}}; display: flex; align-items: center; justify-content: center; color: #2F3424">
+<svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="{{s.icon}}"></path></svg>
+</div>
+<h3 style="font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 30px; line-height: 1.15; margin: 10px 0 0">{{s.title}}</h3>
+<p style="margin: 0; color: #4A4E3E; font-size: 16px; flex-grow: 1">{{s.text}}</p>
+<span style="font-size: 14.5px; font-weight: 500; color: #4B5238">Learn more &#8594;</span>
+</a>
+</sc-for>
+</div>
+</div>
+</section>
+
+<!-- ============ STUDIO / ONLINE ============ -->
+<section style="background: #F3EEE4">
+<div class="wrap" style="padding-top: 120px; padding-bottom: 120px">
+<div style="text-align: center; max-width: 720px; margin: 0 auto">
+<div style="font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: #5E634C; font-weight: 500">Practice your way</div>
+<h2 style="font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: clamp(36px, 4vw, 56px); line-height: 1.08; margin: 16px 0 0">In the studio, or from your own mat</h2>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 28px; margin-top: 60px">
+<div style="background: #FBF8F2; border-radius: 26px; overflow: hidden; display: flex; flex-direction: column">
+<div style="height: 280px; background: #DCD4C2; display: flex; align-items: center; justify-content: center; color: #5E634C; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase">[Studio photo · Megapolis Serenity]</div>
+<div style="padding: 36px 38px 40px">
+<h3 style="font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 34px; margin: 0">Studio sessions</h3>
+<p style="color: #4A4E3E; margin: 12px 0 0">Small, unhurried classes at Megapolis Serenity in Hinjawadi Phase 3. Personal attention on every asana, with sound healing in a quiet, grounded space.</p>
+<a href="#" style="display: inline-block; margin-top: 22px; font-weight: 500; border-bottom: 1px solid #4B5238; padding-bottom: 4px">Get directions &#8594;</a>
+</div>
+</div>
+<div style="background: #4B5238; color: #F3EEE4; border-radius: 26px; overflow: hidden; display: flex; flex-direction: column">
+<div style="height: 280px; overflow: hidden; background: #3B4130">
+<img src="/_blob/6504e8e4efdf931d50306630bc204809" alt="Guided Yoga and Meditation for everyday well-being" style="width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; display: block">
+</div>
+<div style="padding: 36px 38px 40px">
+<h3 style="font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 34px; margin: 0">Live online sessions</h3>
+<p style="color: #E4E0D2; margin: 12px 0 0">The same guided practice, wherever you are. Live classes with real-time cues and corrections, for beginners and experienced yogis alike.</p>
+<a href="#" style="display: inline-block; margin-top: 22px; font-weight: 500; color: #FBF8F2; border-bottom: 1px solid #FBF8F2; padding-bottom: 4px">See online schedule &#8594;</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ============ TEACHER ============ -->
+<section style="background: #FBF8F2">
+<div class="wrap" style="padding-top: 120px; padding-bottom: 120px; display: flex; flex-wrap: wrap; gap: 80px; align-items: center">
+<div style="flex: 1 1 400px; min-width: 0; display: flex; justify-content: center">
+<div style="width: 100%; max-width: 420px; height: 540px; border-radius: 24px 24px 220px 220px; overflow: hidden; background: #4B5238">
+<img src="/_blob/5990523dde5b931f98f203d7126654bf" alt="Anupriya, founder of AadiVed, in a quiet seated moment" style="width: 100%; height: 100%; object-fit: cover; object-position: 70% 50%; display: block">
+</div>
+</div>
+<div style="flex: 1 1 480px; min-width: 0">
+<div style="font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: #5E634C; font-weight: 500">Meet your teacher</div>
+<h2 style="font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: clamp(36px, 4vw, 56px); line-height: 1.08; margin: 16px 0 0">Anupriya</h2>
+<p style="font-size: 15px; letter-spacing: 0.06em; color: #5E634C; margin: 10px 0 0">Founder · 500-hour Yoga Alliance Registered Practitioner</p>
+<p style="color: #4A4E3E; margin: 26px 0 0">AadiVed is a women-owned studio built on a simple belief: ancient practice should feel at home in a modern life. Each session is shaped around you, whether you are stepping onto a mat for the first time, managing stress, or rebuilding balance after a big life change.</p>
+<blockquote style="margin: 34px 0 0; padding: 0; font-family: 'Cormorant Garamond', serif; font-size: 28px; line-height: 1.35; font-style: italic; color: #2F3424">&#8220;Her guidance is excellent, and she explains each asana so clearly and patiently.&#8221;<footer style="font-family: 'Jost', sans-serif; font-style: normal; font-size: 14px; letter-spacing: 0.06em; color: #5E634C; margin-top: 12px">Google review · 5 stars</footer></blockquote>
+<div style="display: flex; gap: 40px; margin-top: 40px; flex-wrap: wrap">
+<div><div style="font-family: 'Cormorant Garamond', serif; font-size: 48px; line-height: 1; color: #4B5238">500</div><div style="font-size: 14px; color: #5E634C; margin-top: 6px">training hours, RYT</div></div>
+<div><div style="font-family: 'Cormorant Garamond', serif; font-size: 48px; line-height: 1; color: #4B5238">5.0</div><div style="font-size: 14px; color: #5E634C; margin-top: 6px">Google rating</div></div>
+<div><div style="font-family: 'Cormorant Garamond', serif; font-size: 48px; line-height: 1; color: #4B5238">1:1</div><div style="font-size: 14px; color: #5E634C; margin-top: 6px">prenatal &amp; private care</div></div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ============ HOW IT BEGINS ============ -->
+<section style="background: {{accentSoft}}">
+<div class="wrap" style="padding-top: 110px; padding-bottom: 110px">
+<div style="text-align: center; max-width: 720px; margin: 0 auto">
+<div style="font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: #3F4433; font-weight: 500">How it begins</div>
+<h2 style="font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: clamp(36px, 4vw, 56px); line-height: 1.08; margin: 16px 0 0; color: #23261C">Three gentle steps</h2>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 28px; margin-top: 56px">
+<div style="background: #FBF8F2; border-radius: 22px; padding: 36px">
+<div style="font-family: 'Cormorant Garamond', serif; font-size: 56px; line-height: 1; color: #4B5238; font-style: italic">01</div>
+<h3 style="font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 28px; margin: 18px 0 0">Reach out</h3>
+<p style="color: #4A4E3E; margin: 10px 0 0; font-size: 16px">Call, send a DM on Instagram, or book online. Tell us a little about what you would like to feel.</p>
+</div>
+<div style="background: #FBF8F2; border-radius: 22px; padding: 36px">
+<div style="font-family: 'Cormorant Garamond', serif; font-size: 56px; line-height: 1; color: #4B5238; font-style: italic">02</div>
+<h3 style="font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 28px; margin: 18px 0 0">Find your fit</h3>
+<p style="color: #4A4E3E; margin: 10px 0 0; font-size: 16px">Studio or online, group or one-on-one. We match the practice to your body, goals and schedule.</p>
+</div>
+<div style="background: #FBF8F2; border-radius: 22px; padding: 36px">
+<div style="font-family: 'Cormorant Garamond', serif; font-size: 56px; line-height: 1; color: #4B5238; font-style: italic">03</div>
+<h3 style="font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 28px; margin: 18px 0 0">Begin, and keep going</h3>
+<p style="color: #4A4E3E; margin: 10px 0 0; font-size: 16px">Build a practice that lasts, with breath, movement and stillness you can return to every day.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ============ REVIEWS ============ -->
+<section style="background: #FBF8F2">
+<div class="wrap" style="padding-top: 120px; padding-bottom: 120px">
+<div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; flex-wrap: wrap">
+<div>
+<div style="font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: #5E634C; font-weight: 500">Kind words</div>
+<h2 style="font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: clamp(36px, 4vw, 56px); line-height: 1.08; margin: 16px 0 0">Loved in Hinjawadi</h2>
+</div>
+<div style="display: flex; align-items: center; gap: 16px">
+<div style="font-family: 'Cormorant Garamond', serif; font-size: 64px; line-height: 1; color: #4B5238">5.0</div>
+<div style="font-size: 14.5px; color: #4A4E3E">Average rating<br>on Google Reviews</div>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 56px">
+<sc-for list="{{reviews}}" as="r" hint-placeholder-count="3">
+<figure style="margin: 0; background: #F3EEE4; border-radius: 22px; padding: 36px 34px; display: flex; flex-direction: column; gap: 20px">
+<span role="img" aria-label="5 out of 5 stars" style="color: #B8862B; font-size: 18px; letter-spacing: 3px">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+<blockquote style="margin: 0; font-family: 'Cormorant Garamond', serif; font-size: 27px; line-height: 1.35; color: #23261C; flex-grow: 1">&#8220;{{r.quote}}&#8221;</blockquote>
+<figcaption style="font-size: 14px; color: #5E634C; letter-spacing: 0.04em; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap"><span>Verified Google review</span><a href="{{r.url}}" style="font-weight: 500; color: #4B5238">View on Google &#8594;</a></figcaption>
+</figure>
+</sc-for>
+</div>
+<div style="margin-top: 36px; text-align: center"><a href="#" style="font-weight: 500; border-bottom: 1px solid #4B5238; padding-bottom: 4px">Read all reviews on Google &#8594;</a></div>
+</div>
+</section>
+
+<!-- ============ INSTAGRAM ============ -->
+<section style="background: #F3EEE4">
+<div class="wrap" style="padding-top: 110px; padding-bottom: 110px">
+<div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; flex-wrap: wrap">
+<div>
+<div style="font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; color: #5E634C; font-weight: 500">On the mat this week</div>
+<h2 style="font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: clamp(36px, 4vw, 56px); line-height: 1.08; margin: 16px 0 0">@aadivedwellness</h2>
+</div>
+<a href="https://www.instagram.com/aadivedwellness/" style="border: 1px solid #4B5238; color: #2F3424; padding: 13px 26px; border-radius: 999px; font-weight: 500">Follow on Instagram</a>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; margin-top: 48px">
+<a href="https://www.instagram.com/aadivedwellness/" style="display: block; aspect-ratio: 3 / 4; border-radius: 16px; overflow: hidden"><img src="/_blob/6504e8e4efdf931d50306630bc204809" alt="Instagram post: Guided Yoga and Meditation for everyday well-being" style="width: 100%; height: 100%; object-fit: cover; display: block"></a>
+<a href="https://www.instagram.com/aadivedwellness/" style="display: block; aspect-ratio: 3 / 4; border-radius: 16px; overflow: hidden"><img src="/_blob/3d57826613c0589f47d190cf591aa2c7" alt="Instagram post: In Sanskrit, Aadi means beginning and Ved means knowledge" style="width: 100%; height: 100%; object-fit: cover; display: block"></a>
+<a href="https://www.instagram.com/aadivedwellness/" style="display: block; aspect-ratio: 3 / 4; border-radius: 16px; overflow: hidden"><img src="/_blob/5990523dde5b931f98f203d7126654bf" alt="Instagram post: AadiVed logo, Mind. Body. Soul" style="width: 100%; height: 100%; object-fit: cover; display: block"></a>
+<a href="https://www.instagram.com/aadivedwellness/" style="display: block; aspect-ratio: 3 / 4; border-radius: 16px; overflow: hidden"><img src="/_blob/2390e07303b36c7b42bc7acb5cdc989b" alt="Instagram post: Happy International Yoga Day" style="width: 100%; height: 100%; object-fit: cover; display: block"></a>
+</div>
+</div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section id="book" style="background: #4B5238; color: #F3EEE4; position: relative; overflow: hidden">
+<div style="position: absolute; width: 560px; height: 560px; border-radius: 50%; border: 1px solid rgba(243,238,228,0.18); left: -160px; top: -200px"></div>
+<div style="position: absolute; width: 420px; height: 420px; border-radius: 50%; border: 1px solid rgba(243,238,228,0.14); right: -120px; bottom: -180px"></div>
+<div class="wrap" style="position: relative; padding-top: 120px; padding-bottom: 120px; text-align: center">
+<img src="/_blob/967d7541b68472040d642e8d46fdb2fb" alt="AadiVed, Mind. Body. Soul" style="height: 150px; width: auto; display: block; margin: 0 auto">
+<h2 style="font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: clamp(42px, 5vw, 72px); line-height: 1.05; margin: 40px auto 0; max-width: 820px; color: #FBF8F2">Begin with <span style="font-style: italic">AadiVed.</span></h2>
+<p style="max-width: 560px; margin: 22px auto 0; color: #E4E0D2">Book a studio or online session, or ask about one-on-one prenatal care. We usually reply within the day.</p>
+<div style="display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; margin-top: 38px">
+<a href="#" style="background: #FBF8F2; color: #2F3424; padding: 16px 32px; border-radius: 999px; font-weight: 500">Book a session</a>
+<a href="tel:+918208469389" style="border: 1px solid #FBF8F2; color: #FBF8F2; padding: 15px 32px; border-radius: 999px; font-weight: 500">Call +91 82084 69389</a>
+</div>
+</div>
+</section>
+
+<!-- ============ BIG FOOTER ============ -->
+<footer class="foot" style="background: #2F3424; color: #DCD7C6; font-size: 15.5px">
+<div class="wrap" style="padding-top: 96px; padding-bottom: 56px">
+
+<div style="display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between; align-items: center; padding-bottom: 56px; border-bottom: 1px solid rgba(220,215,198,0.18)">
+<div style="max-width: 560px">
+<div style="font-family: 'Cormorant Garamond', serif; font-size: 36px; line-height: 1.15; color: #FBF8F2">Calm, delivered gently to your inbox.</div>
+<div style="margin-top: 8px; color: #C9C4B2">Class updates, new batches and simple practices to try at home.</div>
+</div>
+<form style="display: flex; gap: 10px; flex-wrap: wrap; flex: 0 1 460px">
+<label for="foot-email" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Email address</label>
+<input id="foot-email" type="email" placeholder="Your email address" style="flex: 1 1 240px; min-height: 52px; padding: 0 22px; border-radius: 999px; border: 1px solid rgba(220,215,198,0.35); background: transparent; color: #FBF8F2; font: inherit">
+<button type="submit" style="min-height: 52px; padding: 0 28px; border-radius: 999px; border: 0; background: #FBF8F2; color: #2F3424; font: inherit; font-weight: 500; cursor: pointer">Subscribe</button>
+</form>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 48px; padding-top: 64px">
+<div style="grid-column: span 1; min-width: 0">
+<img src="/_blob/967d7541b68472040d642e8d46fdb2fb" alt="AadiVed, Mind. Body. Soul" style="width: 170px; height: auto; display: block">
+<p style="margin: 22px 0 0; color: #C9C4B2; font-size: 15px">Holistic yoga and sound healing studio in Hinjawadi, Pune. Rooted in ancient Indian wisdom, built for modern lives.</p>
+<div style="display: flex; gap: 12px; margin-top: 22px">
+<a href="https://www.instagram.com/aadivedwellness/" aria-label="AadiVed on Instagram" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(220,215,198,0.35); display: inline-flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor"></circle></svg></a>
+<a href="#" aria-label="AadiVed on Google" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(220,215,198,0.35); display: inline-flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 12.2c0-.6 0-1.1-.1-1.7H12v3.3h4.5a4 4 0 0 1-1.7 2.5v2.1h2.8c1.6-1.5 2.4-3.7 2.4-6.2z"></path><path d="M12 20.5c2.3 0 4.2-.8 5.6-2l-2.8-2.1a5 5 0 0 1-7.5-2.7H4.4v2.2A8.5 8.5 0 0 0 12 20.5z"></path><path d="M7.3 13.7a5 5 0 0 1 0-3.4V8.1H4.4a8.5 8.5 0 0 0 0 7.8z"></path><path d="M12 6.9c1.3 0 2.5.5 3.4 1.3l2.5-2.5A8.5 8.5 0 0 0 4.4 8.1l2.9 2.2A5 5 0 0 1 12 6.9z"></path></svg></a>
+<a href="https://wa.me/918208469389" aria-label="Message AadiVed on WhatsApp" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(220,215,198,0.35); display: inline-flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7z"></path></svg></a>
+</div>
+</div>
+
+<div>
+<div style="font-size: 12.5px; letter-spacing: 0.2em; text-transform: uppercase; color: #FBF8F2; font-weight: 500; margin-bottom: 18px">Yoga</div>
+<div style="display: flex; flex-direction: column; gap: 11px">
+<a href="#">Guided Yoga</a><a href="#">Yoga for Beginners</a><a href="#">Experienced Practitioners</a><a href="#">Prenatal Yoga (1:1)</a><a href="#">Private Sessions</a>
+</div>
+</div>
+
+<div>
+<div style="font-size: 12.5px; letter-spacing: 0.2em; text-transform: uppercase; color: #FBF8F2; font-weight: 500; margin-bottom: 18px">Healing &amp; Wellness</div>
+<div style="display: flex; flex-direction: column; gap: 11px">
+<a href="#">Meditation</a><a href="#">Breathwork</a><a href="#">Sound Healing</a><a href="#">Hormonal Balance</a><a href="#">Stress &amp; Anxiety Relief</a>
+</div>
+</div>
+
+<div>
+<div style="font-size: 12.5px; letter-spacing: 0.2em; text-transform: uppercase; color: #FBF8F2; font-weight: 500; margin-bottom: 18px">The Studio</div>
+<div style="display: flex; flex-direction: column; gap: 11px">
+<a href="#">Our Story</a><a href="#">Meet Anupriya</a><a href="#">Online Classes</a><a href="#">Plans &amp; Pricing</a><a href="#">Reviews</a><a href="#">Journal</a><a href="#">Contact</a>
+</div>
+</div>
+
+<div>
+<div style="font-size: 12.5px; letter-spacing: 0.2em; text-transform: uppercase; color: #FBF8F2; font-weight: 500; margin-bottom: 18px">Visit</div>
+<div style="display: flex; flex-direction: column; gap: 14px; color: #C9C4B2">
+<span>Megapolis Serenity, Phase 3<br>Rajiv Gandhi Infotech Park<br>Hinjawadi, Pune 411057</span>
+<a href="tel:+918208469389">+91 82084 69389</a>
+<span>[Class timings to confirm]</span>
+<a href="#" style="color: #FBF8F2; font-weight: 500">Get directions &#8594;</a>
+</div>
+</div>
+</div>
+
+<div style="display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-top: 72px; padding-top: 28px; border-top: 1px solid rgba(220,215,198,0.18); font-size: 13.5px; color: #B5B09E">
+<span>&#169; 2026 AadiVed Yoga and Wellness. All rights reserved.</span>
+<span style="display: flex; gap: 24px; flex-wrap: wrap"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Sitemap</a><span>Website by wwiser</span></span>
+</div>
+</div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#C9C6F2","options":["#C9C6F2","#E7C9A9","#CFDCC4","#EBD9D3"]},"menuOpen":{"editor":"boolean","default":true},"$preview":{"width":1440,"height":6600}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { open: (props.menuOpen ?? true) ? 'services' : null };
+  }
+  componentDidUpdate(prev) {
+    if (prev.menuOpen !== this.props.menuOpen) {
+      this.setState({ open: (this.props.menuOpen ?? true) ? 'services' : null });
+    }
+  }
+  renderVals() {
+    const accent = this.props.accent ?? '#C9C6F2';
+    const open = this.state.open;
+    const soft = accent + '66';
+    const services = [
+      { title: 'Guided Yoga', text: 'Mindful movement for every body, from first-timers to experienced yogis. Each asana explained clearly and patiently.', bg: accent, icon: 'M12 5.5a2 2 0 1 0 0-.01M4 12c3-1 5-2 8-2s5 1 8 2M12 10v5M7 21c1.2-3 3-5.2 5-6 2 .8 3.8 3 5 6' },
+      { title: 'Meditation & Breathwork', text: 'Simple, guided techniques to quiet a busy mind and steady the breath, easy to carry into your day.', bg: '#DCE3CF', icon: 'M12 3c2 3 2 6 0 9-2-3-2-6 0-9zM12 12c3-2 6-2 9 0-3 2-6 2-9 0zM12 12c-3-2-6-2-9 0 3 2 6 2 9 0zM6 20h12' },
+      { title: 'Sound Healing', text: 'Deep, resonant sound to soften tension and invite rest. A restorative reset for body and nervous system.', bg: '#EAD9C6', icon: 'M3 12h2M7 8v8M11 5v14M15 8v8M19 10.5v3' },
+      { title: 'Hormonal Balance', text: 'Gentle sequences and breath practices that support your cycle, energy and mood through every season of life.', bg: '#E8D5D2', icon: 'M12 20c-4-3-7-6-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 4-3 7-7 10z' },
+      { title: 'Stress & Anxiety Relief', text: 'Slow, grounding practice for busy minds and long workdays. Leave lighter than you arrived.', bg: '#D6DDE6', icon: 'M4 15c2-2 4-2 6 0s4 2 6 0 3-2 4-1M4 10c2-2 4-2 6 0s4 2 6 0 3-2 4-1' },
+      { title: 'Prenatal Yoga (1:1)', text: 'Private, customised sessions for each trimester, focused on comfort, breath and a calm connection with your baby.', bg: accent, icon: 'M12 4a2 2 0 1 0 0 .01M12 7c-2 0-3 2-3 4v3c0 2 1 3 3 3 3 0 5-2 5-4.5S15 9 13 9M10 17l-1 4M14 17l1 4' }
+    ];
+    const reviews = [
+      { quote: 'Best experience for yoga and meditation.', url: 'https://www.google.com/maps/reviews/data=!4m5!14m4!1m3!1m2!1s113911238299045752344!2s0x3bc2bbe6bd0ef505:0x3cc189f4034a5c78' },
+      { quote: 'The personal touch, relaxing and meditative techniques all easy to follow.', url: 'https://www.google.com/maps/reviews/data=!4m5!14m4!1m3!1m2!1s115820355545531327042!2s0x3bc2bbe6bd0ef505:0x3cc189f4034a5c78' },
+      { quote: 'Her guidance is excellent, and she explains each asana so clearly and patiently.', url: 'https://www.google.com/maps/reviews/data=!4m5!14m4!1m3!1m2!1s112484432517251557391!2s0x3bc2bbe6bd0ef505:0x3cc189f4034a5c78' }
+    ];
+    return {
+      accent,
+      accentSoft: soft,
+      services,
+      reviews,
+      servicesOpen: open === 'services',
+      aboutOpen: open === 'about',
+      servicesColor: open === 'services' ? '#4B5238' : '#2F3424',
+      toggleServices: () => this.setState({ open: open === 'services' ? null : 'services' }),
+      toggleAbout: () => this.setState({ open: open === 'about' ? null : 'about' })
+    };
+  }
+}
+</script>
+</body>
+</html>

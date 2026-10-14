@@ -1,0 +1,51 @@
+---
+import { Image } from 'astro:assets';
+import { reviews } from '../data/reviews';
+// TODO: replace with original high-res photo (ig-mono.webp is a low-res Instagram crop)
+import teacher from '../assets/images/ig-mono.webp';
+const quote = reviews[2].quote;
+const stats = [
+  { n: '500', l: 'training hours, RYT' },
+  { n: '5.0', l: 'Google rating' },
+  { n: '1:1', l: 'prenatal & private care' },
+];
+---
+<section class="teacher">
+  <div class="wrap inner section">
+    <div class="photo-col">
+      <div class="photo">
+        <Image src={teacher} alt="Anupriya, founder of AadiVed, in a quiet seated moment" format="webp" width={420} height={540} loading="lazy" />
+      </div>
+    </div>
+    <div class="text">
+      <div class="eyebrow">Meet your teacher</div>
+      <h2>Anupriya</h2>
+      <p class="role">Founder · 500-hour Yoga Alliance Registered Practitioner</p>
+      <p class="bio">AadiVed is a women-owned studio built on a simple belief: ancient practice should feel at home in a modern life. Each session is shaped around you, whether you are stepping onto a mat for the first time, managing stress, or rebuilding balance after a big life change.</p>
+      <blockquote>
+        &#8220;{quote}&#8221;
+        <footer>Google review · 5 stars</footer>
+      </blockquote>
+      <div class="stats">
+        {stats.map((s) => <div><div class="n">{s.n}</div><div class="l">{s.l}</div></div>)}
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+  .teacher { background: var(--ivory); }
+  .inner { display: flex; flex-wrap: wrap; gap: 80px; align-items: center; }
+  .photo-col { flex: 1 1 400px; min-width: 0; display: flex; justify-content: center; }
+  .photo { width: 100%; max-width: 420px; height: 540px; border-radius: 24px 24px 220px 220px; overflow: hidden; background: var(--olive); }
+  .photo :global(img) { width: 100%; height: 100%; object-fit: cover; object-position: 70% 50%; display: block; }
+  .text { flex: 1 1 480px; min-width: 0; }
+  h2 { font-family: var(--font-display); font-weight: 400; font-size: clamp(36px, 4vw, 56px); line-height: 1.08; margin: 16px 0 0; }
+  .role { font-size: 15px; letter-spacing: 0.06em; color: var(--label); margin: 10px 0 0; }
+  .bio { color: var(--text-muted); margin: 26px 0 0; }
+  blockquote { margin: 34px 0 0; padding: 0; font-family: var(--font-display); font-size: 28px; line-height: 1.35; font-style: italic; color: var(--olive-deep); }
+  footer { font-family: var(--font-body); font-style: normal; font-size: 14px; letter-spacing: 0.06em; color: var(--label); margin-top: 12px; }
+  .stats { display: flex; gap: 40px; margin-top: 40px; flex-wrap: wrap; }
+  .n { font-family: var(--font-display); font-size: 48px; line-height: 1; color: var(--olive); }
+  .l { font-size: 14px; color: var(--label); margin-top: 6px; }
+  @media (max-width: 768px) { .inner { gap: 48px; } .photo { height: 440px; border-radius: 24px 24px 190px 190px; } }
+</style>

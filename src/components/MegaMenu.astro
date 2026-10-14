@@ -1,0 +1,42 @@
+---
+import { Image } from 'astro:assets';
+import Icon from './Icon.astro';
+import { megaMenu, megaFeature } from '../data/site';
+// TODO: replace with original high-res photo (ig-yogaday.webp is a low-res Instagram crop)
+import featureImg from '../assets/images/ig-yogaday.webp';
+---
+<div class="panel mega" id="panel-mega" hidden>
+  <div class="wrap grid">
+    {megaMenu.map((col) => (
+      <div class="col">
+        <div class="col-head"><Icon name={col.icon} size={18} stroke={1.5} />{col.heading}</div>
+        {col.links.map((l) => (
+          <a class:list={['mm-link', { strong: l.emphasis }]} href={l.href}>{l.label}</a>
+        ))}
+      </div>
+    ))}
+    <a class="feature" href={megaFeature.href}>
+      <Image src={featureImg} alt="AadiVed instructor in a standing balance pose outdoors" format="webp"
+        width={280} height={300} loading="lazy" />
+      <span class="overlay">
+        <span class="kicker">{megaFeature.eyebrow}</span>
+        <span class="sub">{megaFeature.text}</span>
+      </span>
+    </a>
+  </div>
+</div>
+<style>
+  .grid { padding-top: 44px; padding-bottom: 48px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)) 240px; gap: 32px; }
+  .col-head { font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--label); font-weight: 500; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; color: #5E634C; }
+  .col-head :global(svg) { color: var(--olive); flex: none; }
+  .mm-link { padding: 0; display: flex; align-items: center; color: var(--olive-deep); font-size: 16px; font-weight: 400; min-height: 44px; line-height: 1.4; }
+  .mm-link:hover { color: var(--olive); text-decoration: underline; text-underline-offset: 4px; }
+  .mm-link.strong { font-weight: 500; color: var(--olive); }
+  .feature { display: block; border-radius: 180px 180px 18px 18px; overflow: hidden; position: relative; min-height: 300px; background: var(--olive); color: var(--ivory); transition: transform .3s; }
+  .feature:hover { transform: translateY(-3px); color: var(--ivory); }
+  .feature :global(img) { width: 100%; height: 300px; object-fit: cover; object-position: 50% 70%; display: block; opacity: 0.82; }
+  .overlay { position: absolute; left: 0; right: 0; bottom: 0; padding: 22px; background: linear-gradient(to top, rgba(47,52,36,0.92), rgba(47,52,36,0)); }
+  .kicker { display: block; font-family: var(--font-display); font-size: 26px; line-height: 1.1; font-style: italic; }
+  .sub { display: block; font-size: 14px; margin-top: 4px; }
+  @media (max-width: 1180px) { .grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } .feature { display: none; } }
+</style>

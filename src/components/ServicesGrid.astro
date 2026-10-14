@@ -1,0 +1,25 @@
+---
+import ServiceCard from './ServiceCard.astro';
+import { services } from '../data/services';
+---
+<section id="classes" class="services">
+  <div class="wrap section">
+    <div class="head">
+      <div class="title">
+        <div class="eyebrow">Classes &amp; healing</div>
+        <h2>Ways we practice together</h2>
+      </div>
+      <a class="link-arrow" href="/classes/">View all classes &#8594;</a>
+    </div>
+    <div class="grid">
+      {services.map((s) => <ServiceCard service={s} />)}
+    </div>
+  </div>
+</section>
+<style>
+  .services { background: var(--ivory); }
+  .head { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; flex-wrap: wrap; }
+  .title { max-width: 640px; }
+  h2 { font-family: var(--font-display); font-weight: 400; font-size: clamp(36px, 4vw, 56px); line-height: 1.08; margin: 16px 0 0; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(330px, 100%), 1fr)); gap: 24px; margin-top: 56px; }
+</style>

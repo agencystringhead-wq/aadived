@@ -1,0 +1,53 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import TrustStrip from '../components/TrustStrip.astro';
+import NameMeaning from '../components/NameMeaning.astro';
+import ServicesGrid from '../components/ServicesGrid.astro';
+import FormatsSplit from '../components/FormatsSplit.astro';
+import TeacherIntro from '../components/TeacherIntro.astro';
+import Steps from '../components/Steps.astro';
+import Reviews from '../components/Reviews.astro';
+import InstagramStrip from '../components/InstagramStrip.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+import { site } from '../data/site';
+import { reviews, rating } from '../data/reviews';
+
+const localBusiness = {
+  '@context': 'https://schema.org',
+  '@type': 'HealthClub',
+  name: site.name,
+  url: site.url,
+  image: new URL('/og-image.jpg', site.url).href,
+  telephone: site.phone.schema,
+  description: site.description,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: site.address.street,
+    addressLocality: 'Hinjawadi, Pune',
+    addressRegion: site.address.region,
+    postalCode: site.address.postalCode,
+    addressCountry: site.address.country,
+  },
+  sameAs: [site.instagram.url],
+  founder: { '@type': 'Person', name: site.founder },
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: rating.value,
+    reviewCount: String(reviews.length),
+    bestRating: '5',
+  },
+};
+---
+<BaseLayout title="AadiVed Yoga and Wellness | Yoga & Sound Healing in Hinjawadi, Pune" jsonLd={[localBusiness]}>
+  <Hero />
+  <TrustStrip />
+  <NameMeaning />
+  <ServicesGrid />
+  <FormatsSplit />
+  <TeacherIntro />
+  <Steps />
+  <Reviews />
+  <InstagramStrip />
+  <FinalCTA />
+</BaseLayout>

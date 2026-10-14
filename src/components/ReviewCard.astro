@@ -1,0 +1,23 @@
+---
+import Icon from './Icon.astro';
+import type { Review } from '../data/reviews';
+const { review } = Astro.props as { review: Review };
+---
+<figure class="card">
+  <span role="img" aria-label="5 out of 5 stars" class="stars">
+    {[0, 1, 2, 3, 4].map(() => <Icon name="star" size={18} />)}
+  </span>
+  <blockquote>&#8220;{review.quote}&#8221;</blockquote>
+  <figcaption>
+    <span>Verified Google review</span>
+    <a href={review.url}>View on Google &#8594;</a>
+  </figcaption>
+</figure>
+<style>
+  .card { margin: 0; background: var(--sand); border-radius: var(--radius-card); padding: 36px 34px; display: flex; flex-direction: column; gap: 20px; }
+  .stars { display: inline-flex; gap: 3px; color: var(--star); }
+  blockquote { margin: 0; font-family: var(--font-display); font-size: 27px; line-height: 1.35; color: var(--ink); flex-grow: 1; }
+  figcaption { font-size: 14px; color: var(--label); letter-spacing: 0.04em; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  figcaption a { font-weight: 500; color: var(--olive); display: inline-flex; align-items: center; min-height: 44px; }
+  figcaption { align-items: center; }
+</style>
