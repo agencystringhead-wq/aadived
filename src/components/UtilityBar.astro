@@ -16,9 +16,10 @@ import { site } from '../data/site';
 </div>
 <style>
   .util { background: var(--olive-deep); color: var(--on-dark); font-size: 13.5px; letter-spacing: 0.02em; }
-  .bar { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; padding-top: 9px; padding-bottom: 9px; }
+  .bar { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; padding-top: 0; padding-bottom: 0; min-height: 42px; }
   .group { display: flex; gap: 22px; align-items: center; flex-wrap: wrap; }
   .item { display: inline-flex; align-items: center; gap: 8px; color: var(--on-dark); min-height: 24px; }
+  a.item { min-height: 44px; }
   a.item:hover { color: #fff; }
   @media (max-width: 960px) { .extra { display: none; } .bar { justify-content: center; } }
 </style>

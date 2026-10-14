@@ -8,6 +8,8 @@ const canHover = window.matchMedia('(hover: hover)');
 const header = document.querySelector<HTMLElement>('[data-header]');
 const triggers = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-menu-trigger]'));
 const timers = new WeakMap<HTMLElement, number>();
+// Panels the user has pinned open by clicking; hover-out does not close these.
+const pinned = new WeakSet<HTMLButtonElement>();
 
 function panelFor(t: HTMLButtonElement): HTMLElement | null {
   const id = t.getAttribute('aria-controls');
@@ -18,6 +20,7 @@ function setOpen(t: HTMLButtonElement, open: boolean) {
   const panel = panelFor(t);
   if (!panel) return;
   panel.hidden = !open;
+  if (!open) pinned.delete(t);
   t.setAttribute('aria-expanded', String(open));
   t.closest('li')?.classList.toggle('is-open', open);
 }
@@ -43,10 +46,16 @@ triggers.forEach((t) => {
   if (!item) return;
 
   t.addEventListener('click', () => {
-    const open = t.getAttribute('aria-expanded') !== 'true';
+    const isOpen = t.getAttribute('aria-expanded') === 'true';
     cancel(t);
     closeAll(t);
-    setOpen(t, open);
+    if (isOpen && pinned.has(t)) {
+      setOpen(t, false); // second click on a pinned panel closes it
+    } else {
+      // Click after a hover-open pins the panel instead of toggling it shut
+      setOpen(t, true);
+      pinned.add(t);
+    }
   });
 
   // Hover only on real pointers, so touch taps use the click path above.
@@ -57,7 +66,7 @@ triggers.forEach((t) => {
     setOpen(t, true);
   });
   item.addEventListener('mouseleave', () => {
-    if (!desktop.matches || !canHover.matches) return;
+    if (!desktop.matches || !canHover.matches || pinned.has(t)) return;
     scheduleClose(t);
   });
 

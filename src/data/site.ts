@@ -174,6 +174,7 @@ export const stubPages: StubPage[] = [
   { slug: 'studio', title: 'The Studio', eyebrow: 'Hinjawadi Phase 3', intro: 'Small, unhurried classes at Megapolis Serenity in Hinjawadi Phase 3.' },
   { slug: 'online-classes', title: 'Online Classes', eyebrow: 'Live online sessions', intro: 'The same guided practice, wherever you are.' },
   { slug: 'one-on-one', title: 'One-on-One Coaching', eyebrow: 'Private care', intro: 'Sessions shaped around you, including 1:1 prenatal care.' },
+  // TODO: add real plans and pricing once confirmed (placeholder [Price])
   { slug: 'pricing', title: 'Plans & Pricing', eyebrow: 'Join us', intro: '[Price] Plans and pricing will be shared here soon.' },
   { slug: 'classes', title: 'All Classes', eyebrow: 'Classes & healing', intro: 'Every way we practise together, in the studio and online.' },
   { slug: 'reviews', title: 'Reviews', eyebrow: 'Kind words', intro: 'What our students say about AadiVed on Google.' },

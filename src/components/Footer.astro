@@ -32,7 +32,7 @@ const cols = [
         <div class="social">
           <a href={site.instagram.url} aria-label="AadiVed on Instagram"><Icon name="instagram" /></a>
           <a href={site.google.profile} aria-label="AadiVed on Google"><Icon name="google" /></a>
-          <!-- TODO: confirm +91 82084 69389 is on WhatsApp before launch -->
+          <!-- TODO: confirm the studio number is on WhatsApp before launch -->
           <a href={site.whatsapp} aria-label="Message AadiVed on WhatsApp"><Icon name="whatsapp" /></a>
         </div>
       </div>
@@ -89,14 +89,14 @@ const cols = [
   .social { display: flex; gap: 12px; margin-top: 22px; }
   .social a { width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(220,215,198,0.35); display: inline-flex; align-items: center; justify-content: center; }
   .head { font-size: 12.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ivory); font-weight: 500; margin-bottom: 18px; }
-  .links { display: flex; flex-direction: column; gap: 4px; }
-  .links a { display: inline-flex; align-items: center; min-height: 36px; }
+  .links { display: flex; flex-direction: column; gap: 0; }
+  .links a { display: inline-flex; align-items: center; min-height: 44px; }
   .visit { gap: 14px; color: var(--footer-muted); }
   .visit .dir { color: var(--ivory); font-weight: 500; }
 
   .bottom { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-top: 72px; padding-top: 28px; border-top: 1px solid rgba(220,215,198,0.18); font-size: 13.5px; color: #B5B09E; }
   .legal { display: flex; gap: 24px; flex-wrap: wrap; }
-  .legal a { color: #B5B09E; display: inline-flex; align-items: center; min-height: 28px; }
+  .legal a { color: #B5B09E; display: inline-flex; align-items: center; min-height: 44px; }
   .legal a:hover { color: #fff; }
 
   @media (max-width: 1100px) { .cols { grid-template-columns: repeat(3, minmax(0, 1fr)); } .brand { grid-column: 1 / -1; max-width: 460px; } }
