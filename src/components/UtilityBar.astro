@@ -7,6 +7,7 @@ import { site } from '../data/site';
     <div class="group">
       <span class="item"><Icon name="pin" size={14} />{site.address.short}</span>
       <span class="item extra">Studio &amp; online sessions</span>
+      <span class="item extra">{site.timings.daysShort}, {site.timings.time}</span>
     </div>
     <div class="group">
       <a class="item" href={`tel:${site.phone.tel}`}><Icon name="phone" size={14} />{site.phone.display}</a>

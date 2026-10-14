@@ -29,8 +29,13 @@ export const site = {
   // TODO: confirm the number is on WhatsApp before launch
   whatsapp: 'https://wa.me/918208469389',
   founder: 'Anupriya',
-  // TODO: Google lists "Open 24 hours", confirm the real class timings
-  timings: '[Class timings to confirm]',
+  timings: {
+    days: 'Monday to Friday',
+    daysShort: 'Mon to Fri',
+    time: '8:00 am to 10:00 am',
+    // For schema.org openingHoursSpecification (24-hour clock)
+    schema: { dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '08:00', closes: '10:00' },
+  },
   bookHref: '/contact/#book',
   // TODO: replace with the real newsletter/booking form provider (JotForm or Cloudflare Worker)
   newsletterAction: '#',
@@ -149,6 +154,7 @@ export interface StubPage {
   eyebrow: string;
   intro: string;
   parent?: { label: string; href: string };
+  showTimings?: boolean;
 }
 
 const about = { label: 'About', href: '/about/' };
@@ -171,7 +177,7 @@ export const stubPages: StubPage[] = [
   { slug: 'programs/anxiety-relief', title: 'Anxiety Relief', eyebrow: 'Wellness Programs', intro: 'Calming practice to help you leave lighter than you arrived.', parent: classes },
   { slug: 'programs/energy-reset', title: 'Energy Reset', eyebrow: 'Wellness Programs', intro: 'A restorative reset for body and nervous system.', parent: classes },
   { slug: 'programs/daily-practice', title: 'Build a Daily Practice', eyebrow: 'Wellness Programs', intro: 'Breath, movement and stillness you can return to every day.', parent: classes },
-  { slug: 'studio', title: 'The Studio', eyebrow: 'Hinjawadi Phase 3', intro: 'Small, unhurried classes at Megapolis Serenity in Hinjawadi Phase 3.' },
+  { slug: 'studio', title: 'The Studio', eyebrow: 'Hinjawadi Phase 3', intro: 'Small, unhurried classes at Megapolis Serenity in Hinjawadi Phase 3.', showTimings: true },
   { slug: 'online-classes', title: 'Online Classes', eyebrow: 'Live online sessions', intro: 'The same guided practice, wherever you are.' },
   { slug: 'one-on-one', title: 'One-on-One Coaching', eyebrow: 'Private care', intro: 'Sessions shaped around you, including 1:1 prenatal care.' },
   // TODO: add real plans and pricing once confirmed (placeholder [Price])
@@ -179,7 +185,7 @@ export const stubPages: StubPage[] = [
   { slug: 'classes', title: 'All Classes', eyebrow: 'Classes & healing', intro: 'Every way we practise together, in the studio and online.' },
   { slug: 'reviews', title: 'Reviews', eyebrow: 'Kind words', intro: 'What our students say about AadiVed on Google.' },
   { slug: 'journal', title: 'Journal', eyebrow: 'Notes & practices', intro: 'Simple practices and notes from the studio.' },
-  { slug: 'contact', title: 'Contact', eyebrow: 'Say hello', intro: 'Call, send a message, or book a session. We usually reply within the day.' },
+  { slug: 'contact', title: 'Contact', eyebrow: 'Say hello', intro: 'Call, send a message, or book a session. We usually reply within the day.', showTimings: true },
   { slug: 'privacy', title: 'Privacy Policy', eyebrow: 'Legal', intro: 'How AadiVed handles your information.' },
   { slug: 'terms', title: 'Terms', eyebrow: 'Legal', intro: 'The terms for using this website and our services.' },
 ];

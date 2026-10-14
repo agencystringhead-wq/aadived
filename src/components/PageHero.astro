@@ -6,8 +6,9 @@ interface Props {
   intro: string;
   crumb?: { label: string; href: string };
   bookAnchor?: boolean;
+  showTimings?: boolean;
 }
-const { eyebrow, title, intro, crumb, bookAnchor = false } = Astro.props;
+const { eyebrow, title, intro, crumb, bookAnchor = false, showTimings = false } = Astro.props;
 ---
 <section class="page-hero">
   <div class="wrap inner">
@@ -15,6 +16,7 @@ const { eyebrow, title, intro, crumb, bookAnchor = false } = Astro.props;
     <div class="eyebrow">{eyebrow}</div>
     <h1>{title}</h1>
     <p>{intro}</p>
+    {showTimings && <p class="timings"><strong>Class timings:</strong> {site.timings.days}, {site.timings.time}</p>}
   </div>
 </section>
 <section class="soon" id={bookAnchor ? 'book' : undefined}>
@@ -32,6 +34,8 @@ const { eyebrow, title, intro, crumb, bookAnchor = false } = Astro.props;
   .crumb { display: inline-flex; align-items: center; min-height: 44px; font-size: 15px; font-weight: 500; margin-bottom: 12px; }
   h1 { font-family: var(--font-display); font-weight: 400; font-size: clamp(48px, 6vw, 86px); line-height: 1.02; letter-spacing: -0.01em; margin: 20px 0 0; color: var(--ink); }
   p { font-size: 19px; line-height: 1.7; color: var(--text-muted); max-width: 640px; margin: 24px 0 0; }
+  .timings { margin-top: 16px; font-size: 17px; }
+  .timings strong { font-weight: 500; color: var(--ink); }
   .soon { background: var(--sand); }
   .box { padding-top: 80px; padding-bottom: 80px; }
   .card { max-width: 900px; margin: 0 auto; background: var(--ivory); border-radius: var(--radius-card); padding: 48px; }

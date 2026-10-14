@@ -39,7 +39,7 @@ Every image on the site is WebP, rendered through `astro:assets` with `format="w
 
 ## Open items (leave as TODO until confirmed)
 
-- [ ] **Class timings.** Google lists "Open 24 hours", which needs confirming. Placeholder: `[Class timings to confirm]` (`site.timings`).
+- [x] **Class timings.** Confirmed as Monday to Friday, 8:00 am to 10:00 am (`site.timings` in `src/data/site.ts`). Weekend timings are not confirmed, so none are shown. The Google profile still says "Open 24 hours" and should be updated to match.
 - [ ] **Pricing.** Placeholder `[Price]` on `/pricing/`.
 - [ ] **Real studio photo.** `FormatsSplit.astro` shows a labelled placeholder.
 - [ ] **High-res Instagram originals.** The `ig-*.webp` files are low-res crops (about 280x370) from an Instagram screenshot. They are capped at about 300px wide wherever they are shown. Swap in originals, keeping the filenames, in `src/assets/images/`. Used in:

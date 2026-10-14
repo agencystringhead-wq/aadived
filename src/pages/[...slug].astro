@@ -19,5 +19,5 @@ crumbs.push({ name: page.title, path: `/${page.slug}/` });
   description={page.intro}
   breadcrumbs={crumbs}
 >
-  <PageHero eyebrow={page.eyebrow} title={page.title} intro={page.intro} crumb={page.parent} bookAnchor={page.slug === 'contact'} />
+  <PageHero eyebrow={page.eyebrow} title={page.title} intro={page.intro} crumb={page.parent} bookAnchor={page.slug === 'contact'} showTimings={page.showTimings} />
 </BaseLayout>

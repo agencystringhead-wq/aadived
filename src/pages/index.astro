@@ -29,6 +29,12 @@ const localBusiness = {
     postalCode: site.address.postalCode,
     addressCountry: site.address.country,
   },
+  openingHoursSpecification: {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: site.timings.schema.dayOfWeek,
+    opens: site.timings.schema.opens,
+    closes: site.timings.schema.closes,
+  },
   sameAs: [site.instagram.url],
   founder: { '@type': 'Person', name: site.founder },
   aggregateRating: {
