@@ -8,7 +8,7 @@ import Bento from './Bento.astro';
 import Faq from './Faq.astro';
 import BookCard from './BookCard.astro';
 import { site, stubPages, type StubPage } from '../../data/site';
-import { formatLabels, type Practice } from '../../data/practices';
+import { formatLabels, interestId, type Practice } from '../../data/practices';
 import { reviews } from '../../data/reviews';
 
 interface Props {
@@ -16,6 +16,7 @@ interface Props {
   practice: Practice;
 }
 const { page, practice } = Astro.props;
+const bookHref = `/contact/?interest=${interestId(practice.slug)}#book`;
 const review = reviews[practice.reviewIndex] ?? reviews[0];
 const related = practice.related
   .map((slug) => stubPages.find((p) => p.slug === slug))
@@ -38,7 +39,7 @@ const crumbs = [
         <h1>{page.title}</h1>
         <p class="intro">{practice.intro}</p>
         <div class="ctas">
-          <a class="btn btn-primary" href={site.bookHref}>Book a session</a>
+          <a class="btn btn-primary" href={bookHref}>Book a session</a>
           <a class="btn btn-secondary" href={`tel:${site.phone.tel}`}><Icon name="phone" size={16} />Call {site.phone.display}</a>
         </div>
       </div>
@@ -95,13 +96,14 @@ const crumbs = [
         <ul class="pill-list join">
           {practice.formats.map((f) => <li class="pill pill-olive">{formatLabels[f]}</li>)}
         </ul>
-        <p class="body">Classes run {site.timings.days}, {site.timings.time}, at Megapolis Serenity in Hinjawadi Phase 3. See <a href="/pricing/">plans and pricing</a> or <a href={site.bookHref}>book a session</a>.</p>
+        <p class="body">Classes run {site.timings.days}, {site.timings.time}, at Megapolis Serenity in Hinjawadi Phase 3. See <a href="/pricing/">plans and pricing</a> or <a href={bookHref}>book a session</a>.</p>
       </section>
 
       <section class="block reveal" aria-labelledby="faq-h">
         <div class="eyebrow">Questions</div>
         <h2 id="faq-h">Good to know</h2>
         <Faq items={practice.faqs} />
+        {practice.careNote && <p class="note">{practice.careNote}</p>}
         {practice.prenatalNote && <p class="note">Please consult your doctor before starting any prenatal practice.</p>}
         <p class="note">This practice supports wellbeing and is not medical advice. Talk to your doctor about any health concern.</p>
       </section>
@@ -132,7 +134,7 @@ const crumbs = [
       )}
     </div>
 
-    <BookCard title={page.title} formats={practice.formats} />
+    <BookCard title={page.title} formats={practice.formats} book={bookHref} />
   </div>
 
   <FinalCTA />

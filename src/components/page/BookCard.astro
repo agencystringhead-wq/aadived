@@ -7,8 +7,9 @@ import { formatLabels, type Format } from '../../data/practices';
 interface Props {
   title: string;
   formats: Format[];
+  book?: string;
 }
-const { title, formats } = Astro.props;
+const { title, formats, book = site.bookHref } = Astro.props;
 ---
 <aside class="card" aria-label={`Book ${title}`}>
   <div class="eyebrow">Book this session</div>
@@ -31,13 +32,13 @@ const { title, formats } = Astro.props;
       <dd>{site.address.lines[0]}<br />{site.address.lines[2]}</dd>
     </div>
   </dl>
-  <a class="btn btn-primary" href={site.bookHref}>Book a session</a>
+  <a class="btn btn-primary" href={book}>Book a session</a>
   <a class="btn btn-secondary" href={`tel:${site.phone.tel}`}><Icon name="phone" size={16} />Call {site.phone.display}</a>
   <p class="hint">New here? Start with a 1:1 intro session.</p>
 </aside>
 
 <div class="bar" role="region" aria-label="Book this session">
-  <a class="btn btn-primary" href={site.bookHref}>Book a session</a>
+  <a class="btn btn-primary" href={book}>Book a session</a>
   <a class="btn btn-secondary" href={`tel:${site.phone.tel}`} aria-label={`Call ${site.phone.display}`}><Icon name="phone" size={18} />Call</a>
 </div>
 
