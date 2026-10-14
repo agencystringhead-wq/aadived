@@ -1,0 +1,30 @@
+---
+// Accordion FAQ built on native <details>, so it works with the keyboard and without JavaScript.
+interface Props {
+  items: { q: string; a: string }[];
+}
+const { items } = Astro.props;
+---
+<div class="faq">
+  {items.map((it) => (
+    <details name="faq">
+      <summary>
+        <span>{it.q}</span>
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 5v14M5 12h14" /></svg>
+      </summary>
+      <p>{it.a}</p>
+    </details>
+  ))}
+</div>
+<style>
+  .faq { border-top: 1px solid var(--line); }
+  details { border-bottom: 1px solid var(--line); }
+  summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 24px; min-height: 64px; padding: 14px 0; font-family: var(--font-display); font-size: 26px; line-height: 1.2; color: var(--ink); }
+  summary::-webkit-details-marker { display: none; }
+  summary svg { flex: none; color: var(--olive); transition: transform .25s; }
+  details[open] summary svg { transform: rotate(45deg); }
+  summary:hover { color: var(--olive); }
+  p { margin: 0 0 22px; max-width: 62ch; color: var(--text-muted); }
+  @media (prefers-reduced-motion: reduce) { summary svg { transition: none; } }
+  @media (max-width: 600px) { summary { font-size: 22px; } }
+</style>

@@ -1,0 +1,63 @@
+---
+// Sticky booking card on desktop; becomes a fixed bottom bar on small screens.
+import Icon from '../Icon.astro';
+import { site } from '../../data/site';
+import { formatLabels, type Format } from '../../data/practices';
+
+interface Props {
+  title: string;
+  formats: Format[];
+}
+const { title, formats } = Astro.props;
+---
+<aside class="card" aria-label={`Book ${title}`}>
+  <div class="eyebrow">Book this session</div>
+  <h2>{title}</h2>
+  <dl>
+    <div>
+      <dt>Format</dt>
+      <dd>
+        <ul class="pill-list">
+          {formats.map((f) => <li class="pill pill-lav">{formatLabels[f]}</li>)}
+        </ul>
+      </dd>
+    </div>
+    <div>
+      <dt>Class timings</dt>
+      <dd>{site.timings.days}<br />{site.timings.time}</dd>
+    </div>
+    <div>
+      <dt>Where</dt>
+      <dd>{site.address.lines[0]}<br />{site.address.lines[2]}</dd>
+    </div>
+  </dl>
+  <a class="btn btn-primary" href={site.bookHref}>Book a session</a>
+  <a class="btn btn-secondary" href={`tel:${site.phone.tel}`}><Icon name="phone" size={16} />Call {site.phone.display}</a>
+  <p class="hint">New here? Start with a 1:1 intro session.</p>
+</aside>
+
+<div class="bar" role="region" aria-label="Book this session">
+  <a class="btn btn-primary" href={site.bookHref}>Book a session</a>
+  <a class="btn btn-secondary" href={`tel:${site.phone.tel}`} aria-label={`Call ${site.phone.display}`}><Icon name="phone" size={18} />Call</a>
+</div>
+
+<style>
+  .card { position: sticky; top: 128px; background: var(--ivory); border: 1px solid var(--line); border-radius: 26px; padding: 30px 28px 26px; box-shadow: 0 24px 50px -30px rgba(47, 52, 36, 0.35); display: flex; flex-direction: column; gap: 14px; }
+  h2 { font-family: var(--font-display); font-weight: 500; font-size: 32px; line-height: 1.1; margin: -4px 0 4px; }
+  dl { margin: 0 0 6px; display: grid; gap: 16px; }
+  dt { font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--label); font-weight: 500; margin-bottom: 6px; }
+  dd { margin: 0; font-size: 16px; color: var(--ink); line-height: 1.5; }
+  .card .btn { width: 100%; }
+  .hint { margin: 2px 0 0; font-size: 14px; color: var(--label); text-align: center; }
+
+  .bar { display: none; }
+  @media (max-width: 960px) {
+    .card { display: none; }
+    .bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; display: flex; gap: 10px; padding: 12px var(--gutter) calc(12px + env(safe-area-inset-bottom)); background: color-mix(in srgb, var(--ivory) 94%, transparent); backdrop-filter: blur(10px); border-top: 1px solid var(--line); box-shadow: 0 -12px 30px -20px rgba(47, 52, 36, 0.4); }
+    .bar .btn { min-width: 0; white-space: nowrap; }
+    .bar .btn-primary { flex: 1; }
+    .bar .btn-secondary { flex: 0 0 auto; padding-inline: 22px; background: var(--ivory); }
+    /* keep the footer clear of the fixed bar */
+    :global(footer.foot) { padding-bottom: calc(76px + env(safe-area-inset-bottom)); }
+  }
+</style>

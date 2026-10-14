@@ -1,0 +1,42 @@
+---
+// Bento grid: mixed tile sizes on desktop, one column on small screens.
+// variant "a" spans 4/2/2/4 columns, variant "b" spans 2/4/4/2 (use b for the second grid on a page).
+interface Props {
+  items: { title: string; text: string }[];
+  variant?: 'a' | 'b';
+}
+const { items, variant = 'a' } = Astro.props;
+---
+<ul class:list={['bento', `v-${variant}`]}>
+  {items.map((it, i) => (
+    <li class:list={['tile', `t${i + 1}`]}>
+      <span class="idx" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+      <h3>{it.title}</h3>
+      <p>{it.text}</p>
+    </li>
+  ))}
+</ul>
+<style>
+  .bento { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px; }
+  .tile { border-radius: var(--radius-card); padding: 30px 30px 32px; display: flex; flex-direction: column; gap: 10px; min-height: 220px; background: var(--sand); border: 1px solid var(--line); }
+  .idx { font-family: var(--font-display); font-style: italic; font-size: 22px; color: var(--label); line-height: 1; margin-bottom: auto; padding-bottom: 28px; }
+  h3 { font-family: var(--font-display); font-weight: 500; font-size: 28px; line-height: 1.12; margin: 0; color: var(--ink); }
+  p { margin: 0; font-size: 16px; color: var(--text-muted); max-width: 46ch; }
+
+  .v-a .t1, .v-b .t2, .v-b .t3, .v-a .t4 { grid-column: span 4; }
+  .v-a .t2, .v-a .t3, .v-b .t1, .v-b .t4 { grid-column: span 2; }
+
+  /* Colour rhythm: one dark tile, one lavender, two light */
+  .v-a .t1, .v-b .t2 { background: var(--olive); border-color: var(--olive); }
+  .v-a .t1 h3, .v-b .t2 h3 { color: var(--ivory); }
+  .v-a .t1 p, .v-b .t2 p { color: var(--on-dark); }
+  .v-a .t1 .idx, .v-b .t2 .idx { color: var(--accent); }
+  .v-a .t3, .v-b .t1 { background: var(--accent-soft); border-color: transparent; }
+  .v-a .t4, .v-b .t4 { background: var(--ivory); }
+
+  @media (max-width: 900px) {
+    .bento { grid-template-columns: 1fr; }
+    .tile { grid-column: auto !important; min-height: 0; }
+    .idx { padding-bottom: 14px; }
+  }
+</style>

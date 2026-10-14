@@ -1,23 +1,33 @@
 ---
-// Stub pages for every route in the brief, generated from the registry in src/data/site.ts.
+// Generated routes. A route with detail copy in src/data/practices.ts renders the full service page,
+// every other route in stubPages (src/data/site.ts) renders the "coming soon" stub.
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
+import ServicePage from '../components/page/ServicePage.astro';
 import { stubPages, site } from '../data/site';
 import type { StubPage } from '../data/site';
+import { getPractice } from '../data/practices';
 
 export function getStaticPaths() {
-  return stubPages.map((page) => ({ params: { slug: page.slug }, props: { page } }));
+  // Routes that have their own page file
+  const custom = new Set(['about/anupriya']);
+  return stubPages.filter((p) => !custom.has(p.slug)).map((page) => ({ params: { slug: page.slug }, props: { page } }));
 }
 
 const { page } = Astro.props as { page: StubPage };
+const practice = getPractice(page.slug);
 const crumbs = [{ name: 'Home', path: '/' }];
 if (page.parent) crumbs.push({ name: page.parent.label, path: page.parent.href });
 crumbs.push({ name: page.title, path: `/${page.slug}/` });
 ---
 <BaseLayout
   title={`${page.title} | ${site.shortName} Yoga and Wellness`}
-  description={page.intro}
+  description={practice ? practice.tagline : page.intro}
   breadcrumbs={crumbs}
 >
-  <PageHero eyebrow={page.eyebrow} title={page.title} intro={page.intro} crumb={page.parent} bookAnchor={page.slug === 'contact'} showTimings={page.showTimings} />
+  {practice ? (
+    <ServicePage page={page} practice={practice} />
+  ) : (
+    <PageHero eyebrow={page.eyebrow} title={page.title} intro={page.intro} crumb={page.parent} bookAnchor={page.slug === 'contact'} showTimings={page.showTimings} />
+  )}
 </BaseLayout>
