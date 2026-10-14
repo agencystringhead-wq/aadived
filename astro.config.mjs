@@ -6,6 +6,7 @@ export default defineConfig({
   site: 'https://aadived.com',
   output: 'static',
   trailingSlash: 'always',
+  build: { inlineStylesheets: 'always' },
   integrations: [sitemap()],
   image: {
     service: { entrypoint: 'astro/assets/services/sharp' },

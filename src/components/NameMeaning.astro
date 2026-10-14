@@ -21,11 +21,27 @@
     </div>
   </div>
 </section>
+<script>
+  // The Devanagari font is ~100KB and sits below the fold: fetch it only when the section is near the viewport.
+  const words = document.querySelector('.words');
+  const ready = () => document.documentElement.classList.add('deva-ready');
+  if (words && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      if (entries.some((e) => e.isIntersecting)) { ready(); io.disconnect(); }
+    }, { rootMargin: '800px 0px' });
+    io.observe(words);
+  } else {
+    ready();
+  }
+</script>
+<style is:global>
+  html.deva-ready .deva { font-family: var(--font-deva); }
+</style>
 <style>
   .name { background: var(--sand); }
   .inner { display: flex; flex-wrap: wrap; gap: 72px; align-items: center; }
   .words { flex: 1 1 460px; min-width: 0; display: flex; gap: 28px; align-items: flex-end; flex-wrap: wrap; }
-  .deva { font-family: var(--font-deva); font-size: 120px; line-height: 1; color: var(--olive); }
+  .deva { font-family: serif; font-size: 120px; line-height: 1; color: var(--olive); }
   .cap { margin-top: 14px; }
   .plus { font-family: var(--font-display); font-size: 72px; line-height: 1; color: #8A8C77; padding-bottom: 44px; }
   .text { flex: 1 1 440px; min-width: 0; }
