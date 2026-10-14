@@ -183,13 +183,13 @@ export const seo: Record<string, PageSeo> = {
   },
   '/privacy/': {
     title: title('Privacy Policy for AadiVed in Hinjawadi, Pune', ['AadiVed Yoga & Wellness', 'AadiVed']),
-    description: 'How AadiVed Yoga and Wellness in Hinjawadi, Pune collects and uses the information you share through this website, and the choices you have. A draft policy.',
+    description: 'How AadiVed Yoga and Wellness in Hinjawadi, Pune collects and uses the information you share through this website, and the choices you have. Plain and simple.',
     h1: 'Privacy Policy',
     noindex: true,
   },
   '/terms/': {
     title: title('Terms of Use for AadiVed in Hinjawadi, Pune', ['AadiVed Yoga & Wellness', 'AadiVed']),
-    description: 'The simple terms for using the AadiVed Yoga and Wellness website in Hinjawadi, Pune and for booking yoga and wellness sessions with us. A draft.',
+    description: 'The simple terms for using the AadiVed Yoga and Wellness website in Hinjawadi, Pune and for booking yoga and wellness sessions with us. Plain and simple.',
     h1: 'Terms',
     noindex: true,
   },

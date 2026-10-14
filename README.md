@@ -63,7 +63,7 @@ Every image on the site is WebP, rendered through `astro:assets` with `format="w
 - [ ] **Google Maps embed.** `/contact/` and `/studio/` load a click-to-load map from the keyless embed URL in `site.google.embed`. Check on the live site that the map renders after clicking "Load map". If it does not, open Google Maps, choose Share, Embed a map, and paste the iframe `src` into `site.google.embed`.
 - [ ] **Leave a review link.** `site.google.writeReview` opens the Google profile for now. Replace it with the direct write-a-review link once the Google place ID is known.
 - [ ] **Pricing.** Prices are not published. `/pricing/`, the "What does it cost?" FAQs and the Terms page say to call the studio. When prices are confirmed, replace the "Call for pricing" block in `src/pages/pricing.astro` and the cost FAQ in `src/data/practices.ts`.
-- [ ] **Legal pages.** `/privacy/` and `/terms/` are plain-language drafts marked `[Review with the client before relying on this]`. Confirm the form provider, analytics and cookies, payment, cancellation and liability wording.
+- [ ] **Legal pages.** `/privacy/` and `/terms/` are simple, generic pages. They are not legal advice, so have a lawyer review them if the business needs that. Update the privacy page when the enquiry form provider and any analytics are final.
 - [ ] **Journal.** Add posts as Markdown files in `src/content/journal/` (copy `_template.md`, set `draft: false`). Until a post exists, `/journal/` shows an empty state.
 - [ ] **WhatsApp.** Confirm `+91 82084 69389` is on WhatsApp (`site.whatsapp`, footer icon). Remove the icon if not.
 - [ ] **Final domain.** `https://aadived.com` is a placeholder in `astro.config.mjs` and `site.ts`.
