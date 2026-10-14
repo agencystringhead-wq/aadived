@@ -1,4 +1,5 @@
-// Fails if dist/ contains any .jpg/.jpeg/.png/.avif other than the five allowed exceptions.
+// Fails if dist/ contains any .jpg/.jpeg/.png/.avif other than the allowed exceptions:
+// the icons, og-image.jpg, and the per-page Open Graph JPGs under og/ (see scripts/generate-og.mjs).
 import { readdir } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -21,7 +22,7 @@ async function walk(dir) {
 const files = await walk(dist);
 const bad = files.filter((f) => {
   const rel = path.relative(dist, f).replaceAll('\\', '/');
-  return banned.test(rel) && !(allowed.has(rel));
+  return banned.test(rel) && !allowed.has(rel) && !/^og\/[a-z0-9-]+\.jpg$/.test(rel);
 });
 
 if (bad.length) {
