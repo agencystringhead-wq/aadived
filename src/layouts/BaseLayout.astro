@@ -14,6 +14,7 @@ import jost400 from '@fontsource/jost/files/jost-latin-400-normal.woff2?url';
 const preloadFonts = [corm400, jost400];
 import '../styles/global.css';
 
+import { ClientRouter } from 'astro:transitions';
 import UtilityBar from '../components/UtilityBar.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -55,6 +56,7 @@ if (breadcrumbs?.length) {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
+    <ClientRouter />
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     <meta name="theme-color" content="#4B5238" />

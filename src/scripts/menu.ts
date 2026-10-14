@@ -158,3 +158,9 @@ desktop.addEventListener('change', (e) => {
   if (e.matches) closeMobile(false);
   else closeAll();
 });
+
+// View Transitions: the header persists across pages, so close any open menu before the swap.
+document.addEventListener('astro:before-swap', () => {
+  closeAll();
+  closeMobile(false);
+});

@@ -2,7 +2,7 @@
 import Icon from './Icon.astro';
 import { site } from '../data/site';
 ---
-<div class="util">
+<div class="util" transition:persist>
   <div class="wrap bar">
     <div class="group">
       <span class="item"><Icon name="pin" size={14} />{site.address.short}</span>

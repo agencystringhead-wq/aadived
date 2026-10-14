@@ -120,3 +120,35 @@ h1, h2, h3, p, figure, blockquote { margin: 0; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
 }
+
+/* ---------- Modern layout primitives (inner pages) ---------- */
+
+/* Pill tags for categories and formats */
+.pill {
+  display: inline-flex; align-items: center; gap: 8px; min-height: 34px; padding: 6px 16px;
+  border-radius: var(--radius-pill); border: 1px solid var(--line); background: var(--ivory);
+  font-size: 14px; font-weight: 500; letter-spacing: 0.02em; color: var(--olive-deep); line-height: 1.2;
+}
+.pill-lav { background: var(--accent-soft); border-color: transparent; }
+.pill-olive { background: var(--olive); border-color: var(--olive); color: var(--ivory); }
+.pill-list { display: flex; flex-wrap: wrap; gap: 10px; padding: 0; margin: 0; list-style: none; }
+
+/* Soft paper texture, for sand sections only */
+.paper {
+  background-color: var(--sand);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .3 0 0 0 0 .3 0 0 0 0 .2 0 0 0 .05 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+/* Scroll reveals: fade and rise, only where scroll-driven animations are supported */
+@keyframes reveal-rise { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .reveal { animation: reveal-rise linear both; animation-timeline: view(); animation-range: entry 0% entry 40%; }
+  }
+}
+
+/* View Transitions between pages: a quiet cross-fade, and none under reduced motion */
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: 0.25s; }
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
+}
