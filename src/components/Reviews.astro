@@ -30,4 +30,5 @@ import { site } from '../data/site';
   .small { font-size: 14.5px; color: var(--text-muted); }
   .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 24px; margin-top: 56px; }
   .all { margin-top: 36px; text-align: center; }
+  @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
 </style>
