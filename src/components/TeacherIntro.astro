@@ -14,7 +14,7 @@ const stats = [
   <div class="wrap inner section">
     <div class="photo-col">
       <div class="photo">
-        <Image src={teacher} alt="Anupriya, founder of AadiVed, in a quiet seated moment" format="webp" width={420} height={540} loading="lazy" />
+        <Image src={teacher} alt="Anupriya, founder of AadiVed, in a quiet seated moment" format="webp" width={300} height={400} loading="lazy" />
       </div>
     </div>
     <div class="text">
@@ -36,7 +36,7 @@ const stats = [
   .teacher { background: var(--ivory); }
   .inner { display: flex; flex-wrap: wrap; gap: 80px; align-items: center; }
   .photo-col { flex: 1 1 400px; min-width: 0; display: flex; justify-content: center; }
-  .photo { width: 100%; max-width: 420px; height: 540px; border-radius: 24px 24px 220px 220px; overflow: hidden; background: var(--olive); }
+  .photo { width: 100%; max-width: 300px; aspect-ratio: 3 / 4; border-radius: 24px 24px 150px 150px; overflow: hidden; background: var(--olive); }
   .photo :global(img) { width: 100%; height: 100%; object-fit: cover; object-position: 70% 50%; display: block; }
   .text { flex: 1 1 480px; min-width: 0; }
   h2 { font-family: var(--font-display); font-weight: 400; font-size: clamp(36px, 4vw, 56px); line-height: 1.08; margin: 16px 0 0; }
@@ -47,5 +47,5 @@ const stats = [
   .stats { display: flex; gap: 40px; margin-top: 40px; flex-wrap: wrap; }
   .n { font-family: var(--font-display); font-size: 48px; line-height: 1; color: var(--olive); }
   .l { font-size: 14px; color: var(--label); margin-top: 6px; }
-  @media (max-width: 768px) { .inner { gap: 48px; } .photo { height: 440px; border-radius: 24px 24px 190px 190px; } }
+  @media (max-width: 768px) { .inner { gap: 48px; } }
 </style>

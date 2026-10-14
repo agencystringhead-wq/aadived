@@ -42,11 +42,12 @@ Every image on the site is WebP, rendered through `astro:assets` with `format="w
 - [ ] **Class timings.** Google lists "Open 24 hours", which needs confirming. Placeholder: `[Class timings to confirm]` (`site.timings`).
 - [ ] **Pricing.** Placeholder `[Price]` on `/pricing/`.
 - [ ] **Real studio photo.** `FormatsSplit.astro` shows a labelled placeholder.
-- [ ] **High-res Instagram originals.** The `ig-*.webp` files are low-res crops (about 280x370) from an Instagram screenshot. Swap in originals, keeping the filenames, in `src/assets/images/`. Used in:
-  - `ig-yogaday.webp`: `Hero.astro`, `MegaMenu.astro`, `InstagramStrip.astro`
-  - `ig-sanskrit.webp`: `Hero.astro`, `InstagramStrip.astro`
+- [ ] **High-res Instagram originals.** The `ig-*.webp` files are low-res crops (about 280x370) from an Instagram screenshot. They are capped at about 300px wide wherever they are shown. Swap in originals, keeping the filenames, in `src/assets/images/`. Used in:
+  - `ig-yogaday.webp`: `MegaMenu.astro`, `InstagramStrip.astro`
+  - `ig-sanskrit.webp`: `InstagramStrip.astro`
   - `ig-mono.webp`: `TeacherIntro.astro`, `InstagramStrip.astro`
   - `ig-guided.webp`: `FormatsSplit.astro`, `InstagramStrip.astro`
+- [ ] **Hero stock photos.** The hero uses free Pexels photos (credits in `design-source/stock-credits.md`). Replace with photos of the studio and Anupriya when available.
 - [ ] **WhatsApp.** Confirm `+91 82084 69389` is on WhatsApp (`site.whatsapp`, footer icon). Remove the icon if not.
 - [ ] **Final domain.** `https://aadived.com` is a placeholder in `astro.config.mjs` and `site.ts`.
 - [ ] **Newsletter and booking form provider.** The footer form posts to `site.newsletterAction` (`#`). Wire it to JotForm or a Cloudflare Worker. The `/contact/#book` anchor needs a real booking form or contact block.

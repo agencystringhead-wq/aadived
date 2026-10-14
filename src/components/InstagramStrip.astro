@@ -10,7 +10,7 @@ const tiles = [
   { src: guided, alt: 'Instagram post: Guided Yoga and Meditation for everyday well-being' },
   { src: sanskrit, alt: 'Instagram post: In Sanskrit, Aadi means beginning and Ved means knowledge' },
   { src: mono, alt: 'Instagram post: AadiVed logo, Mind. Body. Soul' },
-  { src: yogaday, alt: 'Instagram post: Happy International Yoga Day' },
+  { src: yogaday, alt: 'Instagram post: a woman holding a dancer pose outdoors', crop: true },
 ];
 ---
 <section class="insta">
@@ -24,7 +24,7 @@ const tiles = [
     </div>
     <div class="grid">
       {tiles.map((t) => (
-        <a class="tile" href={site.instagram.url}>
+        <a class:list={["tile", { crop: t.crop }]} href={site.instagram.url}>
           <Image src={t.src} alt={t.alt} format="webp" width={300} height={400} loading="lazy" />
         </a>
       ))}
@@ -37,7 +37,9 @@ const tiles = [
   .head { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; flex-wrap: wrap; }
   h2 { font-family: var(--font-display); font-weight: 400; font-size: clamp(36px, 4vw, 56px); line-height: 1.08; margin: 16px 0 0; }
   .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); gap: 18px; margin-top: 48px; }
-  .tile { display: block; aspect-ratio: 3 / 4; border-radius: 16px; overflow: hidden; }
+  /* Low-res Instagram crops: never display wider than ~300px */
+  .tile { display: block; aspect-ratio: 3 / 4; border-radius: 16px; overflow: hidden; width: 100%; max-width: 300px; justify-self: center; }
+  .tile.crop :global(img) { transform: scale(1.35); transform-origin: 50% 100%; }
   .tile :global(img) { width: 100%; height: 100%; object-fit: cover; display: block; }
   @media (max-width: 768px) { .block { padding-top: 72px; padding-bottom: 72px; } .grid { grid-template-columns: repeat(2, 1fr); } }
 </style>
