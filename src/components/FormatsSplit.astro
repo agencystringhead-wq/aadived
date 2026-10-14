@@ -20,7 +20,7 @@ import guided from '../assets/images/ig-guided.webp';
       </div>
       <div class="card online">
         <div class="photo">
-          <Image src={guided} alt="Guided Yoga and Meditation for everyday well-being" format="webp" width={640} height={280} loading="lazy" />
+          <Image src={guided} alt="Guided Yoga and Meditation for everyday well-being" format="webp" width={300} height={280} loading="lazy" />
         </div>
         <div class="body">
           <h3>Live online sessions</h3>
@@ -38,8 +38,8 @@ import guided from '../assets/images/ig-guided.webp';
   .studio { background: var(--ivory); }
   .online { background: var(--olive); color: var(--sand); }
   .ph { height: 280px; background: #DCD4C2; display: flex; align-items: center; justify-content: center; color: var(--olive-deep); font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; text-align: center; padding: 0 16px; }
-  .photo { height: 280px; overflow: hidden; background: #3B4130; }
-  .photo :global(img) { width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; display: block; }
+  .photo { height: 280px; overflow: hidden; background: #3B4130; display: flex; justify-content: center; }
+  .photo :global(img) { width: 100%; max-width: 300px; height: 100%; object-fit: cover; object-position: 50% 40%; display: block; }
   .body { padding: 36px 38px 40px; }
   h3 { font-family: var(--font-display); font-weight: 500; font-size: 34px; margin: 0; }
   p { margin: 12px 0 0; color: var(--text-muted); }
