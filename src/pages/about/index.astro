@@ -1,0 +1,109 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import InnerHero from '../../components/page/InnerHero.astro';
+import Bento from '../../components/page/Bento.astro';
+import FinalCTA from '../../components/FinalCTA.astro';
+import { site } from '../../data/site';
+// Client-supplied beach photo. Not Anupriya and not the studio.
+import beach from '../../assets/images/aadived/beach-yoga-wide.webp';
+
+const crumbs = [{ label: 'Home', href: '/' }, { label: 'About' }];
+const approach = [
+  { title: 'Ancient wisdom, modern lives', text: 'A blend of ancient Indian wisdom, tailored for the way we live now.' },
+  { title: 'Yoga, breath and sound', text: 'Guided yoga, meditation, breathwork and sound healing, taught together so they support each other.' },
+  { title: 'Every body welcome', text: 'From absolute beginners to experienced practitioners, with practice shaped around you.' },
+  { title: 'Studio and online', text: 'Small, unhurried classes in Hinjawadi Phase 3, and live online sessions for wherever you are.' },
+];
+---
+<BaseLayout
+  title="Our Story and the Name | AadiVed Yoga and Wellness"
+  description="AadiVed is a women-owned holistic yoga and sound healing studio in Hinjawadi Phase 3, Pune. Aadi means beginning. Ved means knowledge."
+  breadcrumbs={[{ name: 'Home', path: '/' }, { name: 'About', path: '/about/' }]}
+>
+  <div class="page-bg">
+    <InnerHero
+      crumbs={crumbs}
+      eyebrow="About AadiVed"
+      title="Our story and the name"
+      intro="A return to the roots of wellbeing: mindful movement, breath and being, brought into everyday life."
+      variant="wide"
+      image={beach}
+      imageAlt="Woman in a low lunge with arms raised, practising yoga on a beach at sunset"
+    />
+
+    <!-- The name, large -->
+    <section class="wrap sec name" aria-labelledby="name-h">
+      <div class="eyebrow">Our name, our way</div>
+      <h2 id="name-h" class="sr-only">What Aadi and Ved mean</h2>
+      <div class="words" aria-label="Aadi means beginning, Ved means knowledge">
+        <div class="word">
+          <span class="deva" lang="hi">आदि</span>
+          <span class="eyebrow cap">Aadi · Beginning</span>
+        </div>
+        <span class="plus" aria-hidden="true">+</span>
+        <div class="word">
+          <span class="deva" lang="hi">वेद</span>
+          <span class="eyebrow cap">Ved · Knowledge</span>
+        </div>
+      </div>
+      <p class="lead-text">&#8220;Aadi&#8221; means beginning. &#8220;Ved&#8221; means knowledge.</p>
+      <p class="body-text">AadiVed brings mindful movement, breath and being into everyday life. Every class blends asana, breathwork and grounding practices so the calm carries off the mat and into your day.</p>
+    </section>
+
+    <!-- Our story -->
+    <section class="wrap sec story reveal" aria-labelledby="story-h">
+      <div class="side">
+        <div class="eyebrow">Our story</div>
+        <h2 id="story-h" class="sec-title">Deeply rooted. Gently guided.</h2>
+      </div>
+      <div class="text">
+        <p class="body-text first">AadiVed Yoga and Wellness is a holistic yoga and sound healing studio in Hinjawadi Phase 3, Pune. It is a women-owned business, led by a 500-hour Yoga Alliance certified practitioner.</p>
+        <p class="body-text">The studio is built on a simple belief: ancient practice should feel at home in a modern life. Each session is shaped around you, whether you are stepping onto a mat for the first time, managing stress, or rebuilding balance after a big life change.</p>
+        <p class="body-text"><a class="inline-link" href="/about/anupriya/">Meet Anupriya, the founder &#8594;</a></p>
+      </div>
+    </section>
+
+    <!-- Approach -->
+    <section class="wrap sec reveal" aria-labelledby="approach-h">
+      <div class="eyebrow">Our approach</div>
+      <h2 id="approach-h" class="sec-title">How we practise together</h2>
+      <Bento items={approach} variant="a" />
+    </section>
+
+    <!-- Women-owned -->
+    <section class="sand-band paper reveal" aria-labelledby="women-h">
+      <div class="wrap"><div class="women">
+        <div class="eyebrow">Women-owned and women-led</div>
+        <h2 id="women-h" class="statement">A studio run by women, for people at every stage of life.</h2>
+        <p class="body-text">AadiVed is owned and led by women. The classes are open to everyone, with particular care for stress, hormonal balance and one-on-one prenatal yoga.</p>
+        <div class="row">
+          <a class="btn btn-primary" href={site.bookHref}>Book a session</a>
+          <a class="btn btn-secondary" href="/classes/">Explore classes</a>
+        </div>
+      </div></div>
+    </section>
+
+    <FinalCTA />
+  </div>
+</BaseLayout>
+
+<style>
+  .name { text-align: left; }
+  .words { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 28px 40px; margin: 24px 0 40px; }
+  .word { display: flex; flex-direction: column; gap: 10px; }
+  .deva { font-family: var(--font-deva); font-size: clamp(110px, 16vw, 220px); line-height: 1; color: var(--olive); }
+  .cap { margin-top: 0; }
+  .plus { font-family: var(--font-display); font-size: clamp(56px, 8vw, 110px); line-height: 1; color: #8A8C77; padding-bottom: 64px; }
+  .story { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 80px; align-items: start; }
+  .story .sec-title { max-width: 9em; font-size: clamp(38px, 4.6vw, 66px); margin-bottom: 0; }
+  .story .first { margin-top: 0; font-size: 19px; }
+  .paper { margin-top: 96px; }
+  .women { max-width: 900px; }
+  .statement { font-family: var(--font-display); font-weight: 400; font-size: clamp(36px, 4.6vw, 64px); line-height: 1.08; margin: 18px 0 0; color: var(--olive-deep); }
+  .row { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 32px; }
+  @media (max-width: 960px) {
+    .story { grid-template-columns: 1fr; gap: 24px; }
+    .plus { padding-bottom: 44px; }
+    .paper { margin-top: 64px; }
+  }
+</style>

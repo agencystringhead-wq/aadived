@@ -1,0 +1,102 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import InnerHero from '../components/page/InnerHero.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+import { stubPages } from '../data/site';
+import { practices, formatLabels, type Category } from '../data/practices';
+// Client-supplied beach photo (second and last use). Not Anupriya and not the studio.
+import beach from '../assets/images/aadived/beach-yoga-portrait.webp';
+
+const crumbs = [{ label: 'Home', href: '/' }, { label: 'All classes' }];
+const groups: { name: Category; blurb: string }[] = [
+  { name: 'Yoga', blurb: 'Guided practice for every level, plus private and prenatal sessions.' },
+  { name: 'Mind & Sound', blurb: 'Meditation, breathwork, sound and grounding, to quiet the mind and steady the body.' },
+  { name: 'Wellness Programs', blurb: 'Practices shaped around hormonal balance, stress, anxiety, energy and daily routine.' },
+];
+const titleFor = (slug: string) => stubPages.find((p) => p.slug === slug)?.title ?? slug;
+---
+<BaseLayout
+  title="All Classes | AadiVed Yoga and Wellness"
+  description="Every way we practise together at AadiVed: yoga, meditation, breathwork, sound healing and wellness programmes, in Hinjawadi Phase 3 and online."
+  breadcrumbs={[{ name: 'Home', path: '/' }, { name: 'All classes', path: '/classes/' }]}
+>
+  <div class="page-bg">
+    <InnerHero
+      crumbs={crumbs}
+      eyebrow="Classes and healing"
+      title="Ways we practise together"
+      intro="Yoga, meditation, breathwork, sound and wellness programmes, in the studio at Hinjawadi Phase 3 and live online. Pick a practice to read more."
+      variant="arch"
+      image={beach}
+      imageAlt="Woman in a low lunge with arms raised, practising yoga on a beach at sunset"
+    />
+
+    {groups.map((g) => {
+      const items = practices.filter((p) => p.category === g.name);
+      return (
+        <section class="wrap sec reveal" aria-labelledby={`h-${g.name}`}>
+          <div class="head">
+            <div>
+              <div class="eyebrow">{g.name}</div>
+              <h2 id={`h-${g.name}`} class="sec-title">{g.name === 'Yoga' ? 'Yoga' : g.name === 'Mind & Sound' ? 'Mind and sound' : 'Wellness programmes'}</h2>
+            </div>
+            <p class="blurb">{g.blurb}</p>
+          </div>
+          <ul class="grid">
+            {items.map((p, i) => (
+              <li class:list={{ feature: i === 0 || (items.length % 3 === 1 && i === items.length - 1) }}>
+                <a href={`/${p.slug}/`}>
+                  <span class="pic"><Image src={p.image} alt="" format="webp" width={520} height={390} loading="lazy" /></span>
+                  <span class="body">
+                    <span class="tags">
+                      {p.formats.map((f) => <span class="pill">{formatLabels[f]}</span>)}
+                    </span>
+                    <span class="t">{titleFor(p.slug)}</span>
+                    <span class="d">{p.tagline}</span>
+                    <span class="go">Learn more &#8594;</span>
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      );
+    })}
+
+    <div class="gap"></div>
+    <FinalCTA />
+  </div>
+</BaseLayout>
+
+<style>
+  .head { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; flex-wrap: wrap; margin-bottom: 32px; }
+  .head .sec-title { margin-bottom: 0; }
+  .blurb { margin: 0; max-width: 34em; color: var(--text-muted); }
+  .grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+  .grid li { display: contents; }
+  .grid a { display: flex; flex-direction: column; border-radius: var(--radius-card); overflow: hidden; background: var(--sand); border: 1px solid var(--line); color: var(--ink); transition: transform .3s; height: 100%; }
+  .grid a:hover { transform: translateY(-3px); color: var(--ink); }
+  .pic { display: block; aspect-ratio: 4 / 3; overflow: hidden; background: var(--sand); }
+  .pic :global(img) { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .body { display: flex; flex-direction: column; gap: 8px; padding: 22px 24px 26px; flex-grow: 1; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tags .pill { min-height: 28px; padding: 3px 12px; font-size: 13px; }
+  .t { font-family: var(--font-display); font-weight: 500; font-size: 28px; line-height: 1.1; margin-top: 4px; }
+  .d { font-size: 15.5px; color: var(--text-muted); flex-grow: 1; }
+  .go { font-size: 14.5px; font-weight: 500; color: var(--olive); }
+  .feature { grid-column: span 1; }
+  .gap { height: 96px; }
+  @media (min-width: 961px) {
+    /* First card in each group is wider and runs side by side */
+    .grid li.feature { display: block; grid-column: span 2; }
+    .grid li.feature a { flex-direction: row; }
+    .grid li.feature:last-child a { flex-direction: row-reverse; }
+    .grid li.feature .pic { aspect-ratio: auto; flex: 0 0 46%; }
+    .grid li.feature .body { justify-content: center; padding: 32px; }
+    .grid li.feature .t { font-size: 36px; }
+  }
+  @media (max-width: 960px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .gap { height: 64px; } }
+  @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
+  @media (prefers-reduced-motion: reduce) { .grid a { transition: none; } }
+</style>

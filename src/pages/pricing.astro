@@ -1,0 +1,123 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import InnerHero from '../components/page/InnerHero.astro';
+import Faq from '../components/page/Faq.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+import Icon from '../components/Icon.astro';
+import { site } from '../data/site';
+
+const crumbs = [{ label: 'Home', href: '/' }, { label: 'Plans and pricing' }];
+// TODO: replace every [Price] placeholder with the real prices once the client confirms them.
+const plans = [
+  {
+    name: 'Studio sessions',
+    for: 'Small, unhurried classes at Megapolis Serenity in Hinjawadi Phase 3.',
+    items: ['Personal attention on every asana', 'Yoga, meditation, breathwork and sound healing', `${site.timings.days}, ${site.timings.time}`],
+    href: '/contact/?interest=intro&format=studio#book',
+  },
+  {
+    name: 'Live online sessions',
+    for: 'The same guided practice, wherever you are.',
+    items: ['Live classes with real-time cues and corrections', 'Beginners to experienced practitioners', 'Practise from your own mat'],
+    href: '/contact/?interest=intro&format=online#book',
+    featured: true,
+  },
+  {
+    name: 'One-on-one coaching',
+    for: 'Private sessions shaped around your body, goals and schedule.',
+    items: ['Private yoga sessions', 'Prenatal yoga (1:1), customised for each trimester', 'All of the teacher’s attention'],
+    href: '/contact/?interest=intro&format=one-on-one#book',
+  },
+];
+const faqs = [
+  { q: 'Can I try a session first?', a: 'We suggest starting with a 1:1 intro session. [To confirm with Anupriya: intro session price]' },
+  { q: 'Are there monthly plans?', a: '[To confirm with Anupriya]' },
+  { q: 'How do I pay?', a: '[To confirm with Anupriya]' },
+  { q: 'What is the cancellation policy?', a: '[To confirm with Anupriya]' },
+];
+---
+<BaseLayout
+  title="Plans and Pricing | AadiVed Yoga and Wellness"
+  description="Plans and pricing for studio sessions, live online classes and one-on-one coaching at AadiVed Yoga and Wellness in Hinjawadi, Pune."
+  breadcrumbs={[{ name: 'Home', path: '/' }, { name: 'Plans and pricing', path: '/pricing/' }]}
+>
+  <div class="page-bg">
+    <InnerHero
+      crumbs={crumbs}
+      eyebrow="Join us"
+      title="Plans and pricing"
+      intro="Three ways to practise with us. Prices will be listed here soon. In the meantime, call and we will talk you through the options."
+    />
+
+    <section class="wrap sec" aria-labelledby="plans-h">
+      <h2 id="plans-h" class="sr-only">Plans</h2>
+      <ul class="plans">
+        {plans.map((p) => (
+          <li class:list={['plan', { featured: p.featured }]}>
+            {p.featured && <span class="badge">Practise from home</span>}
+            <h3>{p.name}</h3>
+            <p class="for">{p.for}</p>
+            <p class="price"><span class="amount">[Price]</span><span class="unit">[Per session or plan to confirm]</span></p>
+            <ul class="inc">
+              {p.items.map((it) => (
+                <li><Icon name="check" size={18} stroke={1.8} /><span>{it}</span></li>
+              ))}
+            </ul>
+            <a class:list={['btn', p.featured ? 'btn-ivory' : 'btn-primary']} href={p.href}>Book a session</a>
+          </li>
+        ))}
+      </ul>
+      <p class="note-text">All prices will be confirmed before you book. Start with a 1:1 intro session if you are new.</p>
+    </section>
+
+    <section class="wrap sec reveal" aria-labelledby="faq-h">
+      <div class="eyebrow">Questions</div>
+      <h2 id="faq-h" class="sec-title">Good to know</h2>
+      <Faq items={faqs} />
+    </section>
+
+    <section class="wrap sec last reveal" aria-labelledby="call-h">
+      <div class="callcard">
+        <h2 id="call-h" class="sec-title">Not sure which plan suits you?</h2>
+        <div class="btns">
+          <a class="btn btn-primary" href={`tel:${site.phone.tel}`}><Icon name="phone" size={16} />Call {site.phone.display}</a>
+          <a class="btn btn-secondary" href={site.instagram.dm}>Message on Instagram</a>
+        </div>
+      </div>
+    </section>
+
+    <FinalCTA />
+  </div>
+</BaseLayout>
+
+<style>
+  .sec:first-of-type { padding-top: 72px; }
+  .plans { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; align-items: stretch; }
+  .plan { position: relative; display: flex; flex-direction: column; gap: 14px; padding: 36px 32px 32px; border-radius: 26px; background: var(--sand); border: 1px solid var(--line); }
+  .plan.featured { background: var(--olive); border-color: var(--olive); color: var(--on-dark); }
+  .badge { position: absolute; top: -14px; left: 28px; padding: 5px 14px; border-radius: var(--radius-pill); background: var(--accent); color: var(--olive-deep); font-size: 13px; font-weight: 500; }
+  h3 { font-family: var(--font-display); font-weight: 500; font-size: 34px; line-height: 1.08; margin: 0; color: var(--ink); }
+  .featured h3 { color: var(--ivory); }
+  .for { margin: 0; color: var(--text-muted); min-height: 3.3em; }
+  .featured .for { color: var(--on-dark); }
+  .price { margin: 6px 0 4px; display: flex; flex-direction: column; gap: 2px; padding: 16px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .featured .price { border-color: rgba(251, 248, 242, 0.25); }
+  .amount { font-family: var(--font-display); font-size: 46px; line-height: 1; color: var(--olive); }
+  .featured .amount { color: var(--ivory); }
+  .unit { font-size: 14px; color: var(--label); }
+  .featured .unit { color: var(--on-dark); }
+  .inc { list-style: none; margin: 0 0 12px; padding: 0; display: grid; gap: 12px; flex-grow: 1; }
+  .inc li { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 10px; align-items: start; font-size: 15.5px; }
+  .inc :global(svg) { color: var(--olive); margin-top: 3px; }
+  .featured .inc :global(svg) { color: var(--accent); }
+  .plan .btn { width: 100%; }
+  .callcard { background: var(--accent-soft); border-radius: 28px; padding: 44px; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 32px; align-items: center; }
+  .callcard .sec-title { margin: 0; max-width: 12em; }
+  .btns { display: flex; flex-direction: column; gap: 12px; min-width: 260px; }
+  .last { padding-bottom: 96px; }
+  @media (max-width: 960px) {
+    .plans { grid-template-columns: 1fr; gap: 28px; }
+    .for { min-height: 0; }
+    .callcard { grid-template-columns: 1fr; padding: 32px 24px; } .btns { min-width: 0; } .last { padding-bottom: 64px; }
+  }
+</style>

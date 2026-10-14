@@ -1,0 +1,97 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import InnerHero from '../components/page/InnerHero.astro';
+import Bento from '../components/page/Bento.astro';
+import NumberedSteps from '../components/page/NumberedSteps.astro';
+import Faq from '../components/page/Faq.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+import Icon from '../components/Icon.astro';
+import { site } from '../data/site';
+import privateImg from '../assets/images/stock/service-private-sessions.webp';
+
+const crumbs = [{ label: 'Home', href: '/' }, { label: 'One-on-one coaching' }];
+const offer = [
+  { title: '1:1 intro session', text: 'A calm first step. Tell us what you would like to feel and we match the practice to your body, goals and schedule.' },
+  { title: 'Private yoga sessions', text: 'One-on-one practice shaped around you, with all of the teacher’s attention.' },
+  { title: 'Prenatal yoga (1:1)', text: 'Private, customised sessions for each trimester, focused on comfort, breath and a calm connection with your baby.' },
+  { title: 'Goal-based practice', text: 'Support for stress, hormonal balance or building a daily practice, shaped around what you need.' },
+];
+const steps = [
+  { title: 'Reach out', text: 'Call, message us on Instagram or send an enquiry. Tell us a little about what you would like to feel.' },
+  { title: 'Find your fit', text: 'We match the session to your body, goals and schedule.' },
+  { title: 'Begin, and keep going', text: 'Practise together, then decide how to continue: one-on-one, a class, or a daily practice.' },
+];
+const faqs = [
+  { q: 'What is a 1:1 intro session?', a: 'A private first session where you tell us what you would like to feel, and we match the practice to you.' },
+  { q: 'Is prenatal yoga one-on-one?', a: 'Yes. Prenatal sessions are private and customised for each trimester. Please consult your doctor before starting.' },
+  { q: 'Where do sessions take place?', a: 'At the studio in Megapolis Serenity, Hinjawadi Phase 3. [To confirm with Anupriya: online one-on-one]' },
+  { q: 'When can I book?', a: `Classes run ${site.timings.days}, ${site.timings.time}. Call to agree a slot that suits you.` },
+  { q: 'What does it cost?', a: '[Price] Plans and pricing will be listed on the Plans & Pricing page.' },
+];
+---
+<BaseLayout
+  title="One-on-One Yoga Coaching | AadiVed Yoga and Wellness"
+  description="Private yoga sessions and one-on-one prenatal yoga, shaped around your body, goals and schedule, in Hinjawadi Phase 3, Pune."
+  breadcrumbs={[{ name: 'Home', path: '/' }, { name: 'One-on-one coaching', path: '/one-on-one/' }]}
+>
+  <div class="page-bg">
+    <InnerHero
+      crumbs={crumbs}
+      eyebrow="Private care"
+      title="One-on-one, shaped around you"
+      intro="Private sessions for your body, goals and schedule, including one-on-one prenatal yoga. New here? Start with a 1:1 intro session."
+      variant="arch"
+      image={privateImg}
+      imageAlt="A woman in a pale pink top pressing her palms together at her chest in a prayer position"
+    >
+      <div class="cta-row">
+        <a class="btn btn-primary" href="/contact/?interest=intro&format=one-on-one#book">Book an intro session</a>
+        <a class="btn btn-secondary" href={`tel:${site.phone.tel}`}><Icon name="phone" size={16} />Call {site.phone.display}</a>
+      </div>
+    </InnerHero>
+
+    <section class="wrap sec reveal" aria-labelledby="offer-h">
+      <div class="eyebrow">What we offer</div>
+      <h2 id="offer-h" class="sec-title">Personal attention, every session</h2>
+      <Bento items={offer} variant="a" />
+    </section>
+
+    <section class="wrap sec reveal" aria-labelledby="how-h">
+      <div class="eyebrow">How it begins</div>
+      <h2 id="how-h" class="sec-title">Three gentle steps</h2>
+      <NumberedSteps steps={steps} />
+    </section>
+
+    <section class="wrap sec reveal callnow" aria-labelledby="call-h">
+      <div class="callcard">
+        <div>
+          <div class="eyebrow">Talk to us first</div>
+          <h2 id="call-h" class="sec-title">Not sure which session suits you?</h2>
+          <p class="body-text">Call and tell us what you would like to feel. We will help you choose, and agree a time between {site.timings.daysShort}, {site.timings.time}.</p>
+        </div>
+        <div class="btns">
+          <a class="btn btn-primary" href={`tel:${site.phone.tel}`}><Icon name="phone" size={16} />Call {site.phone.display}</a>
+          <a class="btn btn-secondary" href={site.instagram.dm}>Message on Instagram</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap sec last reveal" aria-labelledby="faq-h">
+      <div class="eyebrow">Questions</div>
+      <h2 id="faq-h" class="sec-title">Good to know</h2>
+      <Faq items={faqs} />
+      <p class="note-text">Sessions support wellbeing and are not medical advice. Talk to your doctor about any health concern.</p>
+    </section>
+
+    <FinalCTA />
+  </div>
+</BaseLayout>
+
+<style>
+  .cta-row { display: flex; flex-wrap: wrap; gap: 14px; }
+  .callcard { background: var(--accent-soft); border-radius: 28px; padding: 48px 44px; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 40px; align-items: center; }
+  .callcard .sec-title { margin-bottom: 0; max-width: 12em; }
+  .btns { display: flex; flex-direction: column; gap: 12px; min-width: 260px; }
+  .last { padding-bottom: 96px; }
+  @media (max-width: 960px) { .callcard { grid-template-columns: 1fr; padding: 32px 24px; gap: 24px; } .btns { min-width: 0; } .last { padding-bottom: 64px; } }
+</style>

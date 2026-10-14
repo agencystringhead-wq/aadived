@@ -1,0 +1,93 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import InnerHero from '../components/page/InnerHero.astro';
+import Bento from '../components/page/Bento.astro';
+import NumberedSteps from '../components/page/NumberedSteps.astro';
+import Faq from '../components/page/Faq.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+import Icon from '../components/Icon.astro';
+import { site, stubPages } from '../data/site';
+import { practices } from '../data/practices';
+// Free stock photo (Pexels). Credits in design-source/stock-credits.md
+import onlineImg from '../assets/images/stock/formats-online.webp';
+
+const crumbs = [{ label: 'Home', href: '/' }, { label: 'Online classes' }];
+const online = practices.filter((p) => p.formats.includes('online'));
+const titleFor = (slug: string) => stubPages.find((p) => p.slug === slug)?.title ?? slug;
+const why = [
+  { title: 'Real-time cues and corrections', text: 'Live classes, not recordings, so your teacher can see and guide you as you practise.' },
+  { title: 'Beginners to experienced', text: 'The same guided practice for first-timers and experienced yogis alike.' },
+  { title: 'From your own mat', text: 'Practise at home, in a quiet corner, without the commute to Hinjawadi.' },
+  { title: 'The same calm', text: 'Asana, breathwork and grounding practices, blended as they are in the studio.' },
+];
+const steps = [
+  { title: 'Reach out', text: 'Call, message us on Instagram or send an enquiry. Tell us what you would like to feel.' },
+  { title: 'Find your fit', text: 'We match the practice to your body, goals and schedule, and tell you how to join.' },
+  { title: 'Join live', text: 'Log in at class time, roll out your mat and practise with live guidance. [Joining platform to confirm]' },
+];
+const faqs = [
+  { q: 'Are the classes live?', a: 'Yes. Live online sessions with real-time cues and corrections.' },
+  { q: 'Do I need experience?', a: 'No. Online classes suit beginners to experienced practitioners.' },
+  { q: 'What do I need at home?', a: '[To confirm with Anupriya]' },
+  { q: 'Which platform do you use?', a: '[To confirm with Anupriya]' },
+  { q: 'When are online classes?', a: `Classes run ${site.timings.days}, ${site.timings.time}. [To confirm with Anupriya: online schedule]` },
+  { q: 'What does it cost?', a: '[Price] Plans and pricing will be listed on the Plans & Pricing page.' },
+];
+---
+<BaseLayout
+  title="Live Online Yoga Classes | AadiVed Yoga and Wellness"
+  description="Live online yoga and guided practice with real-time cues and corrections, for beginners and experienced practitioners."
+  breadcrumbs={[{ name: 'Home', path: '/' }, { name: 'Online classes', path: '/online-classes/' }]}
+>
+  <div class="page-bg">
+    <InnerHero
+      crumbs={crumbs}
+      eyebrow="Live online sessions"
+      title="From your own mat"
+      intro="The same guided practice, wherever you are. Live classes with real-time cues and corrections, for beginners and experienced yogis alike."
+      variant="wide"
+      image={onlineImg}
+      imageAlt="Overhead view of a person in child pose on a jute rug beside a bed, with a laptop on the wooden floor next to them"
+    >
+      <div class="cta-row">
+        <a class="btn btn-primary" href={`${site.bookHref.replace('#book', '')}?interest=intro&format=online#book`}>Book a session</a>
+        <a class="btn btn-secondary" href={`tel:${site.phone.tel}`}><Icon name="phone" size={16} />Call {site.phone.display}</a>
+      </div>
+    </InnerHero>
+
+    <section class="wrap sec reveal" aria-labelledby="why-h">
+      <div class="eyebrow">Why online</div>
+      <h2 id="why-h" class="sec-title">Studio guidance, at home</h2>
+      <Bento items={why} variant="b" />
+    </section>
+
+    <section class="wrap sec reveal" aria-labelledby="how-h">
+      <div class="eyebrow">How it works</div>
+      <h2 id="how-h" class="sec-title">Three simple steps</h2>
+      <NumberedSteps steps={steps} />
+    </section>
+
+    <section class="wrap sec reveal" aria-labelledby="p-h">
+      <div class="eyebrow">Practices online</div>
+      <h2 id="p-h" class="sec-title">What you can practise</h2>
+      <ul class="pill-list">
+        {online.map((p) => <li><a class="pill" href={`/${p.slug}/`}>{titleFor(p.slug)}</a></li>)}
+      </ul>
+      <p class="note-text">[To confirm with Anupriya: which practices run online]</p>
+    </section>
+
+    <section class="wrap sec last reveal" aria-labelledby="faq-h">
+      <div class="eyebrow">Questions</div>
+      <h2 id="faq-h" class="sec-title">Good to know</h2>
+      <Faq items={faqs} />
+    </section>
+
+    <FinalCTA />
+  </div>
+</BaseLayout>
+
+<style>
+  .cta-row { display: flex; flex-wrap: wrap; gap: 14px; }
+  .last { padding-bottom: 96px; }
+  @media (max-width: 960px) { .last { padding-bottom: 64px; } }
+</style>

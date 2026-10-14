@@ -1,0 +1,101 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import InnerHero from '../components/page/InnerHero.astro';
+import Bento from '../components/page/Bento.astro';
+import Faq from '../components/page/Faq.astro';
+import MapEmbed from '../components/page/MapEmbed.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+import Icon from '../components/Icon.astro';
+import { site, stubPages } from '../data/site';
+import { practices } from '../data/practices';
+// Free stock photo (Pexels), a stand-in. Credits in design-source/stock-credits.md
+// TODO: replace with a real photo of the studio at Megapolis Serenity when the client sends one
+import studioImg from '../assets/images/stock/formats-studio.webp';
+
+const crumbs = [{ label: 'Home', href: '/' }, { label: 'The Studio' }];
+const studioPractices = practices.filter((p) => p.formats.includes('studio'));
+const titleFor = (slug: string) => stubPages.find((p) => p.slug === slug)?.title ?? slug;
+const offer = [
+  { title: 'Guided yoga', text: 'Small, unhurried classes with personal attention on every asana.' },
+  { title: 'Meditation and breathwork', text: 'Simple, guided techniques to quiet a busy mind and steady the breath.' },
+  { title: 'Sound healing', text: 'Deep, resonant sound in a quiet, grounded space, to soften tension and invite rest.' },
+  { title: 'One-on-one sessions', text: 'Private, customised practice, including prenatal yoga for each trimester.' },
+];
+const faqs = [
+  { q: 'Where exactly is the studio?', a: 'At Megapolis Serenity, Rajiv Gandhi Infotech Park, Hinjawadi Phase 3, Pune 411057. Use the map above or get directions in Google Maps.' },
+  { q: 'When are classes?', a: `Classes run ${site.timings.days}, ${site.timings.time}.` },
+  { q: 'Do I need experience?', a: 'No. The studio welcomes beginners to experienced practitioners.' },
+  { q: 'What should I bring?', a: '[To confirm with Anupriya]' },
+  { q: 'Is there parking?', a: '[To confirm with Anupriya]' },
+];
+---
+<BaseLayout
+  title="The Studio, Hinjawadi Phase 3 | AadiVed Yoga and Wellness"
+  description="Small, unhurried yoga, meditation and sound healing classes at Megapolis Serenity, Hinjawadi Phase 3, Pune."
+  breadcrumbs={[{ name: 'Home', path: '/' }, { name: 'The Studio', path: '/studio/' }]}
+>
+  <div class="page-bg">
+    <InnerHero
+      crumbs={crumbs}
+      eyebrow="Hinjawadi Phase 3"
+      title="The studio"
+      intro="Small, unhurried classes at Megapolis Serenity in Hinjawadi Phase 3. Personal attention on every asana, with sound healing in a quiet, grounded space."
+      variant="wide"
+      image={studioImg}
+      imageAlt="Rolled grey yoga mats and a stack of folded striped blankets on a wooden shelf, with bolsters underneath"
+    >
+      <div class="cta-row">
+        <a class="btn btn-primary" href={site.bookHref}>Book a session</a>
+        <a class="btn btn-secondary" href={`tel:${site.phone.tel}`}><Icon name="phone" size={16} />Call {site.phone.display}</a>
+      </div>
+    </InnerHero>
+
+    <section class="wrap sec" aria-labelledby="offer-h">
+      <div class="eyebrow">What happens here</div>
+      <h2 id="offer-h" class="sec-title">A quiet room for the whole practice</h2>
+      <Bento items={offer} variant="a" />
+    </section>
+
+    <section class="wrap sec split" aria-labelledby="find-h">
+      <div class="info">
+        <div class="eyebrow">How to find us</div>
+        <h2 id="find-h" class="sec-title">Megapolis Serenity, Phase 3</h2>
+        <address>
+          {site.address.lines.map((l, i) => <>{i > 0 && <br />}{l}</>)}
+        </address>
+        <p class="body-text">Classes run <strong>{site.timings.days}, {site.timings.time}</strong>.</p>
+        <div class="cta-col">
+          <a class="btn btn-primary" href={`tel:${site.phone.tel}`}><Icon name="phone" size={16} />Call {site.phone.display}</a>
+          <a class="btn btn-secondary" href={site.google.directions}>Get directions</a>
+        </div>
+      </div>
+      <div class="mapcol"><MapEmbed /></div>
+    </section>
+
+    <section class="wrap sec" aria-labelledby="p-h">
+      <div class="eyebrow">Practices at the studio</div>
+      <h2 id="p-h" class="sec-title">Join us in person</h2>
+      <ul class="pill-list">
+        {studioPractices.map((p) => <li><a class="pill" href={`/${p.slug}/`}>{titleFor(p.slug)}</a></li>)}
+      </ul>
+    </section>
+
+    <section class="wrap sec last" aria-labelledby="faq-h">
+      <div class="eyebrow">Questions</div>
+      <h2 id="faq-h" class="sec-title">Good to know</h2>
+      <Faq items={faqs} />
+    </section>
+
+    <FinalCTA />
+  </div>
+</BaseLayout>
+
+<style>
+  .cta-row { display: flex; flex-wrap: wrap; gap: 14px; }
+  .split { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 64px; align-items: start; }
+  address { font-style: normal; font-size: 18px; line-height: 1.6; color: var(--ink); }
+  .cta-col { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+  .last { padding-bottom: 96px; }
+  .info .sec-title { max-width: 10em; }
+  @media (max-width: 960px) { .split { grid-template-columns: 1fr; gap: 36px; } .last { padding-bottom: 64px; } }
+</style>
