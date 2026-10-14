@@ -6,6 +6,7 @@
 // sessions); Prenatal is 1:1 only; Sound Healing is studio only.
 // TODO: confirm with Anupriya which practices run online and which session steps match her real flow.
 import type { ImageMetadata } from 'astro';
+import { site } from './site';
 import soundHealingImg from '../assets/images/stock/service-sound-healing.webp';
 import guidedYogaImg from '../assets/images/stock/service-guided-yoga.webp';
 import beginnersImg from '../assets/images/stock/service-beginners.webp';
@@ -60,7 +61,7 @@ export const interestId = (slug: string) => slug.split('/').pop() as string;
 // Shared FAQ answers, so wording stays consistent where the facts are the same
 const faq = {
   start: { q: 'How do I start?', a: 'Call, message us on Instagram or book a session. If you are new, we suggest starting with a 1:1 intro session.' },
-  cost: { q: 'What does it cost?', a: '[Price] Plans and pricing will be listed on the Plans & Pricing page.' },
+  cost: { q: 'What does it cost?', a: `For current prices, please call ${site.phone.display}.` },
   when: (extra?: string) => ({
     q: 'When are classes?',
     a: `Classes run Monday to Friday, 8:00 am to 10:00 am.${extra ? ' ' + extra : ''}`,
@@ -179,7 +180,6 @@ export const practices: Practice[] = [
     formats: ['studio', 'online'],
     faqs: [
       { q: 'How do I know if this is the right level?', a: 'If you already practise regularly, this is for you. Tell us about your practice and we will match the session to it.' },
-      { q: 'Can I bring my own mat?', a: '[To confirm with Anupriya]' },
       faq.when(),
       faq.start,
       faq.cost,
@@ -219,7 +219,6 @@ export const practices: Practice[] = [
     faqs: [
       { q: 'Is it private?', a: 'Yes. Prenatal yoga at AadiVed is one-on-one and customised for each trimester.' },
       { q: 'Do I need to speak to my doctor first?', a: 'Yes. Please consult your doctor before starting any prenatal practice, and tell us about anything they advise.' },
-      { q: 'Can I start in any trimester?', a: '[To confirm with Anupriya]' },
       faq.when('Ask us which slots suit one-on-one sessions.'),
       faq.start,
       faq.cost,
@@ -260,7 +259,7 @@ export const practices: Practice[] = [
     faqs: [
       { q: 'What is a 1:1 intro session?', a: 'A private first session where you tell us what you would like to feel, and we match the practice to your body, goals and schedule.' },
       { q: 'Can I switch to a group class later?', a: 'Yes. Many people start privately and join a class when they feel ready.' },
-      { q: 'Where do private sessions take place?', a: 'At the studio in Megapolis Serenity, Hinjawadi Phase 3. [To confirm with Anupriya: online private sessions]' },
+      { q: 'Where do private sessions take place?', a: 'At the studio in Megapolis Serenity, Hinjawadi Phase 3.' },
       faq.start,
       faq.cost,
     ],
@@ -300,7 +299,6 @@ export const practices: Practice[] = [
     formats: ['studio', 'online'],
     faqs: [
       { q: 'I cannot stop my thoughts. Will this work for me?', a: 'Wandering thoughts are normal. The guidance shows you how to come back to your breath without frustration.' },
-      { q: 'Do I need to sit on the floor?', a: '[To confirm with Anupriya]' },
       faq.when(),
       faq.start,
       faq.cost,
@@ -419,7 +417,6 @@ export const practices: Practice[] = [
     formats: ['studio', 'online'],
     faqs: [
       { q: 'Is this a medical treatment?', a: 'No. It is a gentle yoga and breath practice that supports wellbeing. Please talk to your doctor about any health concern.' },
-      { q: 'Do I need to track my cycle?', a: '[To confirm with Anupriya]' },
       faq.when(),
       faq.start,
       faq.cost,
@@ -459,7 +456,6 @@ export const practices: Practice[] = [
     formats: ['studio', 'online'],
     faqs: [
       { q: 'Is this the same as therapy?', a: 'No. It is a yoga and breath practice that supports wellbeing. If you are struggling, please talk to your doctor or a mental health professional.' },
-      { q: 'How often should I come?', a: '[To confirm with Anupriya]' },
       faq.when(),
       faq.start,
       faq.cost,
@@ -499,7 +495,6 @@ export const practices: Practice[] = [
     formats: ['studio', 'online'],
     faqs: [
       { q: 'Is this a treatment for anxiety?', a: 'No. It is a calming practice that supports wellbeing. If anxiety is affecting your daily life, please talk to your doctor or a mental health professional.' },
-      { q: 'Will I have to talk about what I am feeling?', a: '[To confirm with Anupriya]' },
       faq.when(),
       faq.start,
       faq.cost,
@@ -539,7 +534,6 @@ export const practices: Practice[] = [
     formats: ['studio', 'online'],
     faqs: [
       { q: 'Is it energetic or restful?', a: 'Restful. It is a restorative reset, so the pace is slow and supportive.' },
-      { q: 'How is it different from a normal class?', a: '[To confirm with Anupriya]' },
       faq.when(),
       faq.start,
       faq.cost,
@@ -577,7 +571,6 @@ export const practices: Practice[] = [
     ],
     formats: ['studio', 'online'],
     faqs: [
-      { q: 'How long should a daily practice be?', a: '[To confirm with Anupriya]' },
       { q: 'Do I need to come to the studio every day?', a: 'No. Sessions help you build a routine you then practise at home.' },
       faq.when(),
       faq.start,

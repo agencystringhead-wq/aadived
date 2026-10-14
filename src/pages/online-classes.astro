@@ -29,10 +29,8 @@ const steps = [
 const faqs = [
   { q: 'Are the classes live?', a: 'Yes. Live online sessions with real-time cues and corrections.' },
   { q: 'Do I need experience?', a: 'No. Online classes suit beginners to experienced practitioners.' },
-  { q: 'What do I need at home?', a: '[To confirm with Anupriya]' },
-  { q: 'Which platform do you use?', a: '[To confirm with Anupriya]' },
-  { q: 'When are online classes?', a: `Classes run ${site.timings.days}, ${site.timings.time}. [To confirm with Anupriya: online schedule]` },
-  { q: 'What does it cost?', a: '[Price] Plans and pricing will be listed on the Plans & Pricing page.' },
+  { q: 'When are online classes?', a: `Classes run ${site.timings.days}, ${site.timings.time}. Call ${site.phone.display} to check the online schedule.` },
+  { q: 'What does it cost?', a: `For current prices, please call ${site.phone.display}.` },
 ];
 const s = getSeo(Astro.url.pathname);
 ---
