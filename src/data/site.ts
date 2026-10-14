@@ -19,12 +19,21 @@ export const site = {
     postalCode: '411057',
     country: 'IN',
   },
-  instagram: { handle: '@aadivedwellness', url: 'https://www.instagram.com/aadivedwellness/' },
+  instagram: {
+    handle: '@aadivedwellness',
+    url: 'https://www.instagram.com/aadivedwellness/',
+    dm: 'https://ig.me/m/aadivedwellness',
+  },
   google: {
     profile: 'https://maps.google.com/?cid=4377931993901063288',
     reviews: 'https://maps.google.com/?cid=4377931993901063288',
     directions:
       'https://www.google.com/maps/dir/?api=1&destination=AADIVED+YOGA+AND+WELLNESS+Megapolis+Serenity+Hinjawadi+Phase+3+Pune',
+    // Loaded only after the visitor clicks "Load map"
+    embed:
+      'https://maps.google.com/maps?q=AADIVED+YOGA+AND+WELLNESS+Megapolis+Serenity+Hinjawadi+Phase+3+Pune+411057&z=16&output=embed',
+    // TODO: swap for the direct write-a-review link (needs the Google place ID). Opens the profile for now.
+    writeReview: 'https://maps.google.com/?cid=4377931993901063288',
   },
   // TODO: confirm the number is on WhatsApp before launch
   whatsapp: 'https://wa.me/918208469389',
@@ -37,8 +46,12 @@ export const site = {
     schema: { dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '08:00', closes: '10:00' },
   },
   bookHref: '/contact/#book',
-  // TODO: replace with the real newsletter/booking form provider (JotForm or Cloudflare Worker)
+  // TODO: replace with the real newsletter form provider (JotForm or Cloudflare Worker)
   newsletterAction: '#',
+  // TODO: paste the form provider URL here (Formspree, Getform, a Cloudflare Worker, etc.).
+  // The enquiry form on /contact/ POSTs its fields to this URL. While it is empty the form tells visitors
+  // to call or message on Instagram instead of showing a false success message.
+  enquiryAction: '',
 } as const;
 
 export interface NavLink {

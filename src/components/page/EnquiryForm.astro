@@ -1,0 +1,229 @@
+---
+// Enquiry form. To make it work, set `enquiryAction` in src/data/site.ts to your form provider URL
+// (Formspree, Getform, a Cloudflare Worker, ...). The form POSTs its fields there as form data.
+import { site, stubPages } from '../../data/site';
+import { practices, interestId } from '../../data/practices';
+
+const groups = ['Yoga', 'Mind & Sound', 'Wellness Programs'] as const;
+const titleFor = (slug: string) => stubPages.find((p) => p.slug === slug)?.title ?? slug;
+const options = groups.map((g) => ({
+  group: g,
+  items: practices.filter((p) => p.category === g).map((p) => ({ value: interestId(p.slug), label: titleFor(p.slug) })),
+}));
+---
+<div class="wrap-form" id="enquiry" data-enquiry data-action={site.enquiryAction}>
+  <form novalidate class="form" data-form>
+    <div class="row two">
+      <div class="field">
+        <label for="f-name">Your name <span class="req" aria-hidden="true">*</span></label>
+        <input id="f-name" name="name" type="text" autocomplete="name" required aria-describedby="f-name-err" />
+        <p class="err" id="f-name-err" data-err="name" role="alert"></p>
+      </div>
+      <div class="field">
+        <label for="f-phone">Phone <span class="req" aria-hidden="true">*</span></label>
+        <input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="+91" aria-describedby="f-phone-err" />
+        <p class="err" id="f-phone-err" data-err="phone" role="alert"></p>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="f-email">Email <span class="opt">(optional)</span></label>
+      <input id="f-email" name="email" type="email" autocomplete="email" aria-describedby="f-email-err" />
+      <p class="err" id="f-email-err" data-err="email" role="alert"></p>
+    </div>
+
+    <div class="field">
+      <label for="f-interest">What would you like to practise?</label>
+      <select id="f-interest" name="interest">
+        <option value="intro">A 1:1 intro session</option>
+        <option value="not-sure">Not sure yet, I would like advice</option>
+        {options.map((o) => (
+          <optgroup label={o.group}>
+            {o.items.map((i) => <option value={i.value}>{i.label}</option>)}
+          </optgroup>
+        ))}
+      </select>
+    </div>
+
+    <fieldset class="field">
+      <legend>Preferred format</legend>
+      <div class="radios">
+        <label class="radio"><input type="radio" name="format" value="studio" /> <span>Studio, Hinjawadi</span></label>
+        <label class="radio"><input type="radio" name="format" value="online" /> <span>Live online</span></label>
+        <label class="radio"><input type="radio" name="format" value="one-on-one" /> <span>One-on-one</span></label>
+      </div>
+    </fieldset>
+
+    <div class="field">
+      <label for="f-time">Preferred time</label>
+      <select id="f-time" name="time">
+        <option value="morning">Morning, {site.timings.daysShort}, {site.timings.time}</option>
+        <option value="other">Other (tell us in your message)</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="f-message">Message <span class="opt">(optional)</span></label>
+      <textarea id="f-message" name="message" rows="4" placeholder="Tell us a little about what you would like to feel."></textarea>
+    </div>
+
+    <!-- Honeypot: real visitors never see or fill this -->
+    <div class="hp" aria-hidden="true"><label>Leave this empty <input type="text" name="company" tabindex="-1" autocomplete="off" /></label></div>
+
+    <div class="field consent">
+      <label class="check" for="f-consent">
+        <input id="f-consent" name="consent" type="checkbox" required aria-describedby="f-consent-err" />
+        <span>I agree that AadiVed may contact me about this enquiry. See the <a href="/privacy/">Privacy Policy</a>. <span class="req" aria-hidden="true">*</span></span>
+      </label>
+      <p class="err" id="f-consent-err" data-err="consent" role="alert"></p>
+    </div>
+
+    <button type="submit" class="btn btn-primary" data-submit>Send enquiry</button>
+    <p class="notice" data-notice hidden role="status">
+      This form is not connected yet, so nothing has been sent. Please call <a href={`tel:${site.phone.tel}`}>{site.phone.display}</a> or message us on <a href={site.instagram.dm}>Instagram</a>.
+    </p>
+    <p class="fail" data-fail hidden role="alert">
+      Something went wrong sending your enquiry. Please call <a href={`tel:${site.phone.tel}`}>{site.phone.display}</a> or try again.
+    </p>
+  </form>
+
+  <div class="success" data-success hidden tabindex="-1" role="status">
+    <span class="tick" aria-hidden="true">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>
+    </span>
+    <h3>Thank you, we have your enquiry.</h3>
+    <p>We usually reply within the day. If it is urgent, call <a href={`tel:${site.phone.tel}`}>{site.phone.display}</a>.</p>
+    <a class="btn btn-secondary" href="/classes/">Explore classes</a>
+  </div>
+</div>
+
+<style>
+  .form { display: grid; gap: 22px; }
+  .row.two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+  .field { display: grid; gap: 8px; margin: 0; padding: 0; border: 0; min-width: 0; }
+  label, legend { font-size: 15px; font-weight: 500; color: var(--olive-deep); padding: 0; }
+  .req { color: #8A4B3A; }
+  .opt { font-weight: 400; color: var(--label); }
+  input[type='text'], input[type='tel'], input[type='email'], select, textarea {
+    width: 100%; min-height: 52px; padding: 12px 18px; border-radius: 14px; border: 1px solid #CFC7B3; background: var(--ivory);
+    font: inherit; font-size: 16px; color: var(--ink); line-height: 1.4;
+  }
+  textarea { min-height: 120px; resize: vertical; }
+  input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px solid var(--olive); outline-offset: 2px; border-color: var(--olive); }
+  input[aria-invalid='true'], textarea[aria-invalid='true'] { border-color: #A4462F; background: #FFF7F4; }
+  .err { margin: 0; min-height: 0; font-size: 14px; color: #A4462F; }
+  .err:empty { display: none; }
+  .radios { display: flex; flex-wrap: wrap; gap: 10px; }
+  .radio { display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 18px; border: 1px solid #CFC7B3; border-radius: var(--radius-pill); background: var(--ivory); font-weight: 400; cursor: pointer; }
+  .radio:has(input:checked) { border-color: var(--olive); background: var(--accent-soft); }
+  .radio:has(input:focus-visible) { outline: 2px solid var(--olive); outline-offset: 2px; }
+  .radio input, .check input { width: 20px; height: 20px; accent-color: var(--olive); margin: 0; flex: none; }
+  .check { display: flex; align-items: flex-start; gap: 12px; font-weight: 400; color: var(--text-muted); line-height: 1.5; cursor: pointer; }
+  .check a { border-bottom: 1px solid currentColor; }
+  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  .notice, .fail { margin: 0; padding: 16px 18px; border-radius: 14px; font-size: 15.5px; line-height: 1.55; }
+  .notice { background: var(--accent-soft); color: var(--olive-deep); }
+  .fail { background: #FBEAE4; color: #7A2F1F; }
+  .notice a, .fail a { border-bottom: 1px solid currentColor; font-weight: 500; }
+  .success { text-align: left; padding: 44px 36px; border-radius: 26px; background: var(--accent-soft); display: grid; gap: 14px; justify-items: start; }
+  .success[hidden], .notice[hidden], .fail[hidden], .form[hidden] { display: none; }
+  .success:focus { outline: none; }
+  .tick { width: 60px; height: 60px; border-radius: 50%; background: var(--olive); color: var(--ivory); display: inline-flex; align-items: center; justify-content: center; }
+  .success h3 { font-family: var(--font-display); font-weight: 500; font-size: 34px; line-height: 1.1; margin: 4px 0 0; }
+  .success p { margin: 0; color: var(--text-muted); max-width: 40ch; }
+  .success p a { border-bottom: 1px solid currentColor; }
+  @media (max-width: 600px) { .row.two { grid-template-columns: 1fr; } .success { padding: 32px 24px; } }
+</style>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const root = document.querySelector<HTMLElement>('[data-enquiry]');
+    const form = root?.querySelector<HTMLFormElement>('[data-form]');
+    if (!root || !form || form.dataset.bound) return;
+    form.dataset.bound = '1';
+
+    // Pre-select the practice from ?interest=sound-healing
+    const params = new URLSearchParams(location.search);
+    const wanted = params.get('interest');
+    const fmt = params.get('format');
+    if (fmt) {
+      const radio = form.querySelector<HTMLInputElement>(`input[name="format"][value="${fmt}"]`);
+      if (radio) radio.checked = true;
+    }
+    const select = form.elements.namedItem('interest') as HTMLSelectElement;
+    if (wanted && select && [...select.options].some((o) => o.value === wanted)) select.value = wanted;
+
+    const q = <T extends HTMLElement>(sel: string) => root.querySelector<T>(sel);
+    const setErr = (name: string, msg: string) => {
+      const el = q<HTMLElement>(`[data-err="${name}"]`);
+      const input = form.elements.namedItem(name) as HTMLInputElement | null;
+      if (el) el.textContent = msg;
+      if (input) {
+        if (msg) input.setAttribute('aria-invalid', 'true');
+        else input.removeAttribute('aria-invalid');
+      }
+      return msg;
+    };
+
+    const validators: Record<string, () => string> = {
+      name: () => setErr('name', (form.elements.namedItem('name') as HTMLInputElement).value.trim() ? '' : 'Please tell us your name.'),
+      phone: () => {
+        const v = (form.elements.namedItem('phone') as HTMLInputElement).value.trim();
+        if (!v) return setErr('phone', 'Please add a phone number so we can reach you.');
+        const digits = v.replace(/\D/g, '');
+        return setErr('phone', digits.length >= 10 && /^[+\d\s()-]+$/.test(v) ? '' : 'Please enter a valid phone number, for example +91 98765 43210.');
+      },
+      email: () => {
+        const v = (form.elements.namedItem('email') as HTMLInputElement).value.trim();
+        return setErr('email', !v || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) ? '' : 'Please enter a valid email address, or leave it empty.');
+      },
+      consent: () => setErr('consent', (form.elements.namedItem('consent') as HTMLInputElement).checked ? '' : 'Please tick the box so we can contact you.'),
+    };
+
+    // Validate a field when the visitor leaves it, and clear its error as they fix it
+    for (const key of Object.keys(validators)) {
+      const el = form.elements.namedItem(key) as HTMLInputElement | null;
+      el?.addEventListener('blur', () => validators[key]());
+      el?.addEventListener('input', () => { if (el.getAttribute('aria-invalid')) validators[key](); });
+      el?.addEventListener('change', () => { if (el.getAttribute('aria-invalid')) validators[key](); });
+    }
+
+    const notice = q<HTMLElement>('[data-notice]')!;
+    const fail = q<HTMLElement>('[data-fail]')!;
+    const success = q<HTMLElement>('[data-success]')!;
+    const submit = q<HTMLButtonElement>('[data-submit]')!;
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      notice.hidden = true;
+      fail.hidden = true;
+      const results = Object.entries(validators).map(([k, fn]) => [k, fn()] as const);
+      const firstBad = results.find(([, msg]) => msg);
+      if (firstBad) {
+        (form.elements.namedItem(firstBad[0]) as HTMLElement)?.focus();
+        return;
+      }
+      const action = root.dataset.action?.trim();
+      if (!action) {
+        // No provider connected yet: be honest instead of showing a false success.
+        notice.hidden = false;
+        return;
+      }
+      if ((form.elements.namedItem('company') as HTMLInputElement).value) return; // honeypot
+      submit.disabled = true;
+      submit.textContent = 'Sending...';
+      try {
+        const res = await fetch(action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
+        if (!res.ok) throw new Error(String(res.status));
+        form.hidden = true;
+        success.hidden = false;
+        success.focus();
+      } catch {
+        fail.hidden = false;
+      } finally {
+        submit.disabled = false;
+        submit.textContent = 'Send enquiry';
+      }
+    });
+  });
+</script>

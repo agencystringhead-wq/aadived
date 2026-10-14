@@ -1,0 +1,32 @@
+---
+// Simple, readable layout for Privacy and Terms.
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import InnerHero from './InnerHero.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  path: string;
+  intro: string;
+}
+const { title, description, path, intro } = Astro.props;
+const crumbs = [{ label: 'Home', href: '/' }, { label: title }];
+---
+<BaseLayout title={`${title} | AadiVed Yoga and Wellness`} description={description} breadcrumbs={[{ name: 'Home', path: '/' }, { name: title, path }]}>
+  <div class="page-bg">
+    <InnerHero crumbs={crumbs} eyebrow="Legal" title={title} intro={intro} />
+    <div class="wrap legal">
+      <p class="review-note" role="note"><strong>[Review with the client before relying on this]</strong> This page is a plain-language draft. It has not been checked by a lawyer.</p>
+      <div class="prose"><slot /></div>
+    </div>
+  </div>
+</BaseLayout>
+<style>
+  .legal { max-width: 820px; padding-top: 56px; padding-bottom: 112px; }
+  .review-note { margin: 0 0 40px; padding: 16px 20px; border-radius: 14px; background: var(--accent-soft); color: var(--olive-deep); font-size: 15.5px; }
+  .prose :global(h2) { font-family: var(--font-display); font-weight: 500; font-size: 34px; line-height: 1.12; margin: 48px 0 10px; color: var(--ink); }
+  .prose :global(p), .prose :global(li) { color: var(--text-muted); max-width: 66ch; }
+  .prose :global(ul) { padding-left: 22px; display: grid; gap: 8px; }
+  .prose :global(a) { color: var(--olive); border-bottom: 1px solid currentColor; }
+  .prose :global(.updated) { font-size: 14.5px; color: var(--label); }
+</style>

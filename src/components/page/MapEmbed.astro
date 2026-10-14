@@ -1,0 +1,62 @@
+---
+// Click-to-load Google Map. Nothing from Google loads until the visitor clicks "Load map".
+// The "Open in Google Maps" and "Get directions" links work without loading the map.
+import Icon from '../Icon.astro';
+import { site } from '../../data/site';
+---
+<div class="map" data-map data-src={site.google.embed}>
+  <div class="frame" data-map-frame>
+    <div class="ph" data-map-ph>
+      <span class="pin"><Icon name="pin" size={30} stroke={1.5} /></span>
+      <p class="addr"><strong>Megapolis Serenity</strong><br />Phase 3, {site.address.lines[1]}<br />{site.address.lines[2]}</p>
+      <button type="button" class="btn btn-primary" data-map-load>Load map</button>
+      <p class="note">The map loads from Google only when you click.</p>
+    </div>
+  </div>
+  <p class="links">
+    <a href={site.google.profile}>Open in Google Maps &#8594;</a>
+    <a href={site.google.directions}>Get directions &#8594;</a>
+  </p>
+</div>
+
+<style>
+  .frame { position: relative; height: 420px; border-radius: var(--radius-card); overflow: hidden; background: var(--sand); border: 1px solid var(--line); }
+  .ph { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; text-align: center; padding: 24px;
+    background:
+      radial-gradient(circle at 20% 25%, rgba(201, 198, 242, 0.45), transparent 42%),
+      radial-gradient(circle at 85% 80%, rgba(75, 82, 56, 0.16), transparent 46%),
+      repeating-linear-gradient(0deg, transparent 0 39px, rgba(94, 99, 76, 0.08) 39px 40px),
+      repeating-linear-gradient(90deg, transparent 0 39px, rgba(94, 99, 76, 0.08) 39px 40px),
+      var(--sand); }
+  .pin { width: 64px; height: 64px; border-radius: 50%; background: var(--olive); color: var(--ivory); display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 18px 30px -16px rgba(47, 52, 36, 0.6); }
+  .addr { margin: 0; color: var(--olive-deep); line-height: 1.5; }
+  .note { margin: 0; font-size: 13.5px; color: var(--label); }
+  .frame :global(iframe) { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
+  .links { display: flex; flex-wrap: wrap; gap: 8px 24px; margin: 14px 0 0; }
+  .links a { display: inline-flex; align-items: center; min-height: 44px; font-weight: 500; border-bottom: 1px solid transparent; }
+  .links a:hover { border-bottom-color: currentColor; }
+  @media (max-width: 768px) { .frame { height: 320px; } }
+</style>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    document.querySelectorAll<HTMLElement>('[data-map]').forEach((root) => {
+      const btn = root.querySelector<HTMLButtonElement>('[data-map-load]');
+      const frame = root.querySelector<HTMLElement>('[data-map-frame]');
+      const ph = root.querySelector<HTMLElement>('[data-map-ph]');
+      if (!btn || !frame || !ph || btn.dataset.bound) return;
+      btn.dataset.bound = '1';
+      btn.addEventListener('click', () => {
+        const iframe = document.createElement('iframe');
+        iframe.src = root.dataset.src ?? '';
+        iframe.title = 'Map to AadiVed Yoga and Wellness';
+        iframe.loading = 'lazy';
+        iframe.referrerPolicy = 'no-referrer-when-downgrade';
+        iframe.setAttribute('allowfullscreen', '');
+        ph.remove();
+        frame.appendChild(iframe);
+        iframe.focus();
+      });
+    });
+  });
+</script>
