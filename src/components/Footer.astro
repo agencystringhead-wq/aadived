@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets';
 import Icon from './Icon.astro';
 import { site, footerColumns, legalLinks } from '../data/site';
-import logo from '../assets/images/logo-full-white.webp';
+import logo from '../assets/images/aadived-logo-white-2400.webp';
 const year = new Date().getFullYear();
 const cols = [
   { heading: 'Yoga', links: footerColumns.yoga },
@@ -27,7 +27,7 @@ const cols = [
 
     <div class="cols">
       <div class="brand">
-        <Image src={logo} alt="AadiVed, Mind. Body. Soul" format="webp" width={170} loading="lazy" />
+        <Image src={logo} alt="AadiVed, Mind. Body. Soul" format="webp" width={170} height={142} densities={[1, 2]} loading="lazy" />
         <p>Holistic yoga and sound healing studio in Hinjawadi, Pune. Rooted in ancient Indian wisdom, built for modern lives.</p>
         <div class="social">
           <a href={site.instagram.url} aria-label="AadiVed on Instagram"><Icon name="instagram" /></a>

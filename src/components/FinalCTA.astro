@@ -1,13 +1,13 @@
 ---
 import { Image } from 'astro:assets';
 import { site } from '../data/site';
-import logo from '../assets/images/logo-full-white.webp';
+import logo from '../assets/images/aadived-logo-white-2400.webp';
 ---
 <section id="book" class="cta on-dark">
   <div class="ring r1" aria-hidden="true"></div>
   <div class="ring r2" aria-hidden="true"></div>
   <div class="wrap inner section">
-    <Image src={logo} alt="AadiVed, Mind. Body. Soul" format="webp" height={150} loading="lazy" class="logo" />
+    <Image src={logo} alt="AadiVed, Mind. Body. Soul" format="webp" width={180} height={150} densities={[1, 2]} loading="lazy" class="logo" />
     <h2>Begin with <em>AadiVed.</em></h2>
     <p>Book a studio or online session, or ask about one-on-one prenatal care. We usually reply within the day.</p>
     <div class="buttons">
