@@ -8,6 +8,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "assets:generate": "node scripts/generate-icons.mjs",
+    "assets:og": "node scripts/generate-og.mjs",
+    "seo:audit": "node scripts/seo-audit.mjs",
     "check:dist": "node scripts/check-dist.mjs"
   },
   "dependencies": {
