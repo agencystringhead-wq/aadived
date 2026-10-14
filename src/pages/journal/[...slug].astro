@@ -1,0 +1,42 @@
+---
+// Journal post page. No posts exist yet, so no routes are generated until the first Markdown file is added.
+import { getCollection, render } from 'astro:content';
+import { Image } from 'astro:assets';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import InnerHero from '../../components/page/InnerHero.astro';
+import FinalCTA from '../../components/FinalCTA.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('journal', ({ data }) => !data.draft);
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const crumbs = [{ label: 'Home', href: '/' }, { label: 'Journal', href: '/journal/' }, { label: post.data.title }];
+const date = new Intl.DateTimeFormat('en-IN', { day: 'numeric', month: 'long', year: 'numeric' }).format(post.data.date);
+---
+<BaseLayout
+  title={`${post.data.title} | AadiVed Journal`}
+  description={post.data.description}
+  breadcrumbs={[{ name: 'Home', path: '/' }, { name: 'Journal', path: '/journal/' }, { name: post.data.title, path: `/journal/${post.id}/` }]}
+>
+  <div class="page-bg">
+    <InnerHero crumbs={crumbs} eyebrow={`${post.data.category} · ${date}`} title={post.data.title} intro={post.data.description} />
+    <article class="wrap prose">
+      {post.data.cover && <Image src={post.data.cover} alt={post.data.coverAlt ?? ''} format="webp" width={960} class="cover" loading="eager" />}
+      <Content />
+      <p class="note">Practices here support wellbeing and are not medical advice. Talk to your doctor about any health concern.</p>
+    </article>
+    <FinalCTA />
+  </div>
+</BaseLayout>
+
+<style>
+  .prose { max-width: 760px; padding-top: 64px; padding-bottom: 96px; }
+  .prose :global(h2) { font-family: var(--font-display); font-weight: 400; font-size: 40px; line-height: 1.1; margin: 48px 0 12px; }
+  .prose :global(p), .prose :global(li) { color: var(--text-muted); }
+  .prose :global(a) { color: var(--olive); border-bottom: 1px solid currentColor; }
+  .prose :global(.cover) { width: 100%; height: auto; border-radius: var(--radius-card); margin-bottom: 32px; }
+  .note { margin-top: 40px; font-size: 14.5px; color: var(--label); }
+</style>

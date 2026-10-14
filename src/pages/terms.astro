@@ -1,0 +1,35 @@
+---
+import LegalPage from '../components/page/LegalPage.astro';
+import { site } from '../data/site';
+---
+<LegalPage
+  title="Terms"
+  path="/terms/"
+  description="The terms for using the AadiVed Yoga and Wellness website and booking sessions."
+  intro="The simple terms for using this website and booking sessions with AadiVed."
+>
+  <p class="updated">Last updated: [Date to confirm]</p>
+
+  <h2>Using this website</h2>
+  <p>This website gives information about {site.name} and lets you contact us. Please use it for those purposes only. We try to keep the information accurate, but classes, timings and prices can change.</p>
+
+  <h2>Booking sessions</h2>
+  <p>An enquiry on this website is a request, not a confirmed booking. A session is confirmed when we reply and agree a time with you. Class timings are currently {site.timings.days}, {site.timings.time}.</p>
+  <p>Prices: [Price]. Payment, cancellation and rescheduling terms: [To confirm with Anupriya].</p>
+
+  <h2>Your health</h2>
+  <p>Yoga, breathwork, meditation and sound practices support wellbeing. They are not medical treatment and do not replace advice from a doctor or other health professional. Please talk to your doctor before you start if you have a health condition or are unsure whether a practice suits you.</p>
+  <p>If you are pregnant, please consult your doctor before starting any prenatal practice. Tell us about any injury, condition or concern before your session, and tell your teacher straight away if something does not feel right during practice.</p>
+
+  <h2>Our content</h2>
+  <p>The words, design and images on this website belong to {site.name} or are used with permission. Please ask before you copy or reuse them.</p>
+
+  <h2>Our responsibility</h2>
+  <p>[To confirm with the client and a lawyer: limits on liability]</p>
+
+  <h2>Changes</h2>
+  <p>We may update these terms. The date at the top shows when they last changed.</p>
+
+  <h2>Contact</h2>
+  <p>Questions about these terms? Call <a href={`tel:${site.phone.tel}`}>{site.phone.display}</a> or use the <a href="/contact/">contact page</a>.</p>
+</LegalPage>

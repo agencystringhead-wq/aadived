@@ -1,0 +1,74 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import InnerHero from '../components/page/InnerHero.astro';
+import EnquiryForm from '../components/page/EnquiryForm.astro';
+import MapEmbed from '../components/page/MapEmbed.astro';
+import Icon from '../components/Icon.astro';
+import { site } from '../data/site';
+
+const crumbs = [{ label: 'Home', href: '/' }, { label: 'Contact' }];
+---
+<BaseLayout
+  title="Contact | AadiVed Yoga and Wellness"
+  description="Book a session or ask a question. Call, message on Instagram or send an enquiry to AadiVed in Hinjawadi Phase 3, Pune."
+  breadcrumbs={[{ name: 'Home', path: '/' }, { name: 'Contact', path: '/contact/' }]}
+>
+  <div class="page-bg">
+    <InnerHero crumbs={crumbs} eyebrow="Say hello" title="Book a session" intro="Call, send a message, or fill in the form. We usually reply within the day." />
+
+    <section id="book" class="wrap layout" aria-labelledby="form-h">
+      <div class="formcol">
+        <div class="eyebrow">Enquiry</div>
+        <h2 id="form-h" class="sec-title">Tell us what you would like to feel</h2>
+        <EnquiryForm />
+      </div>
+
+      <aside class="card" aria-label="Contact details">
+        <div class="eyebrow">Reach us directly</div>
+        <dl>
+          <div>
+            <dt>Class timings</dt>
+            <dd>{site.timings.days}<br />{site.timings.time}</dd>
+          </div>
+          <div>
+            <dt>Phone</dt>
+            <dd><a href={`tel:${site.phone.tel}`}>{site.phone.display}</a></dd>
+          </div>
+          <div>
+            <dt>Instagram</dt>
+            <dd><a href={site.instagram.dm}>Message {site.instagram.handle}</a></dd>
+          </div>
+          <div>
+            <dt>Address</dt>
+            <dd>{site.address.lines.map((l, i) => <>{i > 0 && <br />}{l}</>)}</dd>
+          </div>
+        </dl>
+        <a class="btn btn-primary" href={`tel:${site.phone.tel}`}><Icon name="phone" size={16} />Call {site.phone.display}</a>
+        <a class="btn btn-secondary" href={site.google.directions}>Get directions</a>
+      </aside>
+    </section>
+
+    <section class="wrap sec mapsec" aria-labelledby="map-h">
+      <div class="eyebrow">Find us</div>
+      <h2 id="map-h" class="sec-title">Megapolis Serenity, Hinjawadi Phase 3</h2>
+      <MapEmbed />
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .layout { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 72px; align-items: start; padding-top: 72px; padding-bottom: 16px; scroll-margin-top: 110px; }
+  .formcol .sec-title { margin-bottom: 28px; max-width: 14em; }
+  .card { position: sticky; top: 128px; background: var(--sand); border: 1px solid var(--line); border-radius: 26px; padding: 30px 28px 28px; display: flex; flex-direction: column; gap: 14px; }
+  dl { margin: 6px 0 6px; display: grid; gap: 18px; }
+  dt { font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--label); font-weight: 500; margin-bottom: 4px; }
+  dd { margin: 0; font-size: 16.5px; color: var(--ink); line-height: 1.5; }
+  dd a { border-bottom: 1px solid currentColor; }
+  .card .btn { width: 100%; }
+  .mapsec { padding-bottom: 96px; }
+  @media (max-width: 960px) {
+    .layout { grid-template-columns: 1fr; gap: 48px; padding-top: 48px; }
+    .card { position: static; }
+    .mapsec { padding-bottom: 64px; }
+  }
+</style>

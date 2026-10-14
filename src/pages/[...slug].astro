@@ -10,7 +10,10 @@ import { getPractice } from '../data/practices';
 
 export function getStaticPaths() {
   // Routes that have their own page file
-  const custom = new Set(['about/anupriya']);
+  const custom = new Set([
+    'about', 'about/anupriya', 'studio', 'online-classes', 'one-on-one', 'pricing', 'classes',
+    'reviews', 'journal', 'contact', 'privacy', 'terms',
+  ]);
   return stubPages.filter((p) => !custom.has(p.slug)).map((page) => ({ params: { slug: page.slug }, props: { page } }));
 }
 
