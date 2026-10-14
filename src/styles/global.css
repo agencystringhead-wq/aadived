@@ -1,0 +1,122 @@
+:root {
+  --olive: #4B5238;
+  --olive-deep: #2F3424;
+  --ink: #23261C;
+  --text-muted: #4A4E3E;
+  --label: #5E634C;
+  --ivory: #FBF8F2;
+  --sand: #F3EEE4;
+  --line: #E2DACB;
+  --accent: #C9C6F2;
+  --accent-soft: #C9C6F266;
+  --star: #B8862B;
+  --footer-text: #DCD7C6;
+  --footer-muted: #C9C4B2;
+  --on-dark: #E4E0D2;
+
+  --font-display: 'Cormorant Garamond', 'Cormorant Fallback', Georgia, serif;
+  --font-body: 'Jost', 'Jost Fallback', system-ui, sans-serif;
+  --font-deva: 'Tiro Devanagari Hindi', serif;
+
+  --container: 1240px;
+  --gutter: 40px;
+  --section-y: 120px;
+  --radius-card: 22px;
+  --radius-pill: 999px;
+  --header-h: 116px;
+}
+
+/* Size-adjusted fallbacks so web fonts swap in without layout shift */
+@font-face {
+  font-family: 'Cormorant Fallback';
+  src: local('Georgia');
+  size-adjust: 92%;
+  ascent-override: 98%;
+  descent-override: 30%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Jost Fallback';
+  src: local('Arial');
+  size-adjust: 97%;
+  ascent-override: 103%;
+  descent-override: 26%;
+  line-gap-override: 0%;
+}
+
+@media (max-width: 960px) {
+  :root { --gutter: 20px; --header-h: 84px; }
+}
+@media (max-width: 768px) {
+  :root { --section-y: 72px; }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 120px; -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--sand);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.65;
+  font-weight: 400;
+}
+body.nav-locked { overflow: hidden; }
+img { max-width: 100%; }
+a { color: var(--olive); text-decoration: none; }
+a:hover { color: var(--olive-deep); }
+h1, h2, h3, p, figure, blockquote { margin: 0; }
+
+:focus-visible { outline: 2px solid var(--olive); outline-offset: 3px; }
+.on-dark :focus-visible { outline-color: var(--ivory); }
+
+.skip-link {
+  position: absolute; left: 12px; top: -80px; z-index: 100;
+  background: var(--olive); color: var(--ivory); padding: 12px 20px; border-radius: var(--radius-pill);
+}
+.skip-link:focus { top: 12px; color: var(--ivory); }
+
+.wrap { max-width: var(--container); margin: 0 auto; padding: 0 var(--gutter); }
+.section { padding-top: var(--section-y); padding-bottom: var(--section-y); }
+
+.eyebrow {
+  font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--label); font-weight: 500; line-height: 1.5;
+}
+.h2 {
+  font-family: var(--font-display); font-weight: 400;
+  font-size: clamp(36px, 4vw, 56px); line-height: 1.08; margin-top: 16px;
+}
+.h3 { font-family: var(--font-display); font-weight: 500; font-size: 30px; line-height: 1.15; }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 48px; padding: 14px 30px; border-radius: var(--radius-pill);
+  font-weight: 500; letter-spacing: 0.02em; font-size: 16px; line-height: 1.2;
+  border: 1px solid transparent; cursor: pointer; font-family: inherit;
+  transition: background-color .2s, color .2s;
+}
+.btn-primary { background: var(--olive); color: var(--ivory); }
+.btn-primary:hover { background: var(--olive-deep); color: var(--ivory); }
+.btn-secondary { border-color: var(--olive); color: var(--olive-deep); }
+.btn-secondary:hover { background: var(--olive); color: var(--ivory); }
+.btn-ivory { background: var(--ivory); color: var(--olive-deep); }
+.btn-ivory:hover { background: #fff; color: var(--olive-deep); }
+.btn-outline-light { border-color: var(--ivory); color: var(--ivory); }
+.btn-outline-light:hover { background: var(--ivory); color: var(--olive-deep); }
+
+.link-arrow {
+  display: inline-flex; align-items: center; gap: 8px; font-weight: 500;
+  border-bottom: 1px solid var(--olive); padding-bottom: 4px; min-height: 28px;
+}
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
