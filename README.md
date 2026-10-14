@@ -48,7 +48,6 @@ Every image on the site is WebP, rendered through `astro:assets` with `format="w
 ## Open items (leave as TODO until confirmed)
 
 - [x] **Class timings.** Confirmed as Monday to Friday, 8:00 am to 10:00 am (`site.timings` in `src/data/site.ts`). Weekend timings are not confirmed, so none are shown. The Google profile still says "Open 24 hours" and should be updated to match.
-- [ ] **Pricing.** Placeholder `[Price]` on `/pricing/`.
 - [ ] **Real studio photo.** `FormatsSplit.astro` shows a labelled placeholder.
 - [ ] **High-res Instagram originals.** The `ig-*.webp` files are low-res crops (about 280x370) from an Instagram screenshot. They are capped at about 300px wide wherever they are shown. Swap in originals, keeping the filenames, in `src/assets/images/`. Used in:
   - `ig-yogaday.webp`: `MegaMenu.astro`, `InstagramStrip.astro`
@@ -63,7 +62,7 @@ Every image on the site is WebP, rendered through `astro:assets` with `format="w
 - [ ] **Enquiry form provider.** Set `enquiryAction` in `src/data/site.ts` to the form provider URL (Formspree, Getform, a Cloudflare Worker, and so on). The form on `/contact/` POSTs its fields there as form data. While it is empty, the form shows a notice telling visitors to call or message on Instagram, and never a false success message. Fields: name, phone, email, interest, format, time, message, consent.
 - [ ] **Google Maps embed.** `/contact/` and `/studio/` load a click-to-load map from the keyless embed URL in `site.google.embed`. Check on the live site that the map renders after clicking "Load map". If it does not, open Google Maps, choose Share, Embed a map, and paste the iframe `src` into `site.google.embed`.
 - [ ] **Leave a review link.** `site.google.writeReview` opens the Google profile for now. Replace it with the direct write-a-review link once the Google place ID is known.
-- [ ] **Pricing.** `/pricing/` shows `[Price]` placeholders for studio, online and one-on-one. Fill them in once confirmed.
+- [ ] **Pricing.** Prices are not published. `/pricing/`, the "What does it cost?" FAQs and the Terms page say to call the studio. When prices are confirmed, replace the "Call for pricing" block in `src/pages/pricing.astro` and the cost FAQ in `src/data/practices.ts`.
 - [ ] **Legal pages.** `/privacy/` and `/terms/` are plain-language drafts marked `[Review with the client before relying on this]`. Confirm the form provider, analytics and cookies, payment, cancellation and liability wording.
 - [ ] **Journal.** Add posts as Markdown files in `src/content/journal/` (copy `_template.md`, set `draft: false`). Until a post exists, `/journal/` shows an empty state.
 - [ ] **WhatsApp.** Confirm `+91 82084 69389` is on WhatsApp (`site.whatsapp`, footer icon). Remove the icon if not.

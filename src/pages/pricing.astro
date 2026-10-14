@@ -8,7 +8,7 @@ import Icon from '../components/Icon.astro';
 import { site } from '../data/site';
 
 const crumbs = [{ label: 'Home', href: '/' }, { label: 'Plans and pricing' }];
-// TODO: replace every [Price] placeholder with the real prices once the client confirms them.
+// Prices are not published: each card says "Call for pricing". Replace the .price block with real prices when confirmed.
 const plans = [
   {
     name: 'Studio sessions',
@@ -46,7 +46,7 @@ const s = getSeo(Astro.url.pathname);
       crumbs={crumbs}
       eyebrow="Join us"
       title={s.h1} suffix={s.h1Suffix}
-      intro="Three ways to practise with us. Prices will be listed here soon. In the meantime, call and we will talk you through the options."
+      intro="Three ways to practise with us. Call us for current prices and we will talk you through the options."
     />
 
     <section class="wrap sec" aria-labelledby="plans-h">
@@ -57,7 +57,7 @@ const s = getSeo(Astro.url.pathname);
             {p.featured && <span class="badge">Practise from home</span>}
             <h3>{p.name}</h3>
             <p class="for">{p.for}</p>
-            <p class="price"><span class="amount">[Price]</span><span class="unit">[Per session or plan to confirm]</span></p>
+            <p class="price"><span class="amount">Call for pricing</span><a class="unit" href={`tel:${site.phone.tel}`}>{site.phone.display}</a></p>
             <ul class="inc">
               {p.items.map((it) => (
                 <li><Icon name="check" size={18} stroke={1.8} /><span>{it}</span></li>
@@ -67,7 +67,7 @@ const s = getSeo(Astro.url.pathname);
           </li>
         ))}
       </ul>
-      <p class="note-text">All prices will be confirmed before you book. Start with a 1:1 intro session if you are new.</p>
+      <p class="note-text">Call for current prices before you book. Start with a 1:1 intro session if you are new.</p>
     </section>
 
     <section class="wrap sec reveal" aria-labelledby="faq-h">
@@ -102,10 +102,11 @@ const s = getSeo(Astro.url.pathname);
   .featured .for { color: var(--on-dark); }
   .price { margin: 6px 0 4px; display: flex; flex-direction: column; gap: 2px; padding: 16px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
   .featured .price { border-color: rgba(251, 248, 242, 0.25); }
-  .amount { font-family: var(--font-display); font-size: 46px; line-height: 1; color: var(--olive); }
+  .amount { font-family: var(--font-display); font-size: 38px; line-height: 1.05; color: var(--olive); }
   .featured .amount { color: var(--ivory); }
-  .unit { font-size: 14px; color: var(--label); }
-  .featured .unit { color: var(--on-dark); }
+  .unit { font-size: 16px; font-weight: 500; color: var(--olive-deep); display: inline-flex; align-items: center; min-height: 44px; border-bottom: 0; }
+  .unit:hover { text-decoration: underline; text-underline-offset: 4px; }
+  .featured .unit { color: var(--ivory); }
   .inc { list-style: none; margin: 0 0 12px; padding: 0; display: grid; gap: 12px; flex-grow: 1; }
   .inc li { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 10px; align-items: start; font-size: 15.5px; }
   .inc :global(svg) { color: var(--olive); margin-top: 3px; }
