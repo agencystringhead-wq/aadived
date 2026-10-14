@@ -1,0 +1,50 @@
+---
+import { Image } from 'astro:assets';
+import SectionHeading from './SectionHeading.astro';
+import { site } from '../data/site';
+// TODO: replace with original high-res photo (ig-guided.webp is a low-res Instagram crop)
+import guided from '../assets/images/ig-guided.webp';
+---
+<section class="formats">
+  <div class="wrap section">
+    <SectionHeading center eyebrow="Practice your way" title="In the studio, or from your own mat" />
+    <div class="grid">
+      <div class="card studio">
+        <!-- TODO: replace this placeholder with a real studio photo (Megapolis Serenity) -->
+        <div class="ph">[Studio photo · Megapolis Serenity]</div>
+        <div class="body">
+          <h3>Studio sessions</h3>
+          <p>Small, unhurried classes at Megapolis Serenity in Hinjawadi Phase 3. Personal attention on every asana, with sound healing in a quiet, grounded space.</p>
+          <a class="link-arrow" href={site.google.directions}>Get directions &#8594;</a>
+        </div>
+      </div>
+      <div class="card online">
+        <div class="photo">
+          <Image src={guided} alt="Guided Yoga and Meditation for everyday well-being" format="webp" width={640} height={280} loading="lazy" />
+        </div>
+        <div class="body">
+          <h3>Live online sessions</h3>
+          <p>The same guided practice, wherever you are. Live classes with real-time cues and corrections, for beginners and experienced yogis alike.</p>
+          <a class="link-arrow" href="/online-classes/">See online schedule &#8594;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+  .formats { background: var(--sand); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr)); gap: 28px; margin-top: 60px; }
+  .card { border-radius: 26px; overflow: hidden; display: flex; flex-direction: column; }
+  .studio { background: var(--ivory); }
+  .online { background: var(--olive); color: var(--sand); }
+  .ph { height: 280px; background: #DCD4C2; display: flex; align-items: center; justify-content: center; color: var(--label); font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; text-align: center; padding: 0 16px; }
+  .photo { height: 280px; overflow: hidden; background: #3B4130; }
+  .photo :global(img) { width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; display: block; }
+  .body { padding: 36px 38px 40px; }
+  h3 { font-family: var(--font-display); font-weight: 500; font-size: 34px; margin: 0; }
+  p { margin: 12px 0 0; color: var(--text-muted); }
+  .online p { color: var(--on-dark); }
+  .link-arrow { margin-top: 22px; }
+  .online .link-arrow { color: var(--ivory); border-bottom-color: var(--ivory); }
+  @media (max-width: 480px) { .body { padding: 28px 24px 32px; } }
+</style>

@@ -1,0 +1,49 @@
+---
+// Inline stroke SVG icons by name. Decorative: always aria-hidden.
+interface Props {
+  name?: string;
+  size?: number;
+  stroke?: number;
+  d?: string; // custom path (used by service cards)
+}
+const { name = '', size = 18, stroke = 1.6, d } = Astro.props;
+
+// Shape tokens: 'circle:cx,cy,r' | 'dot:cx,cy,r' | 'rect:x,y,w,h,rx' | otherwise a path.
+const paths: Record<string, string[]> = {
+  pin: ['M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z', 'circle:12,9.5,2.5'],
+  phone: ['M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2'],
+  instagram: ['rect:3,3,18,18,5', 'circle:12,12,4', 'dot:17.5,6.5,0.8'],
+  chevron: ['M6 9l6 6 6-6'],
+  yoga: ['circle:12,5,2', 'M4 12c3-1 5-2 8-2s5 1 8 2M12 10v5M8 21c1-3 2.5-5 4-6 1.5 1 3 3 4 6'],
+  sound: ['M3 12h2M7 8v8M11 5v14M15 8v8M19 11v2'],
+  heart: ['M12 20c-4-3-7-6-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 4-3 7-7 10z'],
+  screen: ['rect:3,5,18,12,2', 'M8 21h8M12 17v4'],
+  award: ['circle:12,9,6', 'M8.5 14L7 22l5-3 5 3-1.5-8'],
+  person: ['circle:12,7,3', 'M6 21c0-4 2.7-7 6-7s6 3 6 7'],
+  monitor: ['rect:3,5,18,12,2', 'M8 21h8'],
+  leaf: ['M12 21c0-6 0-9 0-12M12 9c0-3 2-5 6-5 0 3-2 5-6 5zM12 13c0-3-2-5-6-5 0 3 2 5 6 5z'],
+  google: [
+    'M20 12.2c0-.6 0-1.1-.1-1.7H12v3.3h4.5a4 4 0 0 1-1.7 2.5v2.1h2.8c1.6-1.5 2.4-3.7 2.4-6.2z',
+    'M12 20.5c2.3 0 4.2-.8 5.6-2l-2.8-2.1a5 5 0 0 1-7.5-2.7H4.4v2.2A8.5 8.5 0 0 0 12 20.5z',
+    'M7.3 13.7a5 5 0 0 1 0-3.4V8.1H4.4a8.5 8.5 0 0 0 0 7.8z',
+    'M12 6.9c1.3 0 2.5.5 3.4 1.3l2.5-2.5A8.5 8.5 0 0 0 4.4 8.1l2.9 2.2A5 5 0 0 1 12 6.9z',
+  ],
+  whatsapp: ['M4 20l1.3-4A8 8 0 1 1 8 18.7z'],
+  menu: ['M4 7h16M4 12h16M4 17h16'],
+  close: ['M6 6l12 12M18 6L6 18'],
+  star: ['M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z'],
+};
+
+const items = d ? [d] : (paths[name] ?? []);
+const filled = name === 'star';
+---
+<svg aria-hidden="true" focusable="false" width={size} height={size} viewBox="0 0 24 24"
+  fill={filled ? 'currentColor' : 'none'} stroke={filled ? 'none' : 'currentColor'}
+  stroke-width={stroke} stroke-linecap="round" stroke-linejoin="round">
+  {items.map((it) => {
+    if (it.startsWith('circle:')) { const [cx, cy, r] = it.slice(7).split(','); return <circle cx={cx} cy={cy} r={r} />; }
+    if (it.startsWith('dot:')) { const [cx, cy, r] = it.slice(4).split(','); return <circle cx={cx} cy={cy} r={r} fill="currentColor" stroke="none" />; }
+    if (it.startsWith('rect:')) { const [x, y, w, h, rx] = it.slice(5).split(','); return <rect x={x} y={y} width={w} height={h} rx={rx} />; }
+    return <path d={it} />;
+  })}
+</svg>

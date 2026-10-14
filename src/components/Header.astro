@@ -1,0 +1,83 @@
+---
+import { Image } from 'astro:assets';
+import Icon from './Icon.astro';
+import MegaMenu from './MegaMenu.astro';
+import AboutDropdown from './AboutDropdown.astro';
+import MobileNav from './MobileNav.astro';
+import { mainNav, site } from '../data/site';
+import logo from '../assets/images/logo-full-olive.webp';
+---
+<header class="site-header" data-header>
+  <div class="wrap row">
+    <a class="logo" href="/" aria-label={`${site.name}, home`}>
+      <Image src={logo} alt="AadiVed, Mind. Body. Soul" format="webp" height={88} loading="eager" />
+    </a>
+
+    <nav class="nav-links" aria-label="Main">
+      <ul>
+        <li>
+          <button type="button" class="navlink" data-menu-trigger aria-expanded="false" aria-controls="panel-about">
+            About <Icon name="chevron" size={12} stroke={2} />
+          </button>
+          <AboutDropdown />
+        </li>
+        <li>
+          <button type="button" class="navlink" data-menu-trigger aria-expanded="false" aria-controls="panel-mega">
+            Yoga &amp; Healing <Icon name="chevron" size={12} stroke={2} />
+          </button>
+          <MegaMenu />
+        </li>
+        {mainNav.map((l) => <li><a class="navlink" href={l.href}>{l.label}</a></li>)}
+      </ul>
+    </nav>
+
+    <div class="actions">
+      <a class="cta" href={site.bookHref}>Book a session</a>
+      <button type="button" class="menu-btn" data-mnav-open aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+        <Icon name="menu" size={20} stroke={1.8} />
+      </button>
+    </div>
+  </div>
+</header>
+<MobileNav />
+
+<style>
+  .site-header { position: sticky; top: 0; z-index: 50; background: var(--ivory); border-bottom: 1px solid var(--line); transition: box-shadow .25s; }
+  .site-header.is-scrolled { box-shadow: 0 8px 24px -14px rgba(47,52,36,0.35); }
+  .row { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: var(--header-h); transition: height .25s; }
+  .is-scrolled .row { height: 92px; }
+  .logo { display: flex; align-items: center; flex: none; }
+  .logo :global(img) { height: 88px; width: auto; display: block; transition: height .25s; }
+  .is-scrolled .logo :global(img) { height: 64px; }
+
+  .nav-links ul { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; gap: 34px; font-size: 15.5px; font-weight: 500; letter-spacing: 0.01em; color: var(--olive-deep); }
+  .navlink { background: none; border: 0; cursor: pointer; font: inherit; color: inherit; padding: 10px 0; display: inline-flex; align-items: center; gap: 6px; min-height: 44px; }
+  .navlink:hover, li.is-open > .navlink { color: var(--olive); }
+  .navlink :global(svg) { transition: transform .2s; }
+  li.is-open > .navlink :global(svg) { transform: rotate(180deg); }
+
+  /* Panels are children of their nav item but positioned against the header */
+  .nav-links :global(.panel) { position: absolute; left: 0; right: 0; top: 100%; background: var(--ivory); border-top: 1px solid var(--line); box-shadow: 0 30px 60px -20px rgba(47,52,36,0.28); }
+  .nav-links :global(.panel[hidden]) { display: none; }
+  .nav-links :global(.panel:not([hidden])) { animation: panel-in .18s ease-out; }
+  @keyframes panel-in { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { .nav-links :global(.panel:not([hidden])) { animation: none; } }
+
+  .actions { display: flex; align-items: center; gap: 12px; }
+  .cta { background: var(--olive); color: var(--ivory); padding: 13px 24px; border-radius: var(--radius-pill); font-size: 15px; font-weight: 500; letter-spacing: 0.02em; min-height: 44px; display: inline-flex; align-items: center; white-space: nowrap; }
+  .cta:hover { background: var(--olive-deep); color: var(--ivory); }
+  .menu-btn { display: none; background: none; border: 1px solid #C9C1AE; border-radius: 50%; width: 46px; height: 46px; align-items: center; justify-content: center; cursor: pointer; color: var(--olive-deep); }
+
+  @media (max-width: 960px) {
+    .nav-links { display: none; }
+    .menu-btn { display: inline-flex; }
+    .row { height: var(--header-h); }
+    .is-scrolled .row { height: var(--header-h); }
+    .logo :global(img), .is-scrolled .logo :global(img) { height: 56px; }
+  }
+  @media (max-width: 420px) { .cta { padding: 12px 18px; font-size: 14px; } }
+</style>
+
+<script>
+  import '../scripts/menu.ts';
+</script>

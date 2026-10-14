@@ -1,0 +1,32 @@
+---
+import SectionHeading from './SectionHeading.astro';
+const steps = [
+  { n: '01', t: 'Reach out', p: 'Call, send a DM on Instagram, or book online. Tell us a little about what you would like to feel.' },
+  { n: '02', t: 'Find your fit', p: 'Studio or online, group or one-on-one. We match the practice to your body, goals and schedule.' },
+  { n: '03', t: 'Begin, and keep going', p: 'Build a practice that lasts, with breath, movement and stillness you can return to every day.' },
+];
+---
+<section class="steps">
+  <div class="wrap block">
+    <SectionHeading center eyebrow="How it begins" title="Three gentle steps" eyebrowColor="#3F4433" />
+    <div class="grid">
+      {steps.map((s) => (
+        <div class="step">
+          <div class="num">{s.n}</div>
+          <h3>{s.t}</h3>
+          <p>{s.p}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+<style>
+  .steps { background: var(--accent-soft); }
+  .block { padding-top: 110px; padding-bottom: 110px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 28px; margin-top: 56px; }
+  .step { background: var(--ivory); border-radius: var(--radius-card); padding: 36px; }
+  .num { font-family: var(--font-display); font-size: 56px; line-height: 1; color: var(--olive); font-style: italic; }
+  h3 { font-family: var(--font-display); font-weight: 500; font-size: 28px; margin: 18px 0 0; }
+  p { color: var(--text-muted); margin: 10px 0 0; font-size: 16px; }
+  @media (max-width: 768px) { .block { padding-top: 72px; padding-bottom: 72px; } }
+</style>

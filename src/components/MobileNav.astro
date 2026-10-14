@@ -1,0 +1,50 @@
+---
+import Icon from './Icon.astro';
+import { aboutLinks, megaMenu, mainNav, site } from '../data/site';
+
+const groups = [
+  { id: 'about', heading: 'About', icon: '', links: aboutLinks },
+  ...megaMenu.map((c, i) => ({ id: `mega-${i}`, heading: c.heading, icon: c.icon, links: c.links })),
+];
+---
+<div class="mnav" id="mobile-nav" role="dialog" aria-modal="true" aria-label="Menu" hidden>
+  <div class="mnav-top">
+    <span class="mnav-title">Menu</span>
+    <button type="button" class="mnav-close" data-mnav-close aria-label="Close menu"><Icon name="close" size={20} stroke={1.8} /></button>
+  </div>
+  <div class="mnav-body">
+    {groups.map((g) => (
+      <div class="acc">
+        <button type="button" class="acc-btn" aria-expanded="false" aria-controls={`acc-${g.id}`} data-acc>
+          <span>{g.heading}</span><Icon name="chevron" size={16} stroke={2} />
+        </button>
+        <div class="acc-panel" id={`acc-${g.id}`} hidden>
+          {g.links.map((l) => <a href={l.href}>{l.label}</a>)}
+        </div>
+      </div>
+    ))}
+    {mainNav.map((l) => <a class="flat" href={l.href}>{l.label}</a>)}
+    <a class="btn btn-primary book" href={site.bookHref}>Book a session</a>
+    <a class="tel" href={`tel:${site.phone.tel}`}><Icon name="phone" size={16} />{site.phone.display}</a>
+  </div>
+</div>
+<style>
+  .mnav { position: fixed; inset: 0; z-index: 90; background: var(--ivory); display: flex; flex-direction: column; overflow: hidden; }
+  .mnav[hidden] { display: none; }
+  .mnav:not([hidden]) { animation: mnav-in .25s ease-out; }
+  @keyframes mnav-in { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+  .mnav-top { display: flex; align-items: center; justify-content: space-between; padding: 0 20px; height: 84px; border-bottom: 1px solid var(--line); flex: none; }
+  .mnav-title { font-family: var(--font-display); font-size: 26px; color: var(--olive-deep); }
+  .mnav-close { width: 46px; height: 46px; border-radius: 50%; border: 1px solid #C9C1AE; background: none; color: var(--olive-deep); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; }
+  .mnav-body { flex: 1; overflow-y: auto; padding: 8px 20px 40px; -webkit-overflow-scrolling: touch; }
+  .acc { border-bottom: 1px solid var(--line); }
+  .acc-btn { width: 100%; display: flex; justify-content: space-between; align-items: center; background: none; border: 0; padding: 16px 0; min-height: 56px; font: inherit; font-weight: 500; font-size: 18px; color: var(--olive-deep); cursor: pointer; text-align: left; }
+  .acc-btn :global(svg) { transition: transform .2s; }
+  .acc-btn[aria-expanded='true'] :global(svg) { transform: rotate(180deg); }
+  .acc-panel { padding: 0 0 14px 12px; display: flex; flex-direction: column; }
+  .acc-panel[hidden] { display: none; }
+  .acc-panel a { padding: 10px 0; min-height: 44px; display: flex; align-items: center; color: var(--olive-deep); font-size: 16px; }
+  .flat { display: flex; align-items: center; min-height: 56px; border-bottom: 1px solid var(--line); font-weight: 500; font-size: 18px; color: var(--olive-deep); }
+  .book { margin-top: 28px; width: 100%; }
+  .tel { display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 48px; margin-top: 12px; color: var(--olive-deep); }
+</style>

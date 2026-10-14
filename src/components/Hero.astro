@@ -1,0 +1,65 @@
+---
+import { Image } from 'astro:assets';
+import Icon from './Icon.astro';
+// TODO: replace with original high-res photo (ig-yogaday.webp, ig-sanskrit.webp are low-res Instagram crops)
+import main from '../assets/images/ig-yogaday.webp';
+import small from '../assets/images/ig-sanskrit.webp';
+import { site } from '../data/site';
+---
+<section class="hero">
+  <div class="wrap inner">
+    <div class="copy">
+      <div class="eyebrow">Holistic Yoga &amp; Sound Healing · Hinjawadi, Pune</div>
+      <h1>A return to the <em>roots</em> of wellbeing.</h1>
+      <p class="intro">Guided yoga, meditation and sound healing, rooted in ancient Indian wisdom and built for modern lives. Ease stress, restore hormonal balance, and find a calm that carries off the mat.</p>
+      <div class="buttons">
+        <a class="btn btn-primary" href={site.bookHref}>Book your first session</a>
+        <a class="btn btn-secondary" href="#classes">Explore classes</a>
+      </div>
+      <div class="rating">
+        <span role="img" aria-label="5 out of 5 stars" class="stars">
+          {[0, 1, 2, 3, 4].map(() => <Icon name="star" size={16} />)}
+        </span>
+        <span><strong>5.0</strong> on Google · Women-led studio · 500-hr Yoga Alliance certified</span>
+      </div>
+    </div>
+
+    <div class="visual">
+      <div class="circle" aria-hidden="true"></div>
+      <div class="arch">
+        <Image src={main} alt="AadiVed instructor holding a dancer pose on a garden path" format="webp"
+          width={440} height={560} loading="eager" fetchpriority="high" />
+      </div>
+      <div class="mini">
+        <Image src={small} alt="Low lunge back-bend, Namaste" format="webp" width={200} height={250} loading="eager" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero { background: var(--ivory); overflow: hidden; }
+  .inner { display: flex; flex-wrap: wrap; align-items: center; gap: 64px; padding-top: 88px; padding-bottom: 104px; }
+  .copy { flex: 1 1 520px; min-width: 0; }
+  h1 { font-family: var(--font-display); font-weight: 400; font-size: clamp(48px, 6vw, 86px); line-height: 1.02; letter-spacing: -0.01em; margin: 22px 0 0; color: var(--ink); }
+  h1 em { font-style: italic; color: var(--olive); }
+  .intro { font-size: 19px; line-height: 1.7; color: var(--text-muted); max-width: 540px; margin: 28px 0 0; }
+  .buttons { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 38px; }
+  .rating { display: flex; align-items: center; gap: 14px; margin-top: 40px; font-size: 15px; color: var(--text-muted); flex-wrap: wrap; }
+  .rating strong { font-weight: 500; color: var(--ink); }
+  .stars { display: inline-flex; gap: 2px; color: var(--star); }
+
+  .visual { flex: 1 1 420px; min-width: 0; position: relative; display: flex; justify-content: center; padding-bottom: 40px; }
+  .circle { position: absolute; width: 420px; height: 420px; border-radius: 50%; background: var(--accent); opacity: 0.55; top: 40px; right: -40px; }
+  .arch { position: relative; width: 100%; max-width: 440px; height: 560px; border-radius: 240px 240px 24px 24px; overflow: hidden; background: var(--olive); }
+  .arch :global(img) { width: 100%; height: 100%; object-fit: cover; object-position: 50% 78%; display: block; }
+  .mini { position: absolute; left: 0; bottom: 0; width: 200px; height: 250px; border-radius: 18px; overflow: hidden; border: 6px solid var(--ivory); box-shadow: 0 20px 40px -18px rgba(47,52,36,0.45); }
+  .mini :global(img) { width: 100%; height: 100%; object-fit: cover; object-position: 50% 85%; display: block; }
+
+  @media (max-width: 768px) {
+    .inner { padding-top: 48px; padding-bottom: 64px; gap: 48px; }
+    .arch { height: 440px; border-radius: 200px 200px 24px 24px; }
+    .circle { width: 300px; height: 300px; right: -20px; }
+    .mini { width: 150px; height: 190px; }
+  }
+</style>

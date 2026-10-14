@@ -1,0 +1,20 @@
+---
+import Icon from './Icon.astro';
+const items = [
+  { icon: 'award', label: '500-hr Yoga Alliance certified' },
+  { icon: 'person', label: 'Women-owned & women-led' },
+  { icon: 'monitor', label: 'Studio & online sessions' },
+  { icon: 'leaf', label: 'Beginners to experienced' },
+];
+---
+<section class="trust">
+  <div class="wrap grid">
+    {items.map((i) => <div class="item"><Icon name={i.icon} size={26} stroke={1.4} />{i.label}</div>)}
+  </div>
+</section>
+<style>
+  .trust { background: var(--olive); color: var(--sand); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; padding-top: 30px; padding-bottom: 30px; font-size: 15px; letter-spacing: 0.02em; }
+  .item { display: flex; align-items: center; gap: 12px; }
+  .item :global(svg) { flex: none; }
+</style>
