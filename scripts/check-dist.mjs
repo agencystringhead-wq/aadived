@@ -22,7 +22,7 @@ async function walk(dir) {
 const files = await walk(dist);
 const bad = files.filter((f) => {
   const rel = path.relative(dist, f).replaceAll('\\', '/');
-  return banned.test(rel) && !allowed.has(rel) && !/^og\/[a-z0-9-]+\.jpg$/.test(rel);
+  return banned.test(rel) && !allowed.has(rel) && !/^og\/(journal\/)?[a-z0-9-]+\.jpg$/.test(rel);
 });
 
 if (bad.length) {

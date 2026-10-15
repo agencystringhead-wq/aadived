@@ -1,0 +1,40 @@
+---
+// Simple share links: WhatsApp and copy link. The copy button appears only when JavaScript is available.
+import Icon from '../Icon.astro';
+
+interface Props {
+  url: string;
+  title: string;
+}
+const { url, title } = Astro.props;
+const wa = `https://wa.me/?text=${encodeURIComponent(`${title} ${url}`)}`;
+---
+<div class="share" data-share data-url={url}>
+  <span class="label">Share this article</span>
+  <a class="btn btn-secondary" href={wa} rel="noopener"><Icon name="whatsapp" size={16} />WhatsApp</a>
+  <button type="button" class="btn btn-secondary" data-copy hidden>Copy link</button>
+  <span class="ok" data-copied hidden role="status">Link copied</span>
+</div>
+<style>
+  .share { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--line); }
+  .label { font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500; color: var(--label); margin-right: 6px; }
+  .share .btn { min-height: 44px; padding: 10px 22px; font-size: 15px; }
+  .ok { font-size: 14.5px; color: var(--olive); font-weight: 500; }
+</style>
+<script>
+  document.querySelectorAll<HTMLElement>('[data-share]').forEach((root) => {
+    const btn = root.querySelector<HTMLButtonElement>('[data-copy]');
+    const ok = root.querySelector<HTMLElement>('[data-copied]');
+    if (!btn || !ok || !navigator.clipboard) return;
+    btn.hidden = false;
+    btn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(root.dataset.url ?? location.href);
+        ok.hidden = false;
+        setTimeout(() => (ok.hidden = true), 2500);
+      } catch {
+        /* clipboard blocked: the WhatsApp link still works */
+      }
+    });
+  });
+</script>

@@ -124,3 +124,32 @@ export function personSchema() {
     },
   };
 }
+
+/** Article for a journal post. The author is the Organization until a named reviewer is set. */
+export function articleSchema(opts: {
+  post: { id: string; data: { title: string; description: string; pubDate: Date; updatedDate?: Date; category: string; tags: string[]; author: string; reviewedBy?: string } };
+  path: string;
+  image: string;
+  wordCount: number;
+}) {
+  const d = opts.post.data;
+  const organization = { '@type': 'Organization', name: site.name, url: site.url };
+  return {
+    '@context': CTX,
+    '@type': 'Article',
+    '@id': `${url(opts.path)}#article`,
+    headline: d.title,
+    description: d.description,
+    image: url(opts.image),
+    datePublished: d.pubDate.toISOString(),
+    dateModified: (d.updatedDate ?? d.pubDate).toISOString(),
+    author: organization,
+    ...(d.reviewedBy ? { reviewedBy: { '@type': 'Person', name: d.reviewedBy } } : {}),
+    publisher: { ...organization, logo: { '@type': 'ImageObject', url: url('/icon-512.png') } },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': url(opts.path) },
+    inLanguage: site.locale,
+    articleSection: d.category,
+    keywords: d.tags.join(', '),
+    wordCount: opts.wordCount,
+  };
+}

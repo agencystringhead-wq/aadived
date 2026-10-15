@@ -3,7 +3,7 @@
 // ships (besides og-image.jpg). check-dist allows files under og/ for this reason.
 // Run with: npm run assets:og   (re-run whenever a hero image changes, then commit public/og/)
 import sharp from 'sharp';
-import { mkdir } from 'node:fs/promises';
+import { mkdir, readdir } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 
@@ -75,4 +75,14 @@ for (const [name, src] of Object.entries(portrait)) {
     .toFile(path.join(out, `${name}.jpg`));
 }
 
-console.log(`Generated ${Object.keys(landscape).length + Object.keys(portrait).length} images in public/og/`);
+// Journal posts: a 16:9 featured image cropped to 1200x630, named after the post slug
+const journalDir = img('journal');
+await mkdir(path.join(out, 'journal'), { recursive: true });
+let journalCount = 0;
+for (const f of await readdir(journalDir).catch(() => [])) {
+  if (!f.endsWith('.webp')) continue;
+  await sharp(path.join(journalDir, f)).resize(W, H, { fit: 'cover', position: 'attention' }).jpeg(jpeg).toFile(path.join(out, 'journal', f.replace('.webp', '.jpg')));
+  journalCount++;
+}
+
+console.log(`Generated ${Object.keys(landscape).length + Object.keys(portrait).length + journalCount} images in public/og/`);

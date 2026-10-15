@@ -1,0 +1,40 @@
+---
+// Sticky on wide screens, a collapsible "In this article" panel on smaller ones.
+// Plain anchor links, so it works without JavaScript.
+import type { MarkdownHeading } from 'astro';
+
+interface Props {
+  headings: MarkdownHeading[];
+}
+const items = Astro.props.headings.filter((h) => h.depth === 2);
+---
+{items.length > 1 && (
+  <>
+    <nav class="toc side" aria-label="In this article">
+      <div class="label">In this article</div>
+      <ol>
+        {items.map((h) => <li><a href={`#${h.slug}`}>{h.text}</a></li>)}
+      </ol>
+    </nav>
+    <details class="toc mobile">
+      <summary>In this article</summary>
+      <ol>
+        {items.map((h) => <li><a href={`#${h.slug}`}>{h.text}</a></li>)}
+      </ol>
+    </details>
+  </>
+)}
+<style>
+  .toc ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+  .toc a { display: block; padding: 8px 0 8px 14px; border-left: 2px solid var(--line); font-size: 15px; line-height: 1.4; color: var(--text-muted); }
+  .toc a:hover { color: var(--olive-deep); border-left-color: var(--olive); }
+  .label { font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500; color: var(--label); margin-bottom: 12px; }
+  .side { position: sticky; top: 128px; align-self: start; max-height: calc(100vh - 160px); overflow: auto; }
+  .mobile { display: none; margin: 0 0 36px; border: 1px solid var(--line); border-radius: 16px; background: var(--sand); }
+  .mobile summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; min-height: 52px; padding: 0 20px; font-weight: 500; color: var(--olive-deep); }
+  .mobile summary::-webkit-details-marker { display: none; }
+  .mobile summary::after { content: '+'; font-size: 22px; color: var(--olive); }
+  .mobile[open] summary::after { content: '\2212'; }
+  .mobile ol { padding: 0 20px 16px; }
+  @media (max-width: 1099px) { .side { display: none; } .mobile { display: block; } }
+</style>

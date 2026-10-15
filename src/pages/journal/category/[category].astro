@@ -1,0 +1,45 @@
+---
+// /journal/category/[slug]/. A category with no published posts is not generated.
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import InnerHero from '../../../components/page/InnerHero.astro';
+import PostCard from '../../../components/journal/PostCard.astro';
+import CategoryNav from '../../../components/journal/CategoryNav.astro';
+import FinalCTA from '../../../components/FinalCTA.astro';
+import { title as seoTitle } from '../../../data/seo';
+import { categories, categoriesWithPosts, getPublishedPosts, type CategoryInfo, type Post } from '../../../data/journal';
+
+export async function getStaticPaths() {
+  const all = await getPublishedPosts();
+  return categoriesWithPosts(all).map((c) => ({
+    params: { category: c.slug },
+    props: { info: c, all, posts: all.filter((p) => p.data.category === c.label) },
+  }));
+}
+
+const { info, all, posts } = Astro.props as { info: CategoryInfo; all: Post[]; posts: Post[] };
+const crumbs = [{ label: 'Home', href: '/' }, { label: 'Journal', href: '/journal/' }, { label: info.label }];
+---
+<BaseLayout
+  title={seoTitle(info.seoHead)}
+  description={info.description}
+  breadcrumbs={[{ name: 'Home', path: '/' }, { name: 'Journal', path: '/journal/' }, { name: info.label, path: `/journal/category/${info.slug}/` }]}
+>
+  <div class="page-bg">
+    <InnerHero crumbs={crumbs} eyebrow="Journal category" title={info.label} suffix="articles from Hinjawadi, Pune" intro={info.description} />
+    <section class="wrap sec list" aria-label={`${info.label} articles`}>
+      <CategoryNav posts={all} current={info.label} />
+      <ul class="grid">
+        {posts.map((p) => <li><PostCard post={p} /></li>)}
+      </ul>
+    </section>
+    <FinalCTA />
+  </div>
+</BaseLayout>
+
+<style>
+  .list { padding-top: 56px; padding-bottom: 96px; }
+  .grid { list-style: none; margin: 24px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+  .grid li { min-width: 0; }
+  @media (max-width: 960px) { .list { padding-top: 40px; padding-bottom: 64px; } .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
+</style>

@@ -1,0 +1,154 @@
+---
+// A journal post. Only published posts get a page (see getPublishedPosts in src/data/journal.ts).
+import { Image } from 'astro:assets';
+import { render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/page/Breadcrumb.astro';
+import FinalCTA from '../../components/FinalCTA.astro';
+import PostCard from '../../components/journal/PostCard.astro';
+import TableOfContents from '../../components/journal/TableOfContents.astro';
+import PractiseCard from '../../components/journal/PractiseCard.astro';
+import ShareLinks from '../../components/journal/ShareLinks.astro';
+import PostLink from '../../components/journal/PostLink.astro';
+import PullQuote from '../../components/journal/PullQuote.astro';
+import Note from '../../components/journal/Note.astro';
+import { site } from '../../data/site';
+import { articleSchema, url as absUrl } from '../../data/schema';
+import {
+  categoryUrl,
+  formatDate,
+  getPublishedPosts,
+  isScheduled,
+  isoDate,
+  postMetaTitle,
+  postUrl,
+  readingMinutes,
+  relatedPosts,
+} from '../../data/journal';
+
+export async function getStaticPaths() {
+  const posts = await getPublishedPosts();
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post, all: posts } }));
+}
+
+const { post, all } = Astro.props;
+const { Content, headings } = await render(post);
+const d = post.data;
+const path = postUrl(post);
+const ogImage = `/og/journal/${post.id}.jpg`;
+const related = relatedPosts(post, all);
+const scheduled = isScheduled(post);
+const crumbs = [{ label: 'Home', href: '/' }, { label: 'Journal', href: '/journal/' }, { label: d.title }];
+---
+<BaseLayout
+  title={postMetaTitle(post)}
+  description={d.description}
+  ogImage={ogImage}
+  ogType="article"
+  breadcrumbs={[{ name: 'Home', path: '/' }, { name: 'Journal', path: '/journal/' }, { name: d.title, path }]}
+  jsonLd={[articleSchema({ post, path, image: ogImage, wordCount: (post.body ?? '').split(/\s+/).length })]}
+>
+  <article class="page-bg">
+    <header class="hero">
+      <div class="wrap"><Breadcrumb items={crumbs} /></div>
+      <div class="wrap head">
+        <div class="meta">
+          <a class="pill pill-lav" href={categoryUrl(d.category)}>{d.category}</a>
+          {scheduled && <span class="pill sched">Scheduled for {formatDate(d.pubDate)}</span>}
+        </div>
+        <h1>{d.title}</h1>
+        <p class="byline">
+          <time datetime={isoDate(d.pubDate)}>{formatDate(d.pubDate)}</time>
+          <span aria-hidden="true">·</span>
+          <span>{readingMinutes(post)} min read</span>
+          <span aria-hidden="true">·</span>
+          <span>By {d.author}</span>
+          {d.reviewedBy && (<><span aria-hidden="true">·</span><span>Reviewed by {d.reviewedBy}</span></>)}
+        </p>
+      </div>
+      <div class="wrap pic">
+        <div class="frame">
+          <Image src={d.heroImage} alt={d.heroAlt} format="webp" width={1240} height={697}
+            widths={[480, 800, 1240]} sizes="(max-width: 1240px) 100vw, 1240px" loading="eager" fetchpriority="high" />
+        </div>
+      </div>
+    </header>
+
+    <div class="wrap body">
+      <TableOfContents headings={headings} />
+      <div class="col">
+        <div class="prose">
+          <Content components={{ PostLink, PullQuote, Note }} />
+        </div>
+        <PractiseCard service={d.relatedService} />
+        <ShareLinks url={absUrl(path)} title={d.title} />
+      </div>
+    </div>
+
+    {related.length > 0 && (
+      <section class="wrap related" aria-labelledby="rel-h">
+        <div class="eyebrow">Keep reading</div>
+        <h2 id="rel-h">Related articles</h2>
+        <ul class="grid">
+          {related.map((p) => <li><PostCard post={p} level={3} /></li>)}
+        </ul>
+      </section>
+    )}
+
+    <FinalCTA />
+  </article>
+</BaseLayout>
+
+<style>
+  .hero { border-bottom: 1px solid var(--line); }
+  .hero > .wrap:first-child { padding-top: 16px; }
+  .head { max-width: 980px; margin: 0 auto; padding-top: 12px; padding-bottom: 36px; }
+  .meta { display: flex; flex-wrap: wrap; gap: 8px; }
+  .sched { background: #FFF3D6; border-color: #E8D49A; color: #6B5311; }
+  h1 { font-family: var(--font-display); font-weight: 400; font-size: clamp(38px, 5.4vw, 74px); line-height: 1.02; letter-spacing: -0.015em; margin: 22px 0 0; color: var(--ink); max-width: 16em; }
+  .byline { display: flex; flex-wrap: wrap; gap: 6px 12px; margin: 24px 0 0; font-size: 15px; color: var(--label); letter-spacing: 0.02em; }
+  .pic { padding-bottom: 64px; }
+  .frame { border-radius: 24px 24px 24px 160px; overflow: hidden; aspect-ratio: 16 / 9; background: var(--sand); }
+  .frame :global(img) { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  .body { display: grid; grid-template-columns: 220px minmax(0, 68ch); gap: 72px; justify-content: center; padding-top: 72px; padding-bottom: 24px; }
+  .col { min-width: 0; }
+
+  /* Reading column */
+  .prose > :global(:first-child) { margin-top: 0; }
+  .prose :global(p) { margin: 0 0 22px; font-size: 18.5px; line-height: 1.78; color: var(--text-muted); max-width: 68ch; }
+  .prose > :global(p:first-of-type) { font-family: var(--font-display); font-size: clamp(24px, 2.4vw, 30px); line-height: 1.38; color: var(--olive-deep); }
+  .prose :global(h2) { font-family: var(--font-display); font-weight: 400; font-size: clamp(32px, 3.4vw, 44px); line-height: 1.08; margin: 64px 0 18px; color: var(--ink); scroll-margin-top: 120px; }
+  .prose :global(h3) { font-family: var(--font-display); font-weight: 500; font-size: 28px; line-height: 1.15; margin: 38px 0 10px; color: var(--ink); scroll-margin-top: 120px; }
+  .prose :global(a) { color: var(--olive); border-bottom: 1px solid currentColor; }
+  .prose :global(a:hover) { color: var(--olive-deep); }
+  .prose :global(strong) { color: var(--ink); font-weight: 500; }
+  .prose :global(ul) { margin: 0 0 26px; padding: 0 0 0 22px; display: grid; gap: 10px; color: var(--text-muted); font-size: 18px; line-height: 1.7; }
+  .prose :global(ol) { list-style: none; counter-reset: step; margin: 8px 0 32px; padding: 0; display: grid; gap: 0; border-top: 1px solid var(--line); }
+  .prose :global(ol > li) { counter-increment: step; position: relative; padding: 22px 0 22px 68px; border-bottom: 1px solid var(--line); color: var(--text-muted); font-size: 18px; line-height: 1.7; }
+  .prose :global(ol > li::before) { content: counter(step, decimal-leading-zero); position: absolute; left: 0; top: 22px; font-family: var(--font-display); font-style: italic; font-size: 40px; line-height: 0.9; color: var(--olive); }
+  .prose :global(ol > li > p) { margin: 0; }
+  .prose :global(hr) { border: 0; border-top: 1px solid var(--line); margin: 56px 0; }
+
+  .related { padding-top: 96px; padding-bottom: 24px; }
+  .related h2 { font-family: var(--font-display); font-weight: 400; font-size: clamp(34px, 3.8vw, 52px); line-height: 1.06; margin: 14px 0 32px; }
+  .grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+  .grid li { min-width: 0; }
+  .body + .related { margin-bottom: 88px; }
+
+  @media (max-width: 1099px) {
+    .body { grid-template-columns: minmax(0, 68ch); padding-top: 48px; }
+  }
+  @media (max-width: 960px) {
+    .pic { padding-bottom: 40px; }
+    .frame { border-bottom-left-radius: 90px; }
+    .related { padding-top: 72px; }
+    .grid { grid-template-columns: 1fr; }
+    .body + .related { margin-bottom: 64px; }
+  }
+  @media (max-width: 600px) {
+    .prose :global(p) { font-size: 17.5px; }
+    .prose :global(ol > li) { padding-left: 52px; font-size: 17px; }
+    .prose :global(ol > li::before) { font-size: 32px; }
+  }
+</style>

@@ -1,0 +1,13 @@
+---
+// Use for every post-to-post link inside MDX: <PostLink slug="some-post">link text</PostLink>
+// Renders a normal link when the target is published, and plain text otherwise,
+// so no post ever links to a page that does not exist yet.
+import { getPublishedPosts } from '../../data/journal';
+
+interface Props {
+  slug: string;
+}
+const { slug } = Astro.props;
+const published = (await getPublishedPosts()).some((p) => p.id === slug);
+---
+{published ? <a href={`/journal/${slug}/`}><slot /></a> : <slot />}

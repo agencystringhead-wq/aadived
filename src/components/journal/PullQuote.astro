@@ -1,0 +1,8 @@
+---
+// A key line from the article itself, set large. Never used for quotes from people.
+---
+<blockquote class="pull"><slot /></blockquote>
+<style>
+  .pull { margin: 48px 0; padding: 8px 0 8px 28px; border-left: 3px solid var(--accent); font-family: var(--font-display); font-style: italic; font-size: clamp(28px, 3.2vw, 38px); line-height: 1.22; color: var(--olive-deep); max-width: 22em; }
+  .pull :global(p) { margin: 0; font: inherit; color: inherit; max-width: none; }
+</style>

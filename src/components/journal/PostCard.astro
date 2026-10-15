@@ -1,0 +1,66 @@
+---
+import { Image } from 'astro:assets';
+import { formatDate, isoDate, isScheduled, postUrl, readingMinutes, type Post } from '../../data/journal';
+
+interface Props {
+  post: Post;
+  /** Larger layout for the featured post */
+  featured?: boolean;
+  /** Heading level for the title: 2 on listing pages, 3 inside a section that already has an h2 */
+  level?: 2 | 3;
+}
+const { post, featured = false, level = 2 } = Astro.props;
+const Heading = `h${level}` as "h2" | "h3";
+const scheduled = isScheduled(post);
+---
+<article class:list={['card', { featured }]}>
+  <a class="link" href={postUrl(post)}>
+    <div class="pic">
+      <Image src={post.data.heroImage} alt="" format="webp" width={featured ? 960 : 640} height={featured ? 540 : 360}
+        widths={featured ? [640, 960, 1280] : [400, 640]} sizes={featured ? '(max-width: 960px) 100vw, 640px' : '(max-width: 600px) 100vw, 400px'}
+        loading={featured ? 'eager' : 'lazy'} />
+    </div>
+    <div class="body">
+      <div class="meta">
+        <span class="pill pill-lav">{post.data.category}</span>
+        {scheduled && <span class="pill sched">Scheduled for {formatDate(post.data.pubDate)}</span>}
+      </div>
+      <Heading class="t">{post.data.title}</Heading>
+      <p class="d">{post.data.description}</p>
+      <div class="foot">
+        <time datetime={isoDate(post.data.pubDate)}>{formatDate(post.data.pubDate)}</time>
+        <span aria-hidden="true">·</span>
+        <span>{readingMinutes(post)} min read</span>
+      </div>
+    </div>
+  </a>
+</article>
+<style>
+  .card { height: 100%; }
+  .link { display: flex; flex-direction: column; height: 100%; border-radius: var(--radius-card); overflow: hidden; background: var(--sand); border: 1px solid var(--line); color: var(--ink); transition: transform .3s; }
+  .link:hover { transform: translateY(-3px); color: var(--ink); }
+  .pic { display: block; aspect-ratio: 16 / 9; overflow: hidden; background: var(--sand); }
+  .pic :global(img) { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .body { display: flex; flex-direction: column; gap: 10px; padding: 22px 24px 24px; flex-grow: 1; }
+  .meta { display: flex; flex-wrap: wrap; gap: 8px; }
+  .meta .pill { min-height: 28px; padding: 3px 12px; font-size: 13px; }
+  .sched { background: #FFF3D6; border-color: #E8D49A; color: #6B5311; }
+  .t { font-family: var(--font-display); font-weight: 500; font-size: 28px; line-height: 1.12; margin: 4px 0 0; }
+  .d { margin: 0; font-size: 15.5px; color: var(--text-muted); flex-grow: 1; }
+  .foot { display: flex; gap: 8px; font-size: 14px; color: var(--label); }
+
+  .featured .link { flex-direction: row; background: var(--olive); border-color: var(--olive); color: var(--on-dark); }
+  .featured .link:hover { color: var(--on-dark); }
+  .featured .pic { flex: 0 0 56%; aspect-ratio: auto; min-height: 340px; }
+  .featured .body { justify-content: center; padding: 40px 44px; gap: 14px; }
+  .featured .t { font-size: clamp(34px, 3.4vw, 48px); color: var(--ivory); line-height: 1.06; }
+  .featured .d { color: var(--on-dark); font-size: 17px; flex-grow: 0; }
+  .featured .foot { color: var(--on-dark); }
+  .featured .pill-lav { background: var(--accent); color: var(--olive-deep); }
+  @media (max-width: 960px) {
+    .featured .link { flex-direction: column; }
+    .featured .pic { flex: none; aspect-ratio: 16 / 9; min-height: 0; }
+    .featured .body { padding: 26px 24px 28px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .link { transition: none; } }
+</style>

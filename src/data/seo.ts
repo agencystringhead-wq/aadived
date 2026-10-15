@@ -172,7 +172,7 @@ export const seo: Record<string, PageSeo> = {
   },
   '/journal/': {
     title: title('Yoga & Wellbeing Journal'),
-    description: 'Simple practices and notes from the AadiVed yoga studio in Hinjawadi, Pune. Our first posts are on the way. Follow us on Instagram or explore our classes.',
+    description: 'Practical articles on yoga, meditation, breathwork and sound healing from the AadiVed studio in Hinjawadi, Pune, with simple routines to try at home.',
     h1: 'The journal',
   },
   '/contact/': {

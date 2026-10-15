@@ -1,0 +1,25 @@
+---
+// Category filter. Plain links to /journal/ and /journal/category/[slug]/, so it works without JavaScript.
+// Only categories with at least one published post are listed.
+import { categories, type Post } from '../../data/journal';
+
+interface Props {
+  posts: Post[];
+  current?: string; // category label, or undefined for "All"
+}
+const { posts, current } = Astro.props;
+const shown = categories.filter((c) => posts.some((p) => p.data.category === c.label));
+---
+<nav class="cats" aria-label="Filter by category">
+  <ul class="pill-list">
+    <li><a class:list={['pill', { on: !current }]} href="/journal/" aria-current={!current ? 'page' : undefined}>All posts</a></li>
+    {shown.map((c) => (
+      <li><a class:list={['pill', { on: current === c.label }]} href={`/journal/category/${c.slug}/`} aria-current={current === c.label ? 'page' : undefined}>{c.label}</a></li>
+    ))}
+  </ul>
+</nav>
+<style>
+  .pill { min-height: 44px; padding: 8px 20px; font-size: 15px; }
+  .pill:hover { background: var(--accent-soft); color: var(--olive-deep); }
+  .pill.on { background: var(--olive); border-color: var(--olive); color: var(--ivory); }
+</style>

@@ -1,0 +1,36 @@
+---
+// "Practise this with us": links to the post's related service and to the booking form with the practice pre-selected.
+import Icon from '../Icon.astro';
+import { site } from '../../data/site';
+import { resolveService } from '../../data/journal';
+
+interface Props {
+  service: string;
+}
+const s = resolveService(Astro.props.service);
+---
+<aside class="card" aria-labelledby="practise-h">
+  <div class="eyebrow">Practise this with us</div>
+  <h2 id="practise-h">{s.title}</h2>
+  <p>{s.blurb}</p>
+  <p class="when">Classes run {site.timings.days}, {site.timings.time}, in Hinjawadi Phase 3 and live online.</p>
+  <div class="btns">
+    <a class="btn btn-primary" href={s.bookHref}>Book a session</a>
+    <a class="btn btn-secondary" href={s.href}>Learn more</a>
+  </div>
+  <a class="call" href={`tel:${site.phone.tel}`}><Icon name="phone" size={16} />Or call {site.phone.display}</a>
+</aside>
+<style>
+  .card { margin: 64px 0 0; padding: 36px 36px 30px; border-radius: 26px; background: var(--olive); color: var(--on-dark); display: grid; gap: 12px; justify-items: start; }
+  .eyebrow { color: var(--accent); }
+  h2 { font-family: var(--font-display); font-weight: 400; font-size: clamp(34px, 3.6vw, 46px); line-height: 1.05; margin: 4px 0 0; color: var(--ivory); }
+  p { margin: 0; max-width: 40em; color: var(--on-dark); font-size: 17px; }
+  .when { font-size: 15px; opacity: 0.9; }
+  .btns { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 10px; }
+  .card .btn-primary { background: var(--ivory); color: var(--olive-deep); }
+  .card .btn-primary:hover { background: #fff; }
+  .card .btn-secondary { border-color: var(--ivory); color: var(--ivory); }
+  .card .btn-secondary:hover { background: var(--ivory); color: var(--olive-deep); }
+  .call { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: var(--ivory); font-weight: 500; border-bottom: 1px solid rgba(251, 248, 242, 0.5); }
+  @media (max-width: 600px) { .card { padding: 28px 22px 24px; } .btns .btn { width: 100%; } }
+</style>
