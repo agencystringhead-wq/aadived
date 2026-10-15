@@ -139,18 +139,18 @@ h1, h2, h3, p, figure, blockquote { margin: 0; }
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .3 0 0 0 0 .3 0 0 0 0 .2 0 0 0 .05 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
 }
 
-/* Scroll reveals: fade and rise, only where scroll-driven animations are supported */
-@keyframes reveal-rise { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+/* Scroll reveals: fade and rise. src/scripts/reveal.ts marks below-the-fold sections as pending, then clears it on entry. */
 @media (prefers-reduced-motion: no-preference) {
-  @supports (animation-timeline: view()) {
-    .reveal { animation: reveal-rise linear both; animation-timeline: view(); animation-range: entry 0% entry 40%; }
-  }
+  .reveal { transition: opacity .7s ease, transform .7s ease; }
+  .reveal[data-reveal='pending'] { opacity: 0; transform: translateY(28px); }
 }
 
-/* View Transitions between pages: a quiet cross-fade, and none under reduced motion */
-::view-transition-old(root), ::view-transition-new(root) { animation-duration: 0.25s; }
-@media (prefers-reduced-motion: reduce) {
-  ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
+/* Page transitions: the browser's native cross-document View Transitions, a quiet cross-fade with the header held
+   still. No JavaScript (the Astro client router cost 300ms or more of blocking time per page). Off under reduced motion. */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition { navigation: auto; }
+  .site-header { view-transition-name: site-header; }
+  ::view-transition-old(root), ::view-transition-new(root) { animation-duration: 0.25s; }
 }
 
 /* Shared section styles for the inner pages */

@@ -55,7 +55,7 @@ const alt = 'Yoga Alliance RYT-500 certificate for Anupriya';
 
 <script>
   // Native modal <dialog>: focus is trapped inside, Esc closes it, and focus returns to the trigger.
-  document.addEventListener('astro:page-load', () => {
+  (() => {
     const open = document.querySelector<HTMLButtonElement>('[data-cert-open]');
     const dialog = document.querySelector<HTMLDialogElement>('[data-cert-dialog]');
     if (!open || !dialog) return;
@@ -67,5 +67,5 @@ const alt = 'Yoga Alliance RYT-500 certificate for Anupriya';
       const inside = e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom;
       if (!inside) dialog.close();
     });
-  });
+  })();
 </script>

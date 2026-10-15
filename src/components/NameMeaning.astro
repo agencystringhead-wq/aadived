@@ -23,8 +23,7 @@
 </section>
 <script>
   // The Devanagari font is ~100KB and sits below the fold: fetch it only when the section is near the viewport.
-  // Runs on every page load, including client-side navigations (View Transitions).
-  document.addEventListener('astro:page-load', () => {
+  (() => {
     const words = document.querySelector('.words');
     const ready = () => document.documentElement.classList.add('deva-ready');
     if (words && 'IntersectionObserver' in window) {
@@ -35,7 +34,7 @@
     } else if (words) {
       ready();
     }
-  });
+  })();
 </script>
 <style is:global>
   html.deva-ready .deva { font-family: var(--font-deva); }

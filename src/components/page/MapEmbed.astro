@@ -39,7 +39,7 @@ import { site } from '../../data/site';
 </style>
 
 <script>
-  document.addEventListener('astro:page-load', () => {
+  (() => {
     document.querySelectorAll<HTMLElement>('[data-map]').forEach((root) => {
       const btn = root.querySelector<HTMLButtonElement>('[data-map-load]');
       const frame = root.querySelector<HTMLElement>('[data-map-frame]');
@@ -58,5 +58,5 @@ import { site } from '../../data/site';
         iframe.focus();
       });
     });
-  });
+  })();
 </script>

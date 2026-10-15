@@ -136,7 +136,7 @@ const options = groups.map((g) => ({
 </style>
 
 <script>
-  document.addEventListener('astro:page-load', () => {
+  (() => {
     const root = document.querySelector<HTMLElement>('[data-enquiry]');
     const form = root?.querySelector<HTMLFormElement>('[data-form]');
     if (!root || !form || form.dataset.bound) return;
@@ -225,5 +225,5 @@ const options = groups.map((g) => ({
         submit.textContent = 'Send enquiry';
       }
     });
-  });
+  })();
 </script>

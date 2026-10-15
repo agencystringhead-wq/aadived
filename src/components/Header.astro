@@ -7,7 +7,7 @@ import MobileNav from './MobileNav.astro';
 import { mainNav, site } from '../data/site';
 import logo from '../assets/images/aadived-logo-olive-2400.webp';
 ---
-<header class="site-header" data-header transition:persist>
+<header class="site-header" data-header>
   <div class="wrap row">
     <a class="logo" href="/" aria-label={`${site.name}, home`}>
       <Image src={logo} alt="AadiVed, Mind. Body. Soul" format="webp" width={105} height={88} densities={[1, 2, 3]} loading="eager" />

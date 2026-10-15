@@ -14,7 +14,6 @@ import jost400 from '@fontsource/jost/files/jost-latin-400-normal.woff2?url';
 const preloadFonts = [corm400, jost400];
 import '../styles/global.css';
 
-import { ClientRouter } from 'astro:transitions';
 import UtilityBar from '../components/UtilityBar.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -46,6 +45,10 @@ const { breadcrumbs, jsonLd = [] } = props;
 const canonical = new URL(Astro.url.pathname, Astro.site ?? site.url).href;
 const ogUrl = new URL(ogImage, Astro.site ?? site.url).href;
 
+const speculation = {
+  prefetch: [{ where: { and: [{ href_matches: '/*' }, { not: { href_matches: '/*.*' } }] }, eagerness: 'moderate' }],
+};
+
 const schemas: Record<string, unknown>[] = [websiteSchema(), ...jsonLd.filter((s): s is Record<string, unknown> => Boolean(s))];
 if (breadcrumbs?.length) {
   schemas.push({
@@ -66,7 +69,6 @@ if (breadcrumbs?.length) {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
-    <ClientRouter />
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     {noindex && <meta name="robots" content="noindex" />}
@@ -78,6 +80,8 @@ if (breadcrumbs?.length) {
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="sitemap" href="/sitemap-index.xml" />
+    <!-- Prefetch a page when the visitor hovers a link to it. Chrome only, no JavaScript, ignored elsewhere. -->
+    <script type="speculationrules" is:inline set:html={JSON.stringify(speculation)} />
 
     <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content={site.name} />
@@ -103,5 +107,8 @@ if (breadcrumbs?.length) {
       <slot />
     </main>
     <Footer />
+    <script>
+      import '../scripts/reveal.ts';
+    </script>
   </body>
 </html>
