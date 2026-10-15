@@ -26,7 +26,7 @@ const faqs = [
   { q: 'What is a 1:1 intro session?', a: 'A private first session where you tell us what you would like to feel, and we match the practice to you.' },
   { q: 'Is prenatal yoga one-on-one?', a: 'Yes. Prenatal sessions are private and customised for each trimester. Please consult your doctor before starting.' },
   { q: 'Where do sessions take place?', a: 'At the studio in Megapolis Serenity, Hinjawadi Phase 3.' },
-  { q: 'When can I book?', a: `Classes run ${site.timings.days}, ${site.timings.time}. Call to agree a slot that suits you.` },
+  { q: 'When can I book?', a: `${site.hours.label}. ${site.hours.note}` },
   { q: 'What does it cost?', a: `For current prices, please call ${site.phone.display}.` },
 ];
 const s = getSeo(Astro.url.pathname);
@@ -69,7 +69,7 @@ import NewTabHint from '../components/NewTabHint.astro';
         <div>
           <div class="eyebrow">Talk to us first</div>
           <h2 id="call-h" class="sec-title">Not sure which session suits you?</h2>
-          <p class="body-text">Call and tell us what you would like to feel. We will help you choose, and agree a time between {site.timings.daysShort}, {site.timings.time}.</p>
+          <p class="body-text">Call and tell us what you would like to feel. We will help you choose, and agree a time that suits you.</p>
         </div>
         <div class="btns">
           <a class="btn btn-primary" href={`tel:${site.phone.tel}`}><Icon name="phone" size={16} />Call {site.phone.display}</a>

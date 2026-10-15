@@ -29,8 +29,8 @@ import NewTabHint from '../components/NewTabHint.astro';
         <div class="eyebrow">Reach us directly</div>
         <dl>
           <div>
-            <dt>Class timings</dt>
-            <dd>{site.timings.days}<br />{site.timings.time}</dd>
+            <dt>Sessions</dt>
+            <dd>{site.hours.label}<br /><a href={`tel:${site.phone.tel}`}>{site.hours.cta}</a></dd>
           </div>
           <div>
             <dt>Phone</dt>

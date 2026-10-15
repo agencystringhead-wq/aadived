@@ -140,7 +140,7 @@ export const seo: Record<string, PageSeo> = {
   },
   '/studio/': {
     title: title('Yoga Studio in Hinjawadi Phase 3, Pune'),
-    description: `Small, unhurried yoga, meditation and sound healing classes at Megapolis Serenity, Hinjawadi Phase 3, Pune. ${site.timings.daysShort}, ${site.timings.time}. Call to book.`,
+    description: `Small, unhurried yoga, meditation and sound healing classes at Megapolis Serenity, Hinjawadi Phase 3, Pune. ${site.hours.label}. Call to book.`,
     h1: 'Yoga studio',
     h1Suffix: 'in Hinjawadi Phase 3, Pune',
     ogImage: '/og/studio.jpg',
@@ -177,7 +177,7 @@ export const seo: Record<string, PageSeo> = {
   },
   '/contact/': {
     title: title('Book a Yoga Session in Hinjawadi, Pune'),
-    description: `Book a yoga, meditation or sound healing session at AadiVed in Hinjawadi, Pune. Call us or send an enquiry. Classes run ${site.timings.daysShort}, ${site.timings.time}.`,
+    description: `Book a yoga, meditation or sound healing session at AadiVed in Hinjawadi, Pune. Call us or send an enquiry. Sessions are ${site.hours.label.toLowerCase()}.`,
     h1: 'Book a session',
     h1Suffix: LOC,
   },

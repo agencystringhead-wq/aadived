@@ -57,11 +57,8 @@ import NewTabHint from '../../components/NewTabHint.astro';
     </fieldset>
 
     <div class="field">
-      <label for="f-time">Preferred time</label>
-      <select id="f-time" name="time">
-        <option value="morning">Morning, {site.timings.daysShort}, {site.timings.time}</option>
-        <option value="other">Other (tell us in your message)</option>
-      </select>
+      <label for="f-time">Preferred days and times <span class="opt">(optional)</span></label>
+      <input id="f-time" type="text" name="time" placeholder="e.g. weekday mornings" autocomplete="off" />
     </div>
 
     <div class="field">

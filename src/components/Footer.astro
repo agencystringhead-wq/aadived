@@ -17,7 +17,7 @@ import NewTabHint from '../components/NewTabHint.astro';
     <div class="top">
       <div class="pitch">
         <div class="big">Calm, delivered gently to your inbox.</div>
-        <div class="sub">Class updates, new batches and simple practices to try at home.</div>
+        <div class="sub">Updates, new sessions and simple practices to try at home.</div>
       </div>
       <!-- TODO: wire to the real newsletter provider (JotForm or a Cloudflare Worker) -->
       <form class="news" action={site.newsletterAction} method="post">
@@ -53,7 +53,7 @@ import NewTabHint from '../components/NewTabHint.astro';
         <div class="links visit">
           <span>{site.address.lines.map((l, i) => <>{i > 0 && <br />}{l}</>)}</span>
           <a href={`tel:${site.phone.tel}`}>{site.phone.display}</a>
-          <span>{site.timings.daysShort}<br />{site.timings.time}</span>
+          <span>{site.hours.label}<br /><a href={`tel:${site.phone.tel}`}>{site.hours.cta}</a></span>
           <a class="dir" href={site.google.directions} {...linkProps(site.google.directions)}>Get directions &#8594;<NewTabHint href={site.google.directions} /></a>
         </div>
       </div>

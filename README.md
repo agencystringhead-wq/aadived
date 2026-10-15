@@ -74,7 +74,7 @@ Posts are MDX files in `src/content/journal/`. Frontmatter is validated by `src/
 
 ## Open items (leave as TODO until confirmed)
 
-- [x] **Class timings.** Confirmed as Monday to Friday, 8:00 am to 10:00 am (`site.timings` in `src/data/site.ts`). Weekend timings are not confirmed, so none are shown. The Google profile still says "Open 24 hours" and should be updated to match.
+- [x] **Class timings.** None are published. Sessions are by appointment only, set once in `site.hours` in `src/data/site.ts` and read from there everywhere. The Google profile still says "Open 24 hours" and should be updated to match (by appointment).
 - [ ] **Real studio photo.** `FormatsSplit.astro` shows a labelled placeholder.
 - [ ] **High-res Instagram originals.** The `ig-*.webp` files are low-res crops (about 280x370) from an Instagram screenshot. They are capped at about 300px wide wherever they are shown. Swap in originals, keeping the filenames, in `src/assets/images/`. Used in:
   - `ig-yogaday.webp`: `InstagramStrip.astro`

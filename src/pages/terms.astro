@@ -11,10 +11,10 @@ import { site } from '../data/site';
   <p class="updated">Last updated: 14 October 2026</p>
 
   <h2>Using this website</h2>
-  <p>This website gives information about {site.name} and lets you contact us. Please use it for those purposes only. We try to keep the information accurate, but classes, timings and prices can change.</p>
+  <p>This website gives information about {site.name} and lets you contact us. Please use it for those purposes only. We try to keep the information accurate, but classes, availability and prices can change.</p>
 
   <h2>Booking sessions</h2>
-  <p>An enquiry on this website is a request, not a confirmed booking. A session is confirmed when we reply and agree a time with you. Class timings are currently {site.timings.days}, {site.timings.time}.</p>
+  <p>An enquiry on this website is a request, not a confirmed booking. A session is confirmed when we reply and agree a time with you. Sessions are {site.hours.label.toLowerCase()}.</p>
   <p>For current prices, and for payment, cancellation and rescheduling, please call <a href={`tel:${site.phone.tel}`}>{site.phone.display}</a>.</p>
 
   <h2>Your health</h2>

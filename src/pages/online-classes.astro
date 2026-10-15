@@ -29,7 +29,7 @@ const steps = [
 const faqs = [
   { q: 'Are the classes live?', a: 'Yes. Live online sessions with real-time cues and corrections.' },
   { q: 'Do I need experience?', a: 'No. Online classes suit beginners to experienced practitioners.' },
-  { q: 'When are online classes?', a: `Classes run ${site.timings.days}, ${site.timings.time}. Call ${site.phone.display} to check the online schedule.` },
+  { q: 'When are online classes?', a: `${site.hours.label}. Call ${site.phone.display} to agree a time for your live session.` },
   { q: 'What does it cost?', a: `For current prices, please call ${site.phone.display}.` },
 ];
 const s = getSeo(Astro.url.pathname);

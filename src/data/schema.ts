@@ -14,14 +14,6 @@ export const ids = {
   person: `${site.url}/about/anupriya/#person`,
 };
 
-/** "Mo-Fr 08:00-10:00" from the structured timings in site.ts */
-function openingHours(): string {
-  const { dayOfWeek, opens, closes } = site.timings.schema;
-  const short = (d: string) => d.slice(0, 2);
-  const range = dayOfWeek.length > 1 ? `${short(dayOfWeek[0])}-${short(dayOfWeek[dayOfWeek.length - 1])}` : short(dayOfWeek[0]);
-  return `${range} ${opens}-${closes}`;
-}
-
 /** A reference to the HealthClub, for use inside other nodes */
 export const businessRef = { '@type': 'HealthClub', '@id': ids.business, name: site.name } as const;
 
@@ -45,7 +37,8 @@ export function businessSchema() {
     '@id': ids.business,
     name: site.name,
     url: site.url,
-    description: site.description,
+    // No opening hours are listed: sessions are by appointment only.
+    description: `${site.description} Sessions by appointment only.`,
     image: url('/og-image.jpg'),
     logo: url('/icon-512.png'),
     telephone: site.phone.schema,
@@ -58,13 +51,6 @@ export function businessSchema() {
       addressCountry: site.address.country,
     },
     areaServed: { '@type': 'City', name: 'Pune' },
-    openingHours: openingHours(),
-    openingHoursSpecification: {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: site.timings.schema.dayOfWeek,
-      opens: site.timings.schema.opens,
-      closes: site.timings.schema.closes,
-    },
     hasMap: site.google.profile,
     sameAs: [site.instagram.url, site.google.profile],
     founder: { '@type': 'Person', '@id': ids.person, name: site.founder },

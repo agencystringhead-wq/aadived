@@ -63,8 +63,8 @@ const faq = {
   start: { q: 'How do I start?', a: 'Call, message us on Instagram or book a session. If you are new, we suggest starting with a 1:1 intro session.' },
   cost: { q: 'What does it cost?', a: `For current prices, please call ${site.phone.display}.` },
   when: (extra?: string) => ({
-    q: 'When are classes?',
-    a: `Classes run Monday to Friday, 8:00 am to 10:00 am.${extra ? ' ' + extra : ''}`,
+    q: 'When are sessions?',
+    a: `${site.hours.label}. ${site.hours.note}${extra ? ' ' + extra : ''}`,
   }),
   where: { q: 'Where is the studio?', a: 'At Megapolis Serenity, Rajiv Gandhi Infotech Park, Hinjawadi Phase 3, Pune.' },
 };
@@ -86,7 +86,7 @@ export const practices: Practice[] = [
       { title: 'First-timers', text: 'You do not need to know a single pose. Each asana is explained clearly and patiently from the start.' },
       { title: 'Returning practitioners', text: 'Pick up the thread again with a teacher who meets you where your body is today.' },
       { title: 'Experienced yogis', text: 'Keep a regular, guided practice and refine the details of poses you already know.' },
-      { title: 'Busy lives', text: 'A fixed, unhurried slot in your morning that you can rely on.' },
+      { title: 'Busy lives', text: 'An unhurried session booked at a time that suits your day.' },
     ],
     steps: [
       { title: 'Arrive and settle', text: 'Find your place on the mat, take a few slower breaths and let the day fall a little quieter.' },
@@ -219,7 +219,7 @@ export const practices: Practice[] = [
     faqs: [
       { q: 'Is it private?', a: 'Yes. Prenatal yoga at AadiVed is one-on-one and customised for each trimester.' },
       { q: 'Do I need to speak to my doctor first?', a: 'Yes. Please consult your doctor before starting any prenatal practice, and tell us about anything they advise.' },
-      faq.when('Ask us which slots suit one-on-one sessions.'),
+      faq.when('Prenatal sessions are one-on-one, so we agree a time around you.'),
       faq.start,
       faq.cost,
     ],
@@ -615,7 +615,7 @@ export const practices: Practice[] = [
     faqs: [
       { q: 'Do I need any experience?', a: 'No. Sound healing asks nothing of you except to listen and rest, and the studio welcomes beginners to experienced practitioners.' },
       { q: 'Where does it take place?', a: 'In the studio at Megapolis Serenity, Rajiv Gandhi Infotech Park, Hinjawadi Phase 3, Pune.' },
-      { q: 'When are sessions?', a: 'Classes run Monday to Friday, 8:00 am to 10:00 am. Ask us which sessions include sound healing, or call to check before you come.' },
+      { q: 'When are sessions?', a: `${site.hours.label}. ${site.hours.note} Ask us which sessions include sound healing.` },
       faq.start,
       faq.cost,
     ],

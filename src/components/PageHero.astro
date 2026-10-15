@@ -18,7 +18,7 @@ import NewTabHint from '../components/NewTabHint.astro';
     <div class="eyebrow">{eyebrow}</div>
     <h1>{title}</h1>
     <p>{intro}</p>
-    {showTimings && <p class="timings"><strong>Class timings:</strong> {site.timings.days}, {site.timings.time}</p>}
+    {showTimings && <p class="timings"><strong>{site.hours.label}.</strong> {site.hours.note} <a href={`tel:${site.phone.tel}`}>{site.hours.cta}</a></p>}
   </div>
 </section>
 <section class="soon" id={bookAnchor ? 'book' : undefined}>

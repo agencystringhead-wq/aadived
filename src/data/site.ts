@@ -38,12 +38,12 @@ export const site = {
   // TODO: confirm the number is on WhatsApp before launch
   whatsapp: 'https://wa.me/918208469389',
   founder: 'Anupriya',
-  timings: {
-    days: 'Monday to Friday',
-    daysShort: 'Mon to Fri',
-    time: '8:00 am to 10:00 am',
-    // For schema.org openingHoursSpecification (24-hour clock)
-    schema: { dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '08:00', closes: '10:00' },
+  // Sessions are by appointment only. No days or times are published anywhere on the site, so every place
+  // that used to show class timings reads this one setting.
+  hours: {
+    label: 'By appointment only',
+    note: 'Call or message to book a time that suits you.',
+    cta: 'Call to book',
   },
   bookHref: '/contact/#book',
   // TODO: replace with the real newsletter form provider (JotForm or Cloudflare Worker)

@@ -15,7 +15,7 @@ import NewTabHint from '../../components/NewTabHint.astro';
   <div class="eyebrow">Practise this with us</div>
   <h2 id="practise-h">{s.title}</h2>
   <p>{s.blurb}</p>
-  <p class="when">Classes run {site.timings.days}, {site.timings.time}, in Hinjawadi Phase 3 and live online.</p>
+  <p class="when">{site.hours.label}, in Hinjawadi Phase 3 and live online.</p>
   <div class="btns">
     <a class="btn btn-primary" href={s.bookHref} {...linkProps(s.bookHref)}>Book a session<NewTabHint href={s.bookHref} /></a>
     <a class="btn btn-secondary" href={s.href} {...linkProps(s.href)}>Learn more<NewTabHint href={s.href} /></a>
