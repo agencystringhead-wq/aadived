@@ -28,6 +28,8 @@ const faqs = [
   { q: 'Do I need experience?', a: 'No. The studio welcomes beginners to experienced practitioners.' },
 ];
 const s = getSeo(Astro.url.pathname);
+import { linkProps } from '../data/links';
+import NewTabHint from '../components/NewTabHint.astro';
 ---
 <BaseLayout
   breadcrumbs={[{ name: 'Home', path: '/' }, { name: 'The Studio', path: '/studio/' }]}
@@ -43,7 +45,7 @@ const s = getSeo(Astro.url.pathname);
       imageAlt="Rolled grey yoga mats and a stack of folded striped blankets on a wooden shelf, with bolsters underneath"
     >
       <div class="cta-row">
-        <a class="btn btn-primary" href={site.bookHref}>Book a session</a>
+        <a class="btn btn-primary" href={site.bookHref} {...linkProps(site.bookHref)}>Book a session<NewTabHint href={site.bookHref} /></a>
         <a class="btn btn-secondary" href={`tel:${site.phone.tel}`}><Icon name="phone" size={16} />Call {site.phone.display}</a>
       </div>
     </InnerHero>
@@ -64,7 +66,7 @@ const s = getSeo(Astro.url.pathname);
         <p class="body-text">Classes run <strong>{site.timings.days}, {site.timings.time}</strong>.</p>
         <div class="cta-col">
           <a class="btn btn-primary" href={`tel:${site.phone.tel}`}><Icon name="phone" size={16} />Call {site.phone.display}</a>
-          <a class="btn btn-secondary" href={site.google.directions}>Get directions</a>
+          <a class="btn btn-secondary" href={site.google.directions} {...linkProps(site.google.directions)}>Get directions<NewTabHint href={site.google.directions} /></a>
         </div>
       </div>
       <div class="mapcol"><MapEmbed /></div>

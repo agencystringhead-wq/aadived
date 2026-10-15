@@ -198,8 +198,35 @@ try {
 }
 for (const name of ['og-image.jpg']) await access(path.join(dist, name)).catch(() => err(name, 'missing from dist/'));
 
+// ---- external links open in a new tab (target="_blank" with rel noopener); internal links, tel: and mailto: never do
+const OWN_HOSTS = new Set(['aadived.com', 'www.aadived.com']);
+let externalCount = 0;
+for (const { path: p, html } of pages) {
+  for (const tag of html.match(/<a\s[^>]*>/g) || []) {
+    const href = (tag.match(/\shref="([^"]*)"/) || [])[1];
+    if (href === undefined) continue;
+    const target = (tag.match(/\starget="([^"]*)"/) || [])[1];
+    const rel = (tag.match(/\srel="([^"]*)"/) || [])[1] || '';
+    let external = false;
+    if (/^https?:\/\//i.test(href)) {
+      try {
+        external = !OWN_HOSTS.has(new URL(href).hostname.toLowerCase());
+      } catch {
+        external = false;
+      }
+    }
+    if (external) {
+      externalCount++;
+      if (target !== '_blank') err(p, `external link without target="_blank": ${href.slice(0, 80)}`);
+      if (!/\bnoopener\b/.test(rel)) err(p, `external link without rel="noopener": ${href.slice(0, 80)}`);
+    } else if (target === '_blank') {
+      err(p, `internal link opens in a new tab (target="_blank"): ${href.slice(0, 80)}`);
+    }
+  }
+}
+
 // ---- report
-console.log(`SEO audit: ${pages.length} pages\n`);
+console.log(`SEO audit: ${pages.length} pages, ${externalCount} external links checked\n`);
 console.log('path'.padEnd(30), 'title'.padStart(5), 'desc'.padStart(5));
 for (const r of rows) console.log(r.path.padEnd(30), String(r.tl).padStart(5), String(r.dl).padStart(5));
 if (warnings.length) console.log(`\nWarnings (${warnings.length}):\n  ` + warnings.join('\n  '));

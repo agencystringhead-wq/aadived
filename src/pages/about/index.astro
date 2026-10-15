@@ -16,6 +16,8 @@ const approach = [
   { title: 'Studio and online', text: 'Small, unhurried classes in Hinjawadi Phase 3, and live online sessions for wherever you are.' },
 ];
 const s = getSeo(Astro.url.pathname);
+import { linkProps } from '../../data/links';
+import NewTabHint from '../../components/NewTabHint.astro';
 ---
 <BaseLayout
   breadcrumbs={[{ name: 'Home', path: '/' }, { name: 'About', path: '/about/' }]}
@@ -77,7 +79,7 @@ const s = getSeo(Astro.url.pathname);
         <h2 id="women-h" class="statement">A studio run by women, for people at every stage of life.</h2>
         <p class="body-text">AadiVed is owned and led by women. The classes are open to everyone, with particular care for stress, hormonal balance and one-on-one prenatal yoga.</p>
         <div class="row">
-          <a class="btn btn-primary" href={site.bookHref}>Book a session</a>
+          <a class="btn btn-primary" href={site.bookHref} {...linkProps(site.bookHref)}>Book a session<NewTabHint href={site.bookHref} /></a>
           <a class="btn btn-secondary" href="/classes/">Explore classes</a>
         </div>
       </div></div>

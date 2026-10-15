@@ -49,6 +49,10 @@ Every image on the site is WebP, rendered through `astro:assets` with `format="w
 
 Every stock photo is from Pexels (Pexels License). The full register, with photographer, Pexels photo ID, source, usage and alt text, is in `design-source/image-licence-register.html` (PDF copy alongside). Short credits table: `design-source/stock-credits.md`. Proof screenshots of each Pexels page and the licence text: `design-source/licences/`. When you add or replace an image, update all three.
 
+## External links
+
+Links to other sites open in a new tab (`target="_blank" rel="noopener noreferrer"`, with a screen reader hint). In `.astro` files use `<a href={url} {...linkProps(url)}>text<NewTabHint href={url} /></a>` (`src/data/links.ts`, `src/components/NewTabHint.astro`). Links in Journal posts are handled by `rehype-external-links` in `astro.config.mjs`. `npm run seo:audit` fails if an external link in `dist/` lacks `target="_blank"` or `noopener`, or an internal link has `target="_blank"`.
+
 ## Journal
 
 Posts are MDX files in `src/content/journal/`. Frontmatter is validated by `src/content.config.ts` (title, description of 140 to 160 characters, pubDate, category, tags, heroImage, heroAlt, relatedService).

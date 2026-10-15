@@ -42,6 +42,8 @@ const path = [
   { title: 'What she teaches', text: 'Guided yoga, meditation, breathwork, sound healing and one-on-one prenatal yoga.' },
   { title: 'Background and training story', text: 'Completed her yoga teacher training in Rishikesh, surrounded by an amazing group of individuals.' },
 ];
+import { linkProps } from '../../data/links';
+import NewTabHint from '../../components/NewTabHint.astro';
 ---
 <BaseLayout
   jsonLd={[personSchema()]}
@@ -57,7 +59,7 @@ const path = [
         <p class="role">Founder · 500-hour Yoga Alliance Registered Practitioner</p>
         <p class="intro">AadiVed is a women-owned studio built on a simple belief: ancient practice should feel at home in a modern life.</p>
         <div class="ctas">
-          <a class="btn btn-primary" href={site.bookHref}>Book a session</a>
+          <a class="btn btn-primary" href={site.bookHref} {...linkProps(site.bookHref)}>Book a session<NewTabHint href={site.bookHref} /></a>
           <a class="btn btn-secondary" href={`tel:${site.phone.tel}`}><Icon name="phone" size={16} />Call {site.phone.display}</a>
         </div>
       </div>
@@ -91,7 +93,7 @@ const path = [
       <h2 id="who-h">Every body, every stage</h2>
       <Bento items={who} variant="a" />
       <ul class="pill-list links" aria-label="Practices">
-        {practices.map((p) => <li><a class="pill" href={p.href}>{p.label}</a></li>)}
+        {practices.map((p) => <li><a class="pill" href={p.href} {...linkProps(p.href)}>{p.label}<NewTabHint href={p.href} /></a></li>)}
       </ul>
     </section>
 
@@ -115,7 +117,7 @@ const path = [
           <div class="eyebrow">Kind words</div>
           <h2 id="kind-h">What students say</h2>
         </div>
-        <a class="link-arrow" href={site.google.reviews}>Read all reviews on Google &#8594;</a>
+        <a class="link-arrow" href={site.google.reviews} {...linkProps(site.google.reviews)}>Read all reviews on Google &#8594;<NewTabHint href={site.google.reviews} /></a>
       </div>
       <div class="cards">
         {reviews.map((r) => <ReviewCard review={r} />)}

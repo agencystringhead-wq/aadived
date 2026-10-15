@@ -3,6 +3,8 @@
 // The "Open in Google Maps" and "Get directions" links work without loading the map.
 import Icon from '../Icon.astro';
 import { site } from '../../data/site';
+import { linkProps } from '../../data/links';
+import NewTabHint from '../../components/NewTabHint.astro';
 ---
 <div class="map" data-map data-src={site.google.embed}>
   <div class="frame" data-map-frame>
@@ -14,8 +16,8 @@ import { site } from '../../data/site';
     </div>
   </div>
   <p class="links">
-    <a href={site.google.profile}>Open in Google Maps &#8594;</a>
-    <a href={site.google.directions}>Get directions &#8594;</a>
+    <a href={site.google.profile} {...linkProps(site.google.profile)}>Open in Google Maps &#8594;<NewTabHint href={site.google.profile} /></a>
+    <a href={site.google.directions} {...linkProps(site.google.directions)}>Get directions &#8594;<NewTabHint href={site.google.directions} /></a>
   </p>
 </div>
 

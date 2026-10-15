@@ -6,6 +6,8 @@ import AboutDropdown from './AboutDropdown.astro';
 import MobileNav from './MobileNav.astro';
 import { mainNav, site } from '../data/site';
 import logo from '../assets/images/aadived-logo-olive-2400.webp';
+import { linkProps } from '../data/links';
+import NewTabHint from '../components/NewTabHint.astro';
 ---
 <header class="site-header" data-header>
   <div class="wrap row">
@@ -27,12 +29,12 @@ import logo from '../assets/images/aadived-logo-olive-2400.webp';
           </button>
           <MegaMenu />
         </li>
-        {mainNav.map((l) => <li><a class="navlink" href={l.href}>{l.label}</a></li>)}
+        {mainNav.map((l) => <li><a class="navlink" href={l.href} {...linkProps(l.href)}>{l.label}<NewTabHint href={l.href} /></a></li>)}
       </ul>
     </nav>
 
     <div class="actions">
-      <a class="cta" href={site.bookHref}>Book a session</a>
+      <a class="cta" href={site.bookHref} {...linkProps(site.bookHref)}>Book a session<NewTabHint href={site.bookHref} /></a>
       <button type="button" class="menu-btn" data-mnav-open aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
         <Icon name="menu" size={20} stroke={1.8} />
       </button>

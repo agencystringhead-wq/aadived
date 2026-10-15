@@ -10,6 +10,8 @@ const options = groups.map((g) => ({
   group: g,
   items: practices.filter((p) => p.category === g).map((p) => ({ value: interestId(p.slug), label: titleFor(p.slug) })),
 }));
+import { linkProps } from '../../data/links';
+import NewTabHint from '../../components/NewTabHint.astro';
 ---
 <div class="wrap-form" id="enquiry" data-enquiry data-action={site.enquiryAction}>
   <form novalidate class="form" data-form>
@@ -80,7 +82,7 @@ const options = groups.map((g) => ({
 
     <button type="submit" class="btn btn-primary" data-submit>Send enquiry</button>
     <p class="notice" data-notice hidden role="status">
-      This form is not connected yet, so nothing has been sent. Please call <a href={`tel:${site.phone.tel}`}>{site.phone.display}</a> or message us on <a href={site.instagram.dm}>Instagram</a>.
+      This form is not connected yet, so nothing has been sent. Please call <a href={`tel:${site.phone.tel}`}>{site.phone.display}</a> or message us on <a href={site.instagram.dm} {...linkProps(site.instagram.dm)}>Instagram<NewTabHint href={site.instagram.dm} arrow /></a>.
     </p>
     <p class="fail" data-fail hidden role="alert">
       Something went wrong sending your enquiry. Please call <a href={`tel:${site.phone.tel}`}>{site.phone.display}</a> or try again.

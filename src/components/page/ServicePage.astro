@@ -28,6 +28,8 @@ const crumbs = [
   { label: 'All classes', href: '/classes/' },
   { label: page.title },
 ];
+import { linkProps } from '../../data/links';
+import NewTabHint from '../../components/NewTabHint.astro';
 ---
 <article class="service">
   <section class="hero">
@@ -41,7 +43,7 @@ const crumbs = [
         <h1>{heading.h1}{heading.h1Suffix && <span class="loc"> {heading.h1Suffix}</span>}</h1>
         <p class="intro">{practice.intro}</p>
         <div class="ctas">
-          <a class="btn btn-primary" href={bookHref}>Book a session</a>
+          <a class="btn btn-primary" href={bookHref} {...linkProps(bookHref)}>Book a session<NewTabHint href={bookHref} /></a>
           <a class="btn btn-secondary" href={`tel:${site.phone.tel}`}><Icon name="phone" size={16} />Call {site.phone.display}</a>
         </div>
       </div>
@@ -98,7 +100,7 @@ const crumbs = [
         <ul class="pill-list join">
           {practice.formats.map((f) => <li class="pill pill-olive">{formatLabels[f]}</li>)}
         </ul>
-        <p class="body">Classes run {site.timings.days}, {site.timings.time}, at Megapolis Serenity in Hinjawadi Phase 3. See <a href="/pricing/">plans and pricing</a> or <a href={bookHref}>book a session</a>.</p>
+        <p class="body">Classes run {site.timings.days}, {site.timings.time}, at Megapolis Serenity in Hinjawadi Phase 3. See <a href="/pricing/">plans and pricing</a> or <a href={bookHref} {...linkProps(bookHref)}>book a session<NewTabHint href={bookHref} /></a>.</p>
       </section>
 
       <section class="block reveal" aria-labelledby="faq-h">
@@ -113,7 +115,7 @@ const crumbs = [
       <section class="block reveal quote" aria-label="Review">
         <span role="img" aria-label="5 out of 5 stars" class="stars">{[0, 1, 2, 3, 4].map(() => <Icon name="star" size={18} />)}</span>
         <blockquote>&#8220;{review.quote}&#8221;</blockquote>
-        <p class="cite">Verified Google review · <a href={review.url}>View on Google &#8594;</a></p>
+        <p class="cite">Verified Google review · <a href={review.url} {...linkProps(review.url)}>View on Google &#8594;<NewTabHint href={review.url} /></a></p>
       </section>
 
       {related.length > 0 && (

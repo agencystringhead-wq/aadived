@@ -2,6 +2,8 @@
 import ReviewCard from './ReviewCard.astro';
 import { reviews, rating } from '../data/reviews';
 import { site } from '../data/site';
+import { linkProps } from '../data/links';
+import NewTabHint from '../components/NewTabHint.astro';
 ---
 <section class="reviews">
   <div class="wrap section">
@@ -18,7 +20,7 @@ import { site } from '../data/site';
     <div class="grid">
       {reviews.map((r) => <ReviewCard review={r} />)}
     </div>
-    <div class="all"><a class="link-arrow" href={site.google.reviews}>Read all reviews on Google &#8594;</a></div>
+    <div class="all"><a class="link-arrow" href={site.google.reviews} {...linkProps(site.google.reviews)}>Read all reviews on Google &#8594;<NewTabHint href={site.google.reviews} /></a></div>
   </div>
 </section>
 <style>

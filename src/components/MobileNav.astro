@@ -6,6 +6,8 @@ const groups = [
   { id: 'about', heading: 'About', icon: '', links: aboutLinks },
   ...megaMenu.map((c, i) => ({ id: `mega-${i}`, heading: c.heading, icon: c.icon, links: c.links })),
 ];
+import { linkProps } from '../data/links';
+import NewTabHint from '../components/NewTabHint.astro';
 ---
 <div class="mnav" id="mobile-nav" role="dialog" aria-modal="true" aria-label="Menu" hidden>
   <div class="mnav-top">
@@ -19,12 +21,12 @@ const groups = [
           <span>{g.heading}</span><Icon name="chevron" size={16} stroke={2} />
         </button>
         <div class="acc-panel" id={`acc-${g.id}`} hidden>
-          {g.links.map((l) => <a href={l.href}>{l.label}</a>)}
+          {g.links.map((l) => <a href={l.href} {...linkProps(l.href)}>{l.label}<NewTabHint href={l.href} /></a>)}
         </div>
       </div>
     ))}
-    {mainNav.map((l) => <a class="flat" href={l.href}>{l.label}</a>)}
-    <a class="btn btn-primary book" href={site.bookHref}>Book a session</a>
+    {mainNav.map((l) => <a class="flat" href={l.href} {...linkProps(l.href)}>{l.label}<NewTabHint href={l.href} /></a>)}
+    <a class="btn btn-primary book" href={site.bookHref} {...linkProps(site.bookHref)}>Book a session<NewTabHint href={site.bookHref} /></a>
     <a class="tel" href={`tel:${site.phone.tel}`}><Icon name="phone" size={16} />{site.phone.display}</a>
   </div>
 </div>

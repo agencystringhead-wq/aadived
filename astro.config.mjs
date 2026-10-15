@@ -1,6 +1,7 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import mdx from '@astrojs/mdx';
+import rehypeExternalLinks from 'rehype-external-links';
 import { readdirSync, readFileSync } from 'node:fs';
 
 // pubDate of every journal post, used as <lastmod> in the sitemap
@@ -34,6 +35,22 @@ export default defineConfig({
       },
     }),
   ],
+  // Links inside Markdown and MDX content: external ones open in a new tab (see src/data/links.ts for the same rule in components)
+  markdown: {
+    rehypePlugins: [
+      [
+        rehypeExternalLinks,
+        {
+          target: '_blank',
+          rel: ['noopener', 'noreferrer'],
+          content: [
+            { type: 'element', tagName: 'span', properties: { className: ['sr-only'] }, children: [{ type: 'text', value: ' (opens in a new tab)' }] },
+            { type: 'element', tagName: 'span', properties: { className: ['ext-arrow'], ariaHidden: 'true' }, children: [{ type: 'text', value: '↗' }] },
+          ],
+        },
+      ],
+    ],
+  },
   image: {
     service: { entrypoint: 'astro/assets/services/sharp' },
   },

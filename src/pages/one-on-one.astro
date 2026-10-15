@@ -30,6 +30,8 @@ const faqs = [
   { q: 'What does it cost?', a: `For current prices, please call ${site.phone.display}.` },
 ];
 const s = getSeo(Astro.url.pathname);
+import { linkProps } from '../data/links';
+import NewTabHint from '../components/NewTabHint.astro';
 ---
 <BaseLayout
   breadcrumbs={[{ name: 'Home', path: '/' }, { name: 'One-on-one coaching', path: '/one-on-one/' }]}
@@ -71,7 +73,7 @@ const s = getSeo(Astro.url.pathname);
         </div>
         <div class="btns">
           <a class="btn btn-primary" href={`tel:${site.phone.tel}`}><Icon name="phone" size={16} />Call {site.phone.display}</a>
-          <a class="btn btn-secondary" href={site.instagram.dm}>Message on Instagram</a>
+          <a class="btn btn-secondary" href={site.instagram.dm} {...linkProps(site.instagram.dm)}>Message on Instagram<NewTabHint href={site.instagram.dm} /></a>
         </div>
       </div>
     </section>

@@ -8,6 +8,8 @@ interface Props {
   service: string;
 }
 const s = resolveService(Astro.props.service);
+import { linkProps } from '../../data/links';
+import NewTabHint from '../../components/NewTabHint.astro';
 ---
 <aside class="card" aria-labelledby="practise-h">
   <div class="eyebrow">Practise this with us</div>
@@ -15,8 +17,8 @@ const s = resolveService(Astro.props.service);
   <p>{s.blurb}</p>
   <p class="when">Classes run {site.timings.days}, {site.timings.time}, in Hinjawadi Phase 3 and live online.</p>
   <div class="btns">
-    <a class="btn btn-primary" href={s.bookHref}>Book a session</a>
-    <a class="btn btn-secondary" href={s.href}>Learn more</a>
+    <a class="btn btn-primary" href={s.bookHref} {...linkProps(s.bookHref)}>Book a session<NewTabHint href={s.bookHref} /></a>
+    <a class="btn btn-secondary" href={s.href} {...linkProps(s.href)}>Learn more<NewTabHint href={s.href} /></a>
   </div>
   <a class="call" href={`tel:${site.phone.tel}`}><Icon name="phone" size={16} />Or call {site.phone.display}</a>
 </aside>

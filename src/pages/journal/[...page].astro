@@ -29,6 +29,8 @@ const paged = first
       title: seoTitle(`Yoga & Wellbeing Journal, Page ${page.currentPage}`),
       description: `More articles on yoga, meditation, breathwork and wellbeing from AadiVed in Hinjawadi, Pune. Page ${page.currentPage} of the journal. Read, then book a session.`,
     };
+import { linkProps } from '../../data/links';
+import NewTabHint from '../../components/NewTabHint.astro';
 ---
 <BaseLayout {...paged} breadcrumbs={[{ name: 'Home', path: '/' }, { name: 'Journal', path: '/journal/' }]}>
   <div class="page-bg">
@@ -48,7 +50,7 @@ const paged = first
           <h2>The journal is on its way</h2>
           <p>We are writing our first articles. Until then, follow along on Instagram or explore the classes.</p>
           <div class="row">
-            <a class="btn btn-primary" href={site.instagram.url}>Follow {site.instagram.handle}</a>
+            <a class="btn btn-primary" href={site.instagram.url} {...linkProps(site.instagram.url)}>Follow {site.instagram.handle}<NewTabHint href={site.instagram.url} /></a>
             <a class="btn btn-secondary" href="/classes/">Explore classes</a>
           </div>
         </div>

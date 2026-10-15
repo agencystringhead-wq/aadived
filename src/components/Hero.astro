@@ -5,6 +5,8 @@ import Icon from './Icon.astro';
 import main from '../assets/images/stock/hero-mudra.webp';
 import small from '../assets/images/stock/hero-singing-bowls.webp';
 import { site } from '../data/site';
+import { linkProps } from '../data/links';
+import NewTabHint from '../components/NewTabHint.astro';
 ---
 <section class="hero">
   <div class="wrap inner">
@@ -13,7 +15,7 @@ import { site } from '../data/site';
       <h1>A return to the <em>roots</em> of wellbeing.</h1>
       <p class="intro">Guided yoga, meditation and sound healing, rooted in ancient Indian wisdom and built for modern lives. Ease stress, restore hormonal balance, and find a calm that carries off the mat.</p>
       <div class="buttons">
-        <a class="btn btn-primary" href={site.bookHref}>Book your first session</a>
+        <a class="btn btn-primary" href={site.bookHref} {...linkProps(site.bookHref)}>Book your first session<NewTabHint href={site.bookHref} /></a>
         <a class="btn btn-secondary" href="#classes">Explore classes</a>
       </div>
       <div class="rating">

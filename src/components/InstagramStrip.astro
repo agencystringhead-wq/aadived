@@ -12,6 +12,8 @@ const tiles = [
   { src: mono, alt: 'Instagram post: AadiVed logo, Mind. Body. Soul' },
   { src: yogaday, alt: 'Instagram post: a woman holding a dancer pose outdoors', crop: true },
 ];
+import { linkProps } from '../data/links';
+import NewTabHint from '../components/NewTabHint.astro';
 ---
 <section class="insta">
   <div class="wrap block">
@@ -20,13 +22,13 @@ const tiles = [
         <div class="eyebrow">On the mat this week</div>
         <h2>{site.instagram.handle}</h2>
       </div>
-      <a class="btn btn-secondary" href={site.instagram.url}>Follow on Instagram</a>
+      <a class="btn btn-secondary" href={site.instagram.url} {...linkProps(site.instagram.url)}>Follow on Instagram<NewTabHint href={site.instagram.url} /></a>
     </div>
     <div class="grid">
       {tiles.map((t) => (
-        <a class:list={["tile", { crop: t.crop }]} href={site.instagram.url}>
+        <a class:list={["tile", { crop: t.crop }]} href={site.instagram.url} {...linkProps(site.instagram.url)}>
           <Image src={t.src} alt={t.alt} format="webp" width={300} height={400} loading="lazy" />
-        </a>
+        <NewTabHint href={site.instagram.url} /></a>
       ))}
     </div>
   </div>

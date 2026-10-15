@@ -9,6 +9,8 @@ import { reviews, rating } from '../data/reviews';
 
 const crumbs = [{ label: 'Home', href: '/' }, { label: 'Reviews' }];
 const s = getSeo(Astro.url.pathname);
+import { linkProps } from '../data/links';
+import NewTabHint from '../components/NewTabHint.astro';
 ---
 <BaseLayout
   breadcrumbs={[{ name: 'Home', path: '/' }, { name: 'Reviews', path: '/reviews/' }]}
@@ -24,8 +26,8 @@ const s = getSeo(Astro.url.pathname);
         <p>Average rating on Google Reviews<br /><span class="sub">Based on {rating.count} reviews</span></p>
       </div>
       <div class="acts">
-        <a class="btn btn-primary" href={site.google.writeReview}>Leave a review</a>
-        <a class="btn btn-secondary" href={site.google.reviews}>Read all reviews on Google</a>
+        <a class="btn btn-primary" href={site.google.writeReview} {...linkProps(site.google.writeReview)}>Leave a review<NewTabHint href={site.google.writeReview} /></a>
+        <a class="btn btn-secondary" href={site.google.reviews} {...linkProps(site.google.reviews)}>Read all reviews on Google<NewTabHint href={site.google.reviews} /></a>
       </div>
     </section>
 
@@ -38,7 +40,7 @@ const s = getSeo(Astro.url.pathname);
               <blockquote>&#8220;{r.quote}&#8221;</blockquote>
               <figcaption>
                 <span>Verified Google review</span>
-                <a href={r.url}>View on Google &#8594;</a>
+                <a href={r.url} {...linkProps(r.url)}>View on Google &#8594;<NewTabHint href={r.url} /></a>
               </figcaption>
             </figure>
           </li>

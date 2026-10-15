@@ -3,12 +3,14 @@ interface Props {
   items: { label: string; href?: string }[];
 }
 const { items } = Astro.props;
+import { linkProps } from '../../data/links';
+import NewTabHint from '../../components/NewTabHint.astro';
 ---
 <nav class="crumbs" aria-label="Breadcrumb">
   <ol>
     {items.map((it, i) => (
       <li>
-        {it.href && i < items.length - 1 ? <a href={it.href}>{it.label}</a> : <span aria-current="page">{it.label}</span>}
+        {it.href && i < items.length - 1 ? <a href={it.href} {...linkProps(it.href)}>{it.label}<NewTabHint href={it.href} /></a> : <span aria-current="page">{it.label}</span>}
       </li>
     ))}
   </ol>

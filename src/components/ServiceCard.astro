@@ -2,13 +2,15 @@
 import Icon from './Icon.astro';
 import type { Service } from '../data/services';
 const { service } = Astro.props as { service: Service };
+import { linkProps } from '../data/links';
+import NewTabHint from '../components/NewTabHint.astro';
 ---
-<a class="card" href={service.href}>
+<a class="card" href={service.href} {...linkProps(service.href)}>
   <div class="badge" style={`background:${service.bg}`}><Icon d={service.icon} size={28} stroke={1.4} /></div>
   <h3>{service.title}</h3>
   <p>{service.text}</p>
   <span class="more">Learn more &#8594;</span>
-</a>
+<NewTabHint href={service.href} /></a>
 <style>
   .card { display: flex; flex-direction: column; gap: 14px; background: var(--sand); border-radius: var(--radius-card); padding: 36px 34px 32px; color: var(--ink); transition: transform .3s; min-height: 260px; }
   .card:hover { transform: translateY(-3px); color: var(--ink); }

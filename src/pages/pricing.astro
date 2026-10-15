@@ -37,6 +37,8 @@ const faqs = [
   { q: 'What is the cancellation policy?', a: `Please call ${site.phone.display} to ask about cancelling or rescheduling.` },
 ];
 const s = getSeo(Astro.url.pathname);
+import { linkProps } from '../data/links';
+import NewTabHint from '../components/NewTabHint.astro';
 ---
 <BaseLayout
   breadcrumbs={[{ name: 'Home', path: '/' }, { name: 'Plans and pricing', path: '/pricing/' }]}
@@ -63,7 +65,7 @@ const s = getSeo(Astro.url.pathname);
                 <li><Icon name="check" size={18} stroke={1.8} /><span>{it}</span></li>
               ))}
             </ul>
-            <a class:list={['btn', p.featured ? 'btn-ivory' : 'btn-primary']} href={p.href}>Book a session</a>
+            <a class:list={['btn', p.featured ? 'btn-ivory' : 'btn-primary']} href={p.href} {...linkProps(p.href)}>Book a session<NewTabHint href={p.href} /></a>
           </li>
         ))}
       </ul>
@@ -81,7 +83,7 @@ const s = getSeo(Astro.url.pathname);
         <h2 id="call-h" class="sec-title">Not sure which plan suits you?</h2>
         <div class="btns">
           <a class="btn btn-primary" href={`tel:${site.phone.tel}`}><Icon name="phone" size={16} />Call {site.phone.display}</a>
-          <a class="btn btn-secondary" href={site.instagram.dm}>Message on Instagram</a>
+          <a class="btn btn-secondary" href={site.instagram.dm} {...linkProps(site.instagram.dm)}>Message on Instagram<NewTabHint href={site.instagram.dm} /></a>
         </div>
       </div>
     </section>

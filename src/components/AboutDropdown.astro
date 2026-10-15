@@ -1,10 +1,12 @@
 ---
 import { aboutLinks, aboutQuote } from '../data/site';
+import { linkProps } from '../data/links';
+import NewTabHint from '../components/NewTabHint.astro';
 ---
 <div class="panel about" id="panel-about" hidden>
   <div class="wrap grid">
     <div>
-      {aboutLinks.map((l) => <a class="mm-link" href={l.href}>{l.label}</a>)}
+      {aboutLinks.map((l) => <a class="mm-link" href={l.href} {...linkProps(l.href)}>{l.label}<NewTabHint href={l.href} /></a>)}
     </div>
     <p class="quote">{aboutQuote}</p>
   </div>

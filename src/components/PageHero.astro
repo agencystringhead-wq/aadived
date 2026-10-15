@@ -9,10 +9,12 @@ interface Props {
   showTimings?: boolean;
 }
 const { eyebrow, title, intro, crumb, bookAnchor = false, showTimings = false } = Astro.props;
+import { linkProps } from '../data/links';
+import NewTabHint from '../components/NewTabHint.astro';
 ---
 <section class="page-hero">
   <div class="wrap inner">
-    {crumb && <a class="crumb" href={crumb.href}>&#8592; {crumb.label}</a>}
+    {crumb && <a class="crumb" href={crumb.href} {...linkProps(crumb.href)}>&#8592; {crumb.label}<NewTabHint href={crumb.href} /></a>}
     <div class="eyebrow">{eyebrow}</div>
     <h1>{title}</h1>
     <p>{intro}</p>
@@ -23,8 +25,8 @@ const { eyebrow, title, intro, crumb, bookAnchor = false, showTimings = false } 
   <div class="wrap box section">
     <div class="card">
       <h2>Content coming soon</h2>
-      <p>This page is being written. In the meantime, call <a href={`tel:${site.phone.tel}`}>{site.phone.display}</a> or message us on <a href={site.instagram.url}>Instagram</a>.</p>
-      <a class="btn btn-primary" href={site.bookHref}>Book a session</a>
+      <p>This page is being written. In the meantime, call <a href={`tel:${site.phone.tel}`}>{site.phone.display}</a> or message us on <a href={site.instagram.url} {...linkProps(site.instagram.url)}>Instagram<NewTabHint href={site.instagram.url} arrow /></a>.</p>
+      <a class="btn btn-primary" href={site.bookHref} {...linkProps(site.bookHref)}>Book a session<NewTabHint href={site.bookHref} arrow /></a>
     </div>
   </div>
 </section>

@@ -1,0 +1,12 @@
+---
+// Goes inside an external <a>: screen reader text, plus an optional small arrow for links inside body copy.
+// Renders nothing for internal links, so it is safe to put in every anchor.
+import { isExternal } from '../data/links';
+
+interface Props {
+  href?: string | null;
+  arrow?: boolean;
+}
+const { href, arrow = false } = Astro.props;
+---
+{isExternal(href) && (<><span class="sr-only"> (opens in a new tab)</span>{arrow && <span class="ext-arrow" aria-hidden="true">&#8599;</span>}</>)}

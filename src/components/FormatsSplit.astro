@@ -6,6 +6,8 @@ import { site } from '../data/site';
 // TODO: replace formats-studio.webp with a real photo of the studio (Megapolis Serenity) when the client sends one
 import studio from '../assets/images/stock/formats-studio.webp';
 import online from '../assets/images/stock/formats-online.webp';
+import { linkProps } from '../data/links';
+import NewTabHint from '../components/NewTabHint.astro';
 ---
 <section class="formats">
   <div class="wrap section">
@@ -19,7 +21,7 @@ import online from '../assets/images/stock/formats-online.webp';
         <div class="body">
           <h3>Studio sessions</h3>
           <p>Small, unhurried classes at Megapolis Serenity in Hinjawadi Phase 3. Personal attention on every asana, with sound healing in a quiet, grounded space.</p>
-          <a class="link-arrow" href={site.google.directions}>Get directions &#8594;</a>
+          <a class="link-arrow" href={site.google.directions} {...linkProps(site.google.directions)}>Get directions &#8594;<NewTabHint href={site.google.directions} /></a>
         </div>
       </div>
       <div class="card online">

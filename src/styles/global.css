@@ -163,3 +163,6 @@ h1, h2, h3, p, figure, blockquote { margin: 0; }
 .page-bg { background: var(--ivory); }
 .sand-band { background: var(--sand); padding: 88px 0; margin-top: 72px; }
 @media (max-width: 960px) { .sec { padding-top: 64px; } .sand-band { padding: 64px 0; margin-top: 56px; } }
+
+/* Small arrow after external links inside body copy (see NewTabHint.astro and rehype-external-links) */
+.ext-arrow { margin-left: 0.15em; font-size: 0.8em; opacity: 0.65; text-decoration: none; display: inline-block; }

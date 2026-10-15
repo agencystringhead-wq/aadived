@@ -3,6 +3,8 @@ import { Image } from 'astro:assets';
 import Icon from './Icon.astro';
 import { megaMenu, megaFeature } from '../data/site';
 import featureImg from '../assets/images/mega-menu-feature.webp';
+import { linkProps } from '../data/links';
+import NewTabHint from '../components/NewTabHint.astro';
 ---
 <div class="panel mega" id="panel-mega" hidden>
   <div class="wrap grid">
@@ -10,18 +12,18 @@ import featureImg from '../assets/images/mega-menu-feature.webp';
       <div class="col">
         <div class="col-head"><Icon name={col.icon} size={18} stroke={1.5} />{col.heading}</div>
         {col.links.map((l) => (
-          <a class:list={['mm-link', { strong: l.emphasis }]} href={l.href}>{l.label}</a>
+          <a class:list={['mm-link', { strong: l.emphasis }]} href={l.href} {...linkProps(l.href)}>{l.label}<NewTabHint href={l.href} /></a>
         ))}
       </div>
     ))}
-    <a class="feature" href={megaFeature.href}>
+    <a class="feature" href={megaFeature.href} {...linkProps(megaFeature.href)}>
       <Image src={featureImg} alt="A woman meditating in lotus pose on a rock, with a hazy city skyline below a blue sky" format="webp"
         width={240} height={295} densities={[1, 2]} loading="lazy" />
       <span class="overlay">
         <span class="kicker">{megaFeature.eyebrow}</span>
         <span class="sub">{megaFeature.text}</span>
       </span>
-    </a>
+    <NewTabHint href={megaFeature.href} /></a>
   </div>
 </div>
 <style>

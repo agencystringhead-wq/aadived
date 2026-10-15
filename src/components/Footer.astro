@@ -9,6 +9,8 @@ const cols = [
   { heading: 'Healing & Wellness', links: footerColumns.healing },
   { heading: 'The Studio', links: footerColumns.studio },
 ];
+import { linkProps, isExternal } from '../data/links';
+import NewTabHint from '../components/NewTabHint.astro';
 ---
 <footer class="foot on-dark">
   <div class="wrap pad">
@@ -30,10 +32,10 @@ const cols = [
         <Image src={logo} alt="AadiVed, Mind. Body. Soul" format="webp" width={170} height={142} densities={[1, 2]} loading="lazy" />
         <p>Holistic yoga and sound healing studio in Hinjawadi, Pune. Rooted in ancient Indian wisdom, built for modern lives.</p>
         <div class="social">
-          <a href={site.instagram.url} aria-label="AadiVed on Instagram"><Icon name="instagram" /></a>
-          <a href={site.google.profile} aria-label="AadiVed on Google"><Icon name="google" /></a>
+          <a href={site.instagram.url} {...linkProps(site.instagram.url)} aria-label={`AadiVed on Instagram${isExternal(site.instagram.url) ? ' (opens in a new tab)' : ''}`}><Icon name="instagram" /></a>
+          <a href={site.google.profile} {...linkProps(site.google.profile)} aria-label={`AadiVed on Google${isExternal(site.google.profile) ? ' (opens in a new tab)' : ''}`}><Icon name="google" /></a>
           <!-- TODO: confirm the studio number is on WhatsApp before launch -->
-          <a href={site.whatsapp} aria-label="Message AadiVed on WhatsApp"><Icon name="whatsapp" /></a>
+          <a href={site.whatsapp} {...linkProps(site.whatsapp)} aria-label={`Message AadiVed on WhatsApp${isExternal(site.whatsapp) ? ' (opens in a new tab)' : ''}`}><Icon name="whatsapp" /></a>
         </div>
       </div>
 
@@ -41,7 +43,7 @@ const cols = [
         <div>
           <div class="head">{c.heading}</div>
           <div class="links">
-            {c.links.map((l) => <a href={l.href}>{l.label}</a>)}
+            {c.links.map((l) => <a href={l.href} {...linkProps(l.href)}>{l.label}<NewTabHint href={l.href} /></a>)}
           </div>
         </div>
       ))}
@@ -52,7 +54,7 @@ const cols = [
           <span>{site.address.lines.map((l, i) => <>{i > 0 && <br />}{l}</>)}</span>
           <a href={`tel:${site.phone.tel}`}>{site.phone.display}</a>
           <span>{site.timings.daysShort}<br />{site.timings.time}</span>
-          <a class="dir" href={site.google.directions}>Get directions &#8594;</a>
+          <a class="dir" href={site.google.directions} {...linkProps(site.google.directions)}>Get directions &#8594;<NewTabHint href={site.google.directions} /></a>
         </div>
       </div>
     </div>
@@ -60,7 +62,7 @@ const cols = [
     <div class="bottom">
       <span>&#169; {year} {site.name}. All rights reserved.</span>
       <span class="legal">
-        {legalLinks.map((l) => <a href={l.href}>{l.label}</a>)}
+        {legalLinks.map((l) => <a href={l.href} {...linkProps(l.href)}>{l.label}<NewTabHint href={l.href} /></a>)}
         <span>Website by wwiser</span>
       </span>
     </div>

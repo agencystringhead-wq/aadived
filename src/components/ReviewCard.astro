@@ -2,6 +2,8 @@
 import Icon from './Icon.astro';
 import type { Review } from '../data/reviews';
 const { review } = Astro.props as { review: Review };
+import { linkProps } from '../data/links';
+import NewTabHint from '../components/NewTabHint.astro';
 ---
 <figure class="card">
   <span role="img" aria-label="5 out of 5 stars" class="stars">
@@ -10,7 +12,7 @@ const { review } = Astro.props as { review: Review };
   <blockquote>&#8220;{review.quote}&#8221;</blockquote>
   <figcaption>
     <span>Verified Google review</span>
-    <a href={review.url}>View on Google &#8594;</a>
+    <a href={review.url} {...linkProps(review.url)}>View on Google &#8594;<NewTabHint href={review.url} /></a>
   </figcaption>
 </figure>
 <style>

@@ -8,10 +8,12 @@ interface Props {
 }
 const { url, title } = Astro.props;
 const wa = `https://wa.me/?text=${encodeURIComponent(`${title} ${url}`)}`;
+import { linkProps } from '../../data/links';
+import NewTabHint from '../../components/NewTabHint.astro';
 ---
 <div class="share" data-share data-url={url}>
   <span class="label">Share this article</span>
-  <a class="btn btn-secondary" href={wa} rel="noopener"><Icon name="whatsapp" size={16} />WhatsApp</a>
+  <a class="btn btn-secondary" href={wa} {...linkProps(wa)}><Icon name="whatsapp" size={16} />WhatsApp<NewTabHint href={wa} /></a>
   <button type="button" class="btn btn-secondary" data-copy hidden>Copy link</button>
   <span class="ok" data-copied hidden role="status">Link copied</span>
 </div>
