@@ -78,7 +78,7 @@ Posts are MDX files in `src/content/journal/`. Frontmatter is validated by `src/
   - `ig-mono.webp`: `TeacherIntro.astro`, `InstagramStrip.astro`
   - `ig-guided.webp`: `FormatsSplit.astro`, `InstagramStrip.astro`
 - [ ] **Hero stock photos.** The hero uses free Pexels photos (credits in `design-source/stock-credits.md`). Replace with photos of the studio and Anupriya when available.
-- [ ] **Anupriya certificate.** Drop the scan at `src/assets/images/certificates/ryt-500.webp`. Until then `/about/anupriya/` shows a placeholder frame. Once the file exists the frame becomes a click-to-enlarge lightbox automatically.
+- [x] **Anupriya certificate.** Photo of Anupriya with her Rishikesh teacher training certificate is at `src/assets/images/certificates/teacher-training-certificate.webp`. Still to add if wanted: the Yoga Alliance registration number (removed from the page for now).
 - [ ] **Anupriya facts.** Years teaching, teachers and lineage, background story, Yoga Alliance registration number and year certified are marked `[To confirm with Anupriya]` on `/about/anupriya/`.
 - [ ] **Sound Healing session flow.** The three "what a session looks like" steps in `src/data/practices.ts` are general wording and need confirming with Anupriya (marked with a TODO).
 - [ ] **Service page details.** All 14 service pages have copy in `src/data/practices.ts`. Confirm with Anupriya which practices run online (currently all except Sound Healing and Prenatal), the session steps, and every `[To confirm with Anupriya]` FAQ answer.

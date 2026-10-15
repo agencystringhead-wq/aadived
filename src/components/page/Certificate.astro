@@ -1,22 +1,22 @@
 ---
-// Framed certificate card with a click-to-enlarge lightbox.
-// TODO: drop the real certificate scan at src/assets/images/certificates/ryt-500.webp.
-// Until the file exists the frame shows a placeholder and no lightbox is rendered.
+// Framed photo of Anupriya with her teacher training certificate, with a click-to-enlarge lightbox.
+// The image is src/assets/images/certificates/teacher-training-certificate.webp (a photo, not a scan of the Yoga Alliance registration).
+// If the file is missing the frame shows a placeholder and no lightbox is rendered.
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 
-const found = import.meta.glob<{ default: ImageMetadata }>('../../assets/images/certificates/ryt-500.webp', { eager: true });
+const found = import.meta.glob<{ default: ImageMetadata }>('../../assets/images/certificates/teacher-training-certificate.webp', { eager: true });
 const cert = Object.values(found)[0]?.default;
-const alt = 'Yoga Alliance RYT-500 certificate for Anupriya';
+const alt = 'Anupriya smiling, wearing a white kurta and a marigold garland, holding her yoga teacher training certificate from Rishikesh';
 ---
 <div class="cert">
   {cert ? (
     <>
-      <button type="button" class="frame" data-cert-open aria-haspopup="dialog" aria-label="Enlarge the Yoga Alliance RYT-500 certificate">
+      <button type="button" class="frame" data-cert-open aria-haspopup="dialog" aria-label="Enlarge the photo of Anupriya with her teacher training certificate">
         <Image src={cert} alt={alt} format="webp" width={720} loading="lazy" />
         <span class="hint">Click to enlarge</span>
       </button>
-      <dialog class="lightbox" data-cert-dialog aria-label="Yoga Alliance RYT-500 certificate">
+      <dialog class="lightbox" data-cert-dialog aria-label="Anupriya with her teacher training certificate">
         <button type="button" class="close" data-cert-close aria-label="Close">
           <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg>
         </button>
@@ -24,8 +24,8 @@ const alt = 'Yoga Alliance RYT-500 certificate for Anupriya';
       </dialog>
     </>
   ) : (
-    <div class="frame placeholder" role="img" aria-label="Certificate image coming soon">
-      <span>Yoga Alliance RYT-500 certificate · image coming soon</span>
+    <div class="frame placeholder" role="img" aria-label="Photo coming soon">
+      <span>Teacher training certificate · photo coming soon</span>
     </div>
   )}
 </div>

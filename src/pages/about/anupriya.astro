@@ -37,7 +37,11 @@ const practices = [
   { label: 'Hormonal Balance', href: '/programs/hormonal-balance/' },
   { label: 'Stress Management', href: '/programs/stress-management/' },
 ];
-const path = ['Years of teaching', 'Teachers and lineage', 'Background and training story'];
+const path = [
+  { title: 'Years of teaching', text: '5 years' },
+  { title: 'What she teaches', text: 'Guided yoga, meditation, breathwork, sound healing and one-on-one prenatal yoga.' },
+  { title: 'Background and training story', text: 'Completed her yoga teacher training in Rishikesh, surrounded by an amazing group of individuals.' },
+];
 ---
 <BaseLayout
   jsonLd={[personSchema()]}
@@ -118,15 +122,15 @@ const path = ['Years of teaching', 'Teachers and lineage', 'Background and train
       </div>
     </section>
 
-    <!-- Her path: facts still to confirm -->
+    <!-- Her path -->
     <section class="wrap path reveal" aria-labelledby="path-h">
       <div class="eyebrow">Her path</div>
       <h2 id="path-h">The story behind the practice</h2>
       <ul class="path-grid">
         {path.map((p) => (
           <li>
-            <h3>{p}</h3>
-            <p>[To confirm with Anupriya]</p>
+            <h3>{p.title}</h3>
+            <p>{p.text}</p>
           </li>
         ))}
       </ul>
@@ -140,8 +144,7 @@ const path = ['Years of teaching', 'Teachers and lineage', 'Background and train
           <h2 id="creds-h">500-hour Yoga Alliance Registered Practitioner</h2>
           <p>Anupriya is a 500-hour Yoga Alliance certified practitioner (RYT-500) and the founder of AadiVed Yoga and Wellness.</p>
           <ul class="facts">
-            <li><span>Registration number</span> [To confirm with Anupriya]</li>
-            <li><span>Year certified</span> [To confirm with Anupriya]</li>
+            <li><span>Year certified</span> 2021</li>
           </ul>
         </div>
         <Certificate />
@@ -199,15 +202,15 @@ const path = ['Years of teaching', 'Teachers and lineage', 'Background and train
   /* Path */
   .path { padding-top: 96px; padding-bottom: 96px; }
   .path-grid { list-style: none; margin: 32px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
-  .path-grid li { border: 1.5px dashed #BFB79F; border-radius: var(--radius-card); padding: 28px 28px 30px; }
+  .path-grid li { border: 1px solid var(--line); background: var(--ivory); border-radius: var(--radius-card); padding: 28px 28px 30px; }
   .path-grid h3 { font-family: var(--font-display); font-weight: 500; font-size: 28px; margin: 0; }
-  .path-grid p { margin: 10px 0 0; color: var(--label); font-style: italic; }
+  .path-grid p { margin: 10px 0 0; color: var(--text-muted); }
 
   /* Credentials */
   .creds { padding: 104px 0; border-top: 1px solid var(--line); }
   .cgrid { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: 80px; align-items: center; }
   .ctext p { color: var(--text-muted); margin: 22px 0 0; max-width: 34em; }
-  .facts { list-style: none; margin: 26px 0 0; padding: 0; display: grid; gap: 10px; color: var(--label); font-style: italic; }
+  .facts { list-style: none; margin: 26px 0 0; padding: 0; display: grid; gap: 10px; color: var(--text-muted); }
   .facts span { display: inline-block; min-width: 10.5em; font-style: normal; font-weight: 500; color: var(--ink); }
 
   @media (max-width: 960px) {
