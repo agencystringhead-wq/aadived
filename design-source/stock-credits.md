@@ -24,6 +24,13 @@ All photos are from Pexels under the [Pexels License](https://www.pexels.com/lic
 | `src/assets/images/stock/service-anxiety-relief.webp` (960x1200) | ph.galtri | https://www.pexels.com/photo/a-woman-in-dress-standing-near-lake-while-the-sun-sets-11869182/ | Pexels License | 4:5 crop, WebP quality 80 |
 | `src/assets/images/stock/service-energy-reset.webp` (960x1200) | Maria | https://www.pexels.com/photo/a-woman-sitting-on-a-wooden-deck-overlooking-a-lake-and-mountains-28262547/ | Pexels License | 4:5 crop, WebP quality 80 |
 
+### Journal featured images
+
+| File | Photographer | Source | Licence | Notes |
+|---|---|---|---|---|
+| `src/assets/images/journal/your-first-yoga-class-in-hinjawadi-what-to-expect.webp` (1600x900) | Yan Krukau | https://www.pexels.com/photo/man-in-white-shirt-doing-stretching-in-yoga-class-8436581/ | Pexels License | 16:9 crop, WebP quality 80 |
+| `src/assets/images/journal/prenatal-yoga-trimester-by-trimester-what-to-do-and-what-to-skip.webp` (1600x900) | Pavel Danilyuk | https://www.pexels.com/photo/a-pregnant-woman-wearing-gray-tank-top-meditating-7055720/ | Pexels License | 16:9 crop shifted down, WebP quality 80 |
+
 Client-supplied images (not stock, no credit needed): `src/assets/images/anupriya/*` (Anupriya) and `src/assets/images/aadived/beach-yoga-*.webp` (beach yoga, used on /about/ and /programs/daily-practice/ and /classes/ at most twice). The beach photos are not Anupriya or the studio.
 
 The Pexels page title for `hero-singing-bowls` reads "cooper mortar and pestle", and for `service-sound-healing` reads "candle in bowl on stone block". Both photos actually show a singing bowl with a wooden mallet.
