@@ -38,7 +38,7 @@ const hasImage = Boolean(image) && variant !== 'plain';
   </div>
   {hasImage && variant === 'wide' && (
     <div class="wrap wide">
-      <div class="frame"><Image src={image!} alt={imageAlt} format="webp" width={1240} loading="eager" fetchpriority="high" /></div>
+      <div class="frame"><Image src={image!} alt={imageAlt} format="webp" width={1240} widths={[480, 800, 1240]} sizes="(max-width: 1240px) 100vw, 1240px" loading="eager" fetchpriority="high" /></div>
     </div>
   )}
 </section>

@@ -10,8 +10,10 @@ import '@fontsource/jost/latin-400.css';
 import '@fontsource/jost/latin-500.css';
 import '@fontsource/tiro-devanagari-hindi/devanagari-400.css';
 import corm400 from '@fontsource/cormorant-garamond/files/cormorant-garamond-latin-400-normal.woff2?url';
+import corm400i from '@fontsource/cormorant-garamond/files/cormorant-garamond-latin-400-italic.woff2?url';
 import jost400 from '@fontsource/jost/files/jost-latin-400-normal.woff2?url';
-const preloadFonts = [corm400, jost400];
+// The italic face is preloaded too: the hero headline has an italic word, and a late swap shifts the layout
+const preloadFonts = [corm400, corm400i, jost400];
 import '../styles/global.css';
 
 import UtilityBar from '../components/UtilityBar.astro';
