@@ -45,6 +45,15 @@ Every image on the site is WebP, rendered through `astro:assets` with `format="w
 - **`noindex`** on `/privacy/`, `/terms/` and the 404 page. They are excluded from the sitemap (`astro.config.mjs`).
 - **`npm run seo:audit`** reads the built `dist/` and fails on missing or duplicate titles and descriptions, titles over 60 characters, descriptions outside 120 to 160, pages without exactly one H1, skipped heading levels, wrong canonicals, missing alt, missing Open Graph tags, invalid or duplicate JSON-LD, orphan pages, and a wrong sitemap or `robots.txt`. Run `npm run build && npm run seo:audit` before each release.
 
+## Performance and caching
+
+- **No client-side router.** Page-to-page transitions use the browser's native cross-document View Transitions (`@view-transition` in `global.css`, with the header held still). The Astro `ClientRouter` was removed because it added 300 to 450ms of main-thread blocking per page and cut mobile Lighthouse from about 97 to 81 to 87. Browsers without native support simply navigate normally. Do not add `<ClientRouter />` back without re-measuring.
+- **Scroll reveals** (`src/scripts/reveal.ts`) use one IntersectionObserver that runs when the browser is idle. Sections below the fold fade up as they scroll in. They are never hidden if JavaScript fails, and nothing animates under `prefers-reduced-motion`. Every page script runs as soon as the page is parsed, so there are no router events to wait for.
+- **Prefetching:** a `speculationrules` block in `BaseLayout.astro` prefetches a page when you hover a link (Chrome only, no JavaScript).
+- **Caching headers** are in `public/_headers`: hashed files in `/_astro/` are cached for a year (`immutable`), unhashed icons and social images for a week, small files like `robots.txt` and the sitemap for an hour. HTML revalidates on every visit so a new deploy shows straight away. The same file sets security headers (`nosniff`, referrer policy, `X-Frame-Options`, permissions policy). There is no Content-Security-Policy yet: it needs care because of inline scripts and styles, Google Maps and JSON-LD.
+- **Cloudflare Web Analytics:** if the Cloudflare dashboard has Web Analytics auto-injection on, it adds a 10 KB beacon script to every page and lowers mobile scores by a few points. Turn it off in the dashboard (Analytics and logs, Web Analytics) if you do not use it.
+- **Check before release:** `npm run build && npm run check:dist && npm run seo:audit`, then Lighthouse mobile on the built site (`npm run preview`). Latest local results: mobile 96 to 100 on all 14 page types checked, desktop 100.
+
 ## Open items (leave as TODO until confirmed)
 
 - [x] **Class timings.** Confirmed as Monday to Friday, 8:00 am to 10:00 am (`site.timings` in `src/data/site.ts`). Weekend timings are not confirmed, so none are shown. The Google profile still says "Open 24 hours" and should be updated to match.
