@@ -45,6 +45,16 @@ Every image on the site is WebP, rendered through `astro:assets` with `format="w
 - **`noindex`** on `/privacy/`, `/terms/` and the 404 page. They are excluded from the sitemap (`astro.config.mjs`).
 - **`npm run seo:audit`** reads the built `dist/` and fails on missing or duplicate titles and descriptions, titles over 60 characters, descriptions outside 120 to 160, pages without exactly one H1, skipped heading levels, wrong canonicals, missing alt, missing Open Graph tags, invalid or duplicate JSON-LD, orphan pages, and a wrong sitemap or `robots.txt`. Run `npm run build && npm run seo:audit` before each release.
 
+## Journal
+
+Posts are MDX files in `src/content/journal/`. Frontmatter is validated by `src/content.config.ts` (title, description of 140 to 160 characters, pubDate, category, tags, heroImage, heroAlt, relatedService).
+
+- Put the featured image in `src/assets/images/journal/[slug].webp` (1600x900), then run `npm run assets:og` to make its 1200x630 JPG for social previews. Credit it in `design-source/stock-credits.md`.
+- Scheduled publishing: a post shows only when `draft` is false and its pubDate (07:00 IST) has passed at build time. Everything reads posts through `getPublishedPosts()` in `src/data/journal.ts`.
+- Review future posts locally with `SHOW_SCHEDULED=true npm run dev`. Never set it in production.
+- `<PostLink slug="...">text</PostLink>` links only once the target is published, otherwise it renders plain text.
+- Daily rebuild: `.github/workflows/daily-publish.yml` calls a Cloudflare Pages deploy hook at 07:00 IST. Create the hook in Cloudflare Pages (Settings, Builds, Deploy hooks) and save its URL as the repo secret `CF_DEPLOY_HOOK`.
+
 ## Performance and caching
 
 - **No client-side router.** Page-to-page transitions use the browser's native cross-document View Transitions (`@view-transition` in `global.css`, with the header held still). The Astro `ClientRouter` was removed because it added 300 to 450ms of main-thread blocking per page and cut mobile Lighthouse from about 97 to 81 to 87. Browsers without native support simply navigate normally. Do not add `<ClientRouter />` back without re-measuring.

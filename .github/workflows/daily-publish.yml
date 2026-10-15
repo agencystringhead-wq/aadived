@@ -1,0 +1,19 @@
+# Rebuilds the site every morning so scheduled journal posts go live on their pubDate.
+# A post publishes when its pubDate (07:00 IST) has passed at build time, so a daily rebuild is all it needs.
+# Setup: in Cloudflare Pages, create a Deploy Hook (Settings, Builds, Deploy hooks) for the production branch,
+# then save its URL as the repository secret CF_DEPLOY_HOOK.
+name: Daily publish
+
+on:
+  schedule:
+    - cron: "30 1 * * *" # 07:00 IST
+  workflow_dispatch:
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Cloudflare Pages deploy
+        env:
+          CF_DEPLOY_HOOK: ${{ secrets.CF_DEPLOY_HOOK }}
+        run: curl -fsS -X POST "$CF_DEPLOY_HOOK"
