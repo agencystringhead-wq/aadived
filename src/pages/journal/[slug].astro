@@ -119,6 +119,10 @@ const crumbs = [{ label: 'Home', href: '/' }, { label: 'Journal', href: '/journa
   .prose :global(p) { margin: 0 0 22px; font-size: 18.5px; line-height: 1.78; color: var(--text-muted); max-width: 68ch; }
   .prose > :global(p:first-of-type) { font-family: var(--font-display); font-size: clamp(24px, 2.4vw, 30px); line-height: 1.38; color: var(--olive-deep); }
   .prose :global(h2) { font-family: var(--font-display); font-weight: 400; font-size: clamp(32px, 3.4vw, 44px); line-height: 1.08; margin: 64px 0 18px; color: var(--ink); scroll-margin-top: 120px; }
+  .prose :global(table) { width: 100%; border-collapse: collapse; margin: 28px 0; font-size: 16px; }
+  .prose :global(th), .prose :global(td) { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .prose :global(th) { font-weight: 500; color: var(--olive-deep); background: var(--ivory); }
+  .prose :global(td:first-child) { font-weight: 500; color: var(--ink); }
   .prose :global(h3) { font-family: var(--font-display); font-weight: 500; font-size: 28px; line-height: 1.15; margin: 38px 0 10px; color: var(--ink); scroll-margin-top: 120px; }
   .prose :global(a) { color: var(--olive); border-bottom: 1px solid currentColor; }
   .prose :global(a:hover) { color: var(--olive-deep); }
