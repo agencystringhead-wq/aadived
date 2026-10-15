@@ -1,6 +1,6 @@
 ---
-// Enquiry form. To make it work, set `enquiryAction` in src/data/site.ts to your form provider URL
-// (Formspree, Getform, a Cloudflare Worker, ...). The form POSTs its fields there as form data.
+// Enquiry form. Submits as JSON to Web3Forms (https://api.web3forms.com/submit), which emails each enquiry to us.
+// The access key lives in site.forms.web3formsKey (src/data/site.ts). Nothing is stored on this site.
 import { site, stubPages } from '../../data/site';
 import { practices, interestId } from '../../data/practices';
 
@@ -13,7 +13,7 @@ const options = groups.map((g) => ({
 import { linkProps } from '../../data/links';
 import NewTabHint from '../../components/NewTabHint.astro';
 ---
-<div class="wrap-form" id="enquiry" data-enquiry data-action={site.enquiryAction}>
+<div class="wrap-form" id="enquiry" data-enquiry data-key={site.forms.web3formsKey} data-phone={site.phone.display} data-tel={site.phone.tel}>
   <form novalidate class="form" data-form>
     <div class="row two">
       <div class="field">
@@ -66,8 +66,8 @@ import NewTabHint from '../../components/NewTabHint.astro';
       <textarea id="f-message" name="message" rows="4" placeholder="Tell us a little about what you would like to feel."></textarea>
     </div>
 
-    <!-- Honeypot: real visitors never see or fill this -->
-    <div class="hp" aria-hidden="true"><label>Leave this empty <input type="text" name="company" tabindex="-1" autocomplete="off" /></label></div>
+    <!-- Web3Forms honeypot: real visitors never see or tick this, bots often do -->
+    <div class="hp" aria-hidden="true"><input type="checkbox" name="botcheck" id="f-botcheck" tabindex="-1" autocomplete="off" /></div>
 
     <div class="field consent">
       <label class="check" for="f-consent">
@@ -78,11 +78,8 @@ import NewTabHint from '../../components/NewTabHint.astro';
     </div>
 
     <button type="submit" class="btn btn-primary" data-submit>Send enquiry</button>
-    <p class="notice" data-notice hidden role="status">
-      This form is not connected yet, so nothing has been sent. Please call <a href={`tel:${site.phone.tel}`}>{site.phone.display}</a> or message us on <a href={site.instagram.dm} {...linkProps(site.instagram.dm)}>Instagram<NewTabHint href={site.instagram.dm} arrow /></a>.
-    </p>
     <p class="fail" data-fail hidden role="alert">
-      Something went wrong sending your enquiry. Please call <a href={`tel:${site.phone.tel}`}>{site.phone.display}</a> or try again.
+      Something went wrong. Please call us on <a href={`tel:${site.phone.tel}`}>{site.phone.display}</a>.
     </p>
   </form>
 
@@ -123,9 +120,9 @@ import NewTabHint from '../../components/NewTabHint.astro';
   .notice, .fail { margin: 0; padding: 16px 18px; border-radius: 14px; font-size: 15.5px; line-height: 1.55; }
   .notice { background: var(--accent-soft); color: var(--olive-deep); }
   .fail { background: #FBEAE4; color: #7A2F1F; }
-  .notice a, .fail a { border-bottom: 1px solid currentColor; font-weight: 500; }
+  .fail a { border-bottom: 1px solid currentColor; font-weight: 500; }
   .success { text-align: left; padding: 44px 36px; border-radius: 26px; background: var(--accent-soft); display: grid; gap: 14px; justify-items: start; }
-  .success[hidden], .notice[hidden], .fail[hidden], .form[hidden] { display: none; }
+  .success[hidden], .fail[hidden], .form[hidden] { display: none; }
   .success:focus { outline: none; }
   .tick { width: 60px; height: 60px; border-radius: 50%; background: var(--olive); color: var(--ivory); display: inline-flex; align-items: center; justify-content: center; }
   .success h3 { font-family: var(--font-display); font-weight: 500; font-size: 34px; line-height: 1.1; margin: 4px 0 0; }
@@ -187,14 +184,12 @@ import NewTabHint from '../../components/NewTabHint.astro';
       el?.addEventListener('change', () => { if (el.getAttribute('aria-invalid')) validators[key](); });
     }
 
-    const notice = q<HTMLElement>('[data-notice]')!;
     const fail = q<HTMLElement>('[data-fail]')!;
     const success = q<HTMLElement>('[data-success]')!;
     const submit = q<HTMLButtonElement>('[data-submit]')!;
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      notice.hidden = true;
       fail.hidden = true;
       const results = Object.entries(validators).map(([k, fn]) => [k, fn()] as const);
       const firstBad = results.find(([, msg]) => msg);
@@ -202,22 +197,44 @@ import NewTabHint from '../../components/NewTabHint.astro';
         (form.elements.namedItem(firstBad[0]) as HTMLElement)?.focus();
         return;
       }
-      const action = root.dataset.action?.trim();
-      if (!action) {
-        // No provider connected yet: be honest instead of showing a false success.
-        notice.hidden = false;
-        return;
-      }
-      if ((form.elements.namedItem('company') as HTMLInputElement).value) return; // honeypot
+      const val = (n: string) => (form.elements.namedItem(n) as HTMLInputElement | null)?.value.trim() ?? '';
+      const interestSelect = form.elements.namedItem('interest') as HTMLSelectElement;
+      const interest = interestSelect.selectedOptions[0]?.text.trim() || val('interest');
+      const formatInput = form.querySelector<HTMLInputElement>('input[name="format"]:checked');
+      const format = formatInput?.nextElementSibling?.textContent?.trim() ?? '';
+      const email = val('email');
+      const payload: Record<string, string | boolean> = {
+        access_key: root.dataset.key ?? '',
+        subject: `New enquiry from aadived.com: ${val('name')} (${interest})`,
+        from_name: 'AadiVed Website',
+        name: val('name'),
+        phone: val('phone'),
+        email,
+        interest,
+        format,
+        preferred_days_times: val('time'),
+        message: val('message'),
+        page: location.pathname,
+        botcheck: (form.elements.namedItem('botcheck') as HTMLInputElement).checked,
+      };
+      if (email) payload.replyto = email;
+
       submit.disabled = true;
-      submit.textContent = 'Sending...';
+      submit.textContent = 'Sending\u2026';
       try {
-        const res = await fetch(action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
-        if (!res.ok) throw new Error(String(res.status));
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok || !data.success) throw new Error(data.message || String(res.status));
+        form.reset();
         form.hidden = true;
         success.hidden = false;
         success.focus();
       } catch {
+        // Keep what the visitor typed so they can try again
         fail.hidden = false;
       } finally {
         submit.disabled = false;

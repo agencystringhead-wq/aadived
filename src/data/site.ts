@@ -48,10 +48,11 @@ export const site = {
   bookHref: '/contact/#book',
   // TODO: replace with the real newsletter form provider (JotForm or Cloudflare Worker)
   newsletterAction: '#',
-  // TODO: paste the form provider URL here (Formspree, Getform, a Cloudflare Worker, etc.).
-  // The enquiry form on /contact/ POSTs its fields to this URL. While it is empty the form tells visitors
-  // to call or message on Instagram instead of showing a false success message.
-  enquiryAction: '',
+  forms: {
+    // Web3Forms access key: it is a public key, meant to be used in client code. The enquiry form on /contact/
+    // sends each enquiry to Web3Forms, which emails it to us. Nothing is stored on this site.
+    web3formsKey: 'd7d6df16-cfd3-412e-b0f9-ca7ca658c848',
+  },
 } as const;
 
 export interface NavLink {
