@@ -45,6 +45,10 @@ Every image on the site is WebP, rendered through `astro:assets` with `format="w
 - **`noindex`** on `/privacy/`, `/terms/` and the 404 page. They are excluded from the sitemap (`astro.config.mjs`).
 - **`npm run seo:audit`** reads the built `dist/` and fails on missing or duplicate titles and descriptions, titles over 60 characters, descriptions outside 120 to 160, pages without exactly one H1, skipped heading levels, wrong canonicals, missing alt, missing Open Graph tags, invalid or duplicate JSON-LD, orphan pages, and a wrong sitemap or `robots.txt`. Run `npm run build && npm run seo:audit` before each release.
 
+## Image licences
+
+Every stock photo is from Pexels (Pexels License). The full register, with photographer, Pexels photo ID, source, usage and alt text, is in `design-source/image-licence-register.html` (PDF copy alongside). Short credits table: `design-source/stock-credits.md`. Proof screenshots of each Pexels page and the licence text: `design-source/licences/`. When you add or replace an image, update all three.
+
 ## Journal
 
 Posts are MDX files in `src/content/journal/`. Frontmatter is validated by `src/content.config.ts` (title, description of 140 to 160 characters, pubDate, category, tags, heroImage, heroAlt, relatedService).
