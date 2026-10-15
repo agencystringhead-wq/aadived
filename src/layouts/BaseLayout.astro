@@ -101,6 +101,15 @@ if (breadcrumbs?.length) {
     <meta name="twitter:image" content={ogUrl} />
 
     {schemas.map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VHMFXTP57R"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-VHMFXTP57R');
+    </script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
