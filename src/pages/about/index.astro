@@ -5,7 +5,7 @@ import InnerHero from '../../components/page/InnerHero.astro';
 import Bento from '../../components/page/Bento.astro';
 import FinalCTA from '../../components/FinalCTA.astro';
 import { site } from '../../data/site';
-// Client-supplied beach photo. Not Anupriya and not the studio.
+// Client-supplied beach photo. Not Anupriya.
 import beach from '../../assets/images/aadived/beach-yoga-wide.webp';
 
 const crumbs = [{ label: 'Home', href: '/' }, { label: 'About' }];
@@ -13,7 +13,7 @@ const approach = [
   { title: 'Ancient wisdom, modern lives', text: 'A blend of ancient Indian wisdom, tailored for the way we live now.' },
   { title: 'Yoga, breath and sound', text: 'Guided yoga, meditation, breathwork and sound healing, taught together so they support each other.' },
   { title: 'Every body welcome', text: 'From absolute beginners to experienced practitioners, with practice shaped around you.' },
-  { title: 'Studio and online', text: 'Small, unhurried classes in Hinjawadi Phase 3, and live online sessions for wherever you are.' },
+  { title: 'Offline and online', text: 'Small, unhurried classes in Hinjawadi Phase 3, and live online sessions for wherever you are.' },
 ];
 const s = getSeo(Astro.url.pathname);
 import { linkProps } from '../../data/links';
@@ -59,8 +59,8 @@ import NewTabHint from '../../components/NewTabHint.astro';
         <h2 id="story-h" class="sec-title">Deeply rooted. Gently guided.</h2>
       </div>
       <div class="text">
-        <p class="body-text first">AadiVed Yoga and Wellness is a holistic yoga and sound healing studio in Hinjawadi Phase 3, Pune. It is a women-owned business, led by a 500-hour Yoga Alliance certified practitioner.</p>
-        <p class="body-text">The studio is built on a simple belief: ancient practice should feel at home in a modern life. Each session is shaped around you, whether you are stepping onto a mat for the first time, managing stress, or rebuilding balance after a big life change.</p>
+        <p class="body-text first">AadiVed Yoga and Wellness is a holistic yoga and sound healing practice in Hinjawadi Phase 3, Pune. It is a women-owned business, led by a 500-hour Yoga Alliance certified practitioner.</p>
+        <p class="body-text">AadiVed is built on a simple belief: ancient practice should feel at home in a modern life. Each session is shaped around you, whether you are stepping onto a mat for the first time, managing stress, or rebuilding balance after a big life change.</p>
         <p class="body-text"><a class="inline-link" href="/about/anupriya/">Meet Anupriya, the founder &#8594;</a></p>
       </div>
     </section>
@@ -76,7 +76,7 @@ import NewTabHint from '../../components/NewTabHint.astro';
     <section class="sand-band paper reveal" aria-labelledby="women-h">
       <div class="wrap"><div class="women">
         <div class="eyebrow">Women-owned and women-led</div>
-        <h2 id="women-h" class="statement">A studio run by women, for people at every stage of life.</h2>
+        <h2 id="women-h" class="statement">A practice run by women, for people at every stage of life.</h2>
         <p class="body-text">AadiVed is owned and led by women. The classes are open to everyone, with particular care for stress, hormonal balance and one-on-one prenatal yoga.</p>
         <div class="row">
           <a class="btn btn-primary" href={site.bookHref} {...linkProps(site.bookHref)}>Book a session<NewTabHint href={site.bookHref} /></a>

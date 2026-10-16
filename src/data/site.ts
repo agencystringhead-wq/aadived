@@ -8,7 +8,7 @@ export const site = {
   url: 'https://aadived.com', // TODO: confirm final domain before launch
   locale: 'en-IN',
   description:
-    'Guided yoga, meditation and sound healing in Hinjawadi Phase 3, Pune. A women-owned studio led by a 500-hour Yoga Alliance registered practitioner. Studio and online sessions.',
+    'Guided yoga, meditation and sound healing in Hinjawadi Phase 3, Pune. A women-owned practice led by a 500-hour Yoga Alliance registered practitioner. Online and offline sessions.',
   phone: { display: '+91 82084 69389', tel: '+918208469389', schema: '+91-82084-69389' },
   address: {
     short: 'Megapolis Serenity, Hinjawadi Phase 3, Pune',
@@ -70,7 +70,7 @@ export const aboutLinks: NavLink[] = [
   { label: 'Our Story & the Name', href: '/about/' },
   { label: 'Meet Anupriya', href: '/about/anupriya/' },
   { label: 'Credentials (500-hr RYT)', href: '/about/anupriya/' },
-  { label: 'The Studio', href: '/studio/' },
+  { label: 'Offline Classes', href: '/offline-classes/' },
 ];
 
 export const aboutQuote =
@@ -113,7 +113,7 @@ export const megaMenu: NavColumn[] = [
     heading: 'Ways to Join',
     icon: 'screen',
     links: [
-      { label: 'Studio Sessions, Hinjawadi', href: '/studio/' },
+      { label: 'Offline Classes, Hinjawadi', href: '/offline-classes/' },
       { label: 'Live Online Sessions', href: '/online-classes/' },
       { label: 'One-on-One Coaching', href: '/one-on-one/' },
       { label: 'Plans & Pricing', href: '/pricing/' },
@@ -135,7 +135,7 @@ export const mainNav: NavLink[] = [
   { label: 'Contact', href: '/contact/' },
 ];
 
-export const footerColumns: Record<'yoga' | 'healing' | 'studio', NavLink[]> = {
+export const footerColumns: Record<'yoga' | 'healing' | 'aadived', NavLink[]> = {
   yoga: megaMenu[0].links,
   healing: [
     { label: 'Meditation', href: '/healing/meditation/' },
@@ -144,7 +144,7 @@ export const footerColumns: Record<'yoga' | 'healing' | 'studio', NavLink[]> = {
     { label: 'Hormonal Balance', href: '/programs/hormonal-balance/' },
     { label: 'Stress & Anxiety Relief', href: '/programs/stress-management/' },
   ],
-  studio: [
+  aadived: [
     { label: 'Our Story', href: '/about/' },
     { label: 'Meet Anupriya', href: '/about/anupriya/' },
     { label: 'Online Classes', href: '/online-classes/' },
@@ -191,13 +191,13 @@ export const stubPages: StubPage[] = [
   { slug: 'programs/anxiety-relief', title: 'Anxiety Relief', eyebrow: 'Wellness Programs', intro: 'Calming practice to help you leave lighter than you arrived.', parent: classes },
   { slug: 'programs/energy-reset', title: 'Energy Reset', eyebrow: 'Wellness Programs', intro: 'A restorative reset for body and nervous system.', parent: classes },
   { slug: 'programs/daily-practice', title: 'Build a Daily Practice', eyebrow: 'Wellness Programs', intro: 'Breath, movement and stillness you can return to every day.', parent: classes },
-  { slug: 'studio', title: 'The Studio', eyebrow: 'Hinjawadi Phase 3', intro: 'Small, unhurried classes at Megapolis Serenity in Hinjawadi Phase 3.', showTimings: true },
+  { slug: 'offline-classes', title: 'Offline Classes', eyebrow: 'Hinjawadi Phase 3', intro: 'Small, unhurried in-person classes in Hinjawadi Phase 3, Pune.', showTimings: true },
   { slug: 'online-classes', title: 'Online Classes', eyebrow: 'Live online sessions', intro: 'The same guided practice, wherever you are.' },
   { slug: 'one-on-one', title: 'One-on-One Coaching', eyebrow: 'Private care', intro: 'Sessions shaped around you, including 1:1 prenatal care.' },
   { slug: 'pricing', title: 'Plans & Pricing', eyebrow: 'Join us', intro: 'Call us for current plans and pricing.' },
-  { slug: 'classes', title: 'All Classes', eyebrow: 'Classes & healing', intro: 'Every way we practise together, in the studio and online.' },
+  { slug: 'classes', title: 'All Classes', eyebrow: 'Classes & healing', intro: 'Every way we practise together, offline and online.' },
   { slug: 'reviews', title: 'Reviews', eyebrow: 'Kind words', intro: 'What our students say about AadiVed on Google.' },
-  { slug: 'journal', title: 'Journal', eyebrow: 'Notes & practices', intro: 'Simple practices and notes from the studio.' },
+  { slug: 'journal', title: 'Journal', eyebrow: 'Notes & practices', intro: 'Simple practices and notes from AadiVed.' },
   { slug: 'contact', title: 'Contact', eyebrow: 'Say hello', intro: 'Call, send a message, or book a session. We usually reply within the day.', showTimings: true },
   { slug: 'privacy', title: 'Privacy Policy', eyebrow: 'Legal', intro: 'How AadiVed handles your information.' },
   { slug: 'terms', title: 'Terms', eyebrow: 'Legal', intro: 'The terms for using this website and our services.' },

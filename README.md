@@ -1,6 +1,6 @@
 # AadiVed Yoga and Wellness: website
 
-Marketing site for AadiVed Yoga and Wellness, a women-owned yoga and sound healing studio in Hinjawadi Phase 3, Pune. Built with Astro 5 (static output), plain CSS and a small vanilla script for the menus.
+Marketing site for AadiVed Yoga and Wellness, a women-owned yoga and sound healing practice in Hinjawadi Phase 3, Pune. Built with Astro 5 (static output), plain CSS and a small vanilla script for the menus.
 
 ## Commands
 
@@ -75,21 +75,21 @@ Posts are MDX files in `src/content/journal/`. Frontmatter is validated by `src/
 ## Open items (leave as TODO until confirmed)
 
 - [x] **Class timings.** None are published. Sessions are by appointment only, set once in `site.hours` in `src/data/site.ts` and read from there everywhere. The Google profile still says "Open 24 hours" and should be updated to match (by appointment).
-- [ ] **Real studio photo.** `FormatsSplit.astro` shows a labelled placeholder.
+- [ ] **Real photo for the offline card.** `FormatsSplit.astro` shows a labelled placeholder.
 - [ ] **High-res Instagram originals.** The `ig-*.webp` files are low-res crops (about 280x370) from an Instagram screenshot. They are capped at about 300px wide wherever they are shown. Swap in originals, keeping the filenames, in `src/assets/images/`. Used in:
   - `ig-yogaday.webp`: `InstagramStrip.astro`
   - `ig-sanskrit.webp`: `InstagramStrip.astro`
   - `ig-mono.webp`: `TeacherIntro.astro`, `InstagramStrip.astro`
   - `ig-guided.webp`: `FormatsSplit.astro`, `InstagramStrip.astro`
-- [ ] **Hero stock photos.** The hero uses free Pexels photos (credits in `design-source/stock-credits.md`). Replace with photos of the studio and Anupriya when available.
+- [ ] **Hero stock photos.** The hero uses free Pexels photos (credits in `design-source/stock-credits.md`). Replace with photos of AadiVed sessions and Anupriya when available.
 - [x] **Anupriya certificate.** Photo of Anupriya with her Rishikesh teacher training certificate is at `src/assets/images/certificates/teacher-training-certificate.webp`. Still to add if wanted: the Yoga Alliance registration number (removed from the page for now).
 - [ ] **Anupriya facts.** Years teaching, teachers and lineage, background story, Yoga Alliance registration number and year certified are marked `[To confirm with Anupriya]` on `/about/anupriya/`.
 - [ ] **Sound Healing session flow.** The three "what a session looks like" steps in `src/data/practices.ts` are general wording and need confirming with Anupriya (marked with a TODO).
 - [ ] **Service page details.** All 14 service pages have copy in `src/data/practices.ts`. Confirm with Anupriya which practices run online (currently all except Sound Healing and Prenatal), the session steps, and every `[To confirm with Anupriya]` FAQ answer.
 - [ ] **Enquiry form provider.** Set `enquiryAction` in `src/data/site.ts` to the form provider URL (Formspree, Getform, a Cloudflare Worker, and so on). The form on `/contact/` POSTs its fields there as form data. While it is empty, the form shows a notice telling visitors to call or message on Instagram, and never a false success message. Fields: name, phone, email, interest, format, time, message, consent.
-- [ ] **Google Maps embed.** `/contact/` and `/studio/` load a click-to-load map from the keyless embed URL in `site.google.embed`. Check on the live site that the map renders after clicking "Load map". If it does not, open Google Maps, choose Share, Embed a map, and paste the iframe `src` into `site.google.embed`.
+- [ ] **Google Maps embed.** `/contact/` and `/offline-classes/` load a click-to-load map from the keyless embed URL in `site.google.embed`. Check on the live site that the map renders after clicking "Load map". If it does not, open Google Maps, choose Share, Embed a map, and paste the iframe `src` into `site.google.embed`.
 - [ ] **Leave a review link.** `site.google.writeReview` opens the Google profile for now. Replace it with the direct write-a-review link once the Google place ID is known.
-- [ ] **Pricing.** Prices are not published. `/pricing/`, the "What does it cost?" FAQs and the Terms page say to call the studio. When prices are confirmed, replace the "Call for pricing" block in `src/pages/pricing.astro` and the cost FAQ in `src/data/practices.ts`.
+- [ ] **Pricing.** Prices are not published. `/pricing/`, the "What does it cost?" FAQs and the Terms page say to call us. When prices are confirmed, replace the "Call for pricing" block in `src/pages/pricing.astro` and the cost FAQ in `src/data/practices.ts`.
 - [ ] **Legal pages.** `/privacy/` and `/terms/` are simple, generic pages. They are not legal advice, so have a lawyer review them if the business needs that. Update the privacy page when the enquiry form provider and any analytics are final.
 - [ ] **Journal.** Add posts as Markdown files in `src/content/journal/` (copy `_template.md`, set `draft: false`). Until a post exists, `/journal/` shows an empty state.
 - [ ] **WhatsApp.** Confirm `+91 82084 69389` is on WhatsApp (`site.whatsapp`, footer icon). Remove the icon if not.

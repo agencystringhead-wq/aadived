@@ -6,7 +6,7 @@ import InnerHero from '../components/page/InnerHero.astro';
 import FinalCTA from '../components/FinalCTA.astro';
 import { stubPages } from '../data/site';
 import { practices, formatLabels, type Category } from '../data/practices';
-// Client-supplied beach photo (second and last use). Not Anupriya and not the studio.
+// Client-supplied beach photo (second and last use). Not Anupriya.
 import beach from '../assets/images/aadived/beach-yoga-portrait.webp';
 
 const crumbs = [{ label: 'Home', href: '/' }, { label: 'All classes' }];
@@ -26,7 +26,7 @@ const s = getSeo(Astro.url.pathname);
       crumbs={crumbs}
       eyebrow="Classes and healing"
       title={s.h1} suffix={s.h1Suffix}
-      intro="Yoga, meditation, breathwork, sound and wellness programmes, in the studio at Hinjawadi Phase 3 and live online. Pick a practice to read more."
+      intro="Yoga, meditation, breathwork, sound and wellness programmes, offline in Hinjawadi Phase 3 and live online. Pick a practice to read more."
       variant="arch"
       image={beach}
       imageAlt="Woman in a low lunge with arms raised, practising yoga on a beach at sunset"

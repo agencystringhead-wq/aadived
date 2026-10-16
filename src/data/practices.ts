@@ -2,8 +2,8 @@
 // Facts only: from the homepage copy, src/data/site.ts and design-source/content/details.txt.
 // A route listed in stubPages (site.ts) but missing here falls back to the "coming soon" stub.
 //
-// Ways to join: studio by default; online for guided practices (details.txt lists online and offline
-// sessions); Prenatal is 1:1 only; Sound Healing is studio only.
+// Ways to join: offline by default; online for guided practices (details.txt lists online and offline
+// sessions); Prenatal is 1:1 only; Sound Healing is offline only.
 // TODO: confirm with Anupriya which practices run online and which session steps match her real flow.
 import type { ImageMetadata } from 'astro';
 import { site } from './site';
@@ -23,10 +23,10 @@ import energyImg from '../assets/images/stock/service-energy-reset.webp';
 import dailyImg from '../assets/images/aadived/beach-yoga-portrait.webp';
 
 export type Category = 'Yoga' | 'Mind & Sound' | 'Wellness Programs';
-export type Format = 'studio' | 'online' | 'one-on-one';
+export type Format = 'offline' | 'online' | 'one-on-one';
 
 export const formatLabels: Record<Format, string> = {
-  studio: 'Studio, Hinjawadi',
+  offline: 'Offline',
   online: 'Live online',
   'one-on-one': 'One-on-one',
 };
@@ -66,7 +66,7 @@ const faq = {
     q: 'When are sessions?',
     a: `${site.hours.label}. ${site.hours.note}${extra ? ' ' + extra : ''}`,
   }),
-  where: { q: 'Where is the studio?', a: 'At Megapolis Serenity, Rajiv Gandhi Infotech Park, Hinjawadi Phase 3, Pune.' },
+  where: { q: 'Where do offline sessions take place?', a: 'In person in Hinjawadi Phase 3, Pune. We share the exact location when you book.' },
 };
 
 export const practices: Practice[] = [
@@ -99,7 +99,7 @@ export const practices: Practice[] = [
       { title: 'Grow a regular practice', text: 'A guided class gives you a rhythm to return to, week after week.' },
       { title: 'Carry calm off the mat', text: 'Breath and grounding are part of every class, not an extra.' },
     ],
-    formats: ['studio', 'online'],
+    formats: ['offline', 'online'],
     faqs: [
       { q: 'Do I need any experience?', a: 'No. Guided yoga welcomes beginners to experienced practitioners, and each asana is explained clearly.' },
       faq.when(),
@@ -138,7 +138,7 @@ export const practices: Practice[] = [
       { title: 'Ease stress', text: 'Slow breath and gentle movement support a calmer mind.' },
       { title: 'Build the habit', text: 'A steady, welcoming start makes it easier to keep going.' },
     ],
-    formats: ['studio', 'online'],
+    formats: ['offline', 'online'],
     faqs: [
       { q: 'I have never done yoga. Is that fine?', a: 'Yes. This practice is for exactly that. Every asana is explained clearly and patiently.' },
       { q: 'Do I need to be flexible?', a: 'No. Flexibility is something yoga builds over time, it is not a requirement to begin.' },
@@ -177,7 +177,7 @@ export const practices: Practice[] = [
       { title: 'Deepen breath and stillness', text: 'Breathwork and grounding sit alongside movement, not after it.' },
       { title: 'Stay curious', text: 'A teacher can offer new ways into familiar poses.' },
     ],
-    formats: ['studio', 'online'],
+    formats: ['offline', 'online'],
     faqs: [
       { q: 'How do I know if this is the right level?', a: 'If you already practise regularly, this is for you. Tell us about your practice and we will match the session to it.' },
       faq.when(),
@@ -255,11 +255,11 @@ export const practices: Practice[] = [
       { title: 'A calm way to begin', text: 'A good first step before joining a group, or instead of one.' },
       { title: 'Room to ask', text: 'Questions are welcome at any point in the session.' },
     ],
-    formats: ['one-on-one', 'studio'],
+    formats: ['one-on-one', 'offline'],
     faqs: [
       { q: 'What is a 1:1 intro session?', a: 'A private first session where you tell us what you would like to feel, and we match the practice to your body, goals and schedule.' },
       { q: 'Can I switch to a group class later?', a: 'Yes. Many people start privately and join a class when they feel ready.' },
-      { q: 'Where do private sessions take place?', a: 'At the studio in Megapolis Serenity, Hinjawadi Phase 3.' },
+      { q: 'Where do private sessions take place?', a: 'In person in Hinjawadi Phase 3, Pune, or online. We share the exact location when you book.' },
       faq.start,
       faq.cost,
     ],
@@ -294,9 +294,9 @@ export const practices: Practice[] = [
       { title: 'Quiet a busy mind', text: 'Guided techniques give your attention somewhere steady to rest.' },
       { title: 'Steady the breath', text: 'Slower breathing supports a calmer body.' },
       { title: 'Ease stress', text: 'A few quiet minutes can support a less crowded day.' },
-      { title: 'Take it with you', text: 'Techniques are simple enough to use outside the studio.' },
+      { title: 'Take it with you', text: 'Techniques are simple enough to use outside a session.' },
     ],
-    formats: ['studio', 'online'],
+    formats: ['offline', 'online'],
     faqs: [
       { q: 'I cannot stop my thoughts. Will this work for me?', a: 'Wandering thoughts are normal. The guidance shows you how to come back to your breath without frustration.' },
       faq.when(),
@@ -334,7 +334,7 @@ export const practices: Practice[] = [
       { title: 'Ease stress', text: 'A simple technique you can use anywhere.' },
       { title: 'Support other practices', text: 'Breath makes movement and meditation easier to enter.' },
     ],
-    formats: ['studio', 'online'],
+    formats: ['offline', 'online'],
     faqs: [
       { q: 'Is breathwork safe for everyone?', a: 'Techniques are taught gently and clearly. Tell us about any health condition first, and talk to your doctor if you are unsure.' },
       { q: 'Do I need experience?', a: 'No. Each technique is taught in simple steps.' },
@@ -373,7 +373,7 @@ export const practices: Practice[] = [
       { title: 'Feel steadier', text: 'Practices you can come back to when things feel fast.' },
       { title: 'Carry calm off the mat', text: 'Simple enough to use anywhere in your day.' },
     ],
-    formats: ['studio', 'online'],
+    formats: ['offline', 'online'],
     faqs: [
       { q: 'What does a grounding practice involve?', a: 'Slow, steady movement and breath, with attention on the body and the ground beneath you.' },
       { q: 'Do I need experience?', a: 'No. The practices are simple and clearly guided.' },
@@ -414,7 +414,7 @@ export const practices: Practice[] = [
       { title: 'Support your mood', text: 'Slow breathing helps the mind settle.' },
       { title: 'Feel listened to', text: 'Sessions respond to what you tell us about how you feel.' },
     ],
-    formats: ['studio', 'online'],
+    formats: ['offline', 'online'],
     faqs: [
       { q: 'Is this a medical treatment?', a: 'No. It is a gentle yoga and breath practice that supports wellbeing. Please talk to your doctor about any health concern.' },
       faq.when(),
@@ -453,7 +453,7 @@ export const practices: Practice[] = [
       { title: 'Rest better', text: 'A calmer evening supports a calmer night.' },
       { title: 'Build a buffer', text: 'Regular sessions help you meet the week with more room.' },
     ],
-    formats: ['studio', 'online'],
+    formats: ['offline', 'online'],
     faqs: [
       { q: 'Is this the same as therapy?', a: 'No. It is a yoga and breath practice that supports wellbeing. If you are struggling, please talk to your doctor or a mental health professional.' },
       faq.when(),
@@ -492,7 +492,7 @@ export const practices: Practice[] = [
       { title: 'Feel safe in the room', text: 'A quiet, supportive space with unhurried pacing.' },
       { title: 'Take tools home', text: 'Simple breath practices you can use any time.' },
     ],
-    formats: ['studio', 'online'],
+    formats: ['offline', 'online'],
     faqs: [
       { q: 'Is this a treatment for anxiety?', a: 'No. It is a calming practice that supports wellbeing. If anxiety is affecting your daily life, please talk to your doctor or a mental health professional.' },
       faq.when(),
@@ -531,7 +531,7 @@ export const practices: Practice[] = [
       { title: 'Restore energy', text: 'A pause can leave you feeling more like yourself.' },
       { title: 'Reset your rhythm', text: 'A calm place to start a better routine.' },
     ],
-    formats: ['studio', 'online'],
+    formats: ['offline', 'online'],
     faqs: [
       { q: 'Is it energetic or restful?', a: 'Restful. It is a restorative reset, so the pace is slow and supportive.' },
       faq.when(),
@@ -569,9 +569,9 @@ export const practices: Practice[] = [
       { title: 'Feel your progress', text: 'Daily practice helps you notice small changes.' },
       { title: 'Carry calm through the day', text: 'Short practices you can use anywhere.' },
     ],
-    formats: ['studio', 'online'],
+    formats: ['offline', 'online'],
     faqs: [
-      { q: 'Do I need to come to the studio every day?', a: 'No. Sessions help you build a routine you then practise at home.' },
+      { q: 'Do I need to attend a session every day?', a: 'No. Sessions help you build a routine you then practise at home.' },
       faq.when(),
       faq.start,
       faq.cost,
@@ -586,7 +586,7 @@ export const practices: Practice[] = [
     category: 'Mind & Sound',
     tagline: 'Deep, resonant sound to soften tension and invite rest.',
     intro:
-      'Deep, resonant sound to soften tension and invite rest. A restorative reset for body and nervous system, held in a quiet, grounded space at Megapolis Serenity.',
+      'Deep, resonant sound to soften tension and invite rest. A restorative reset for body and nervous system, held in a quiet, grounded setting in Hinjawadi Phase 3.',
     image: soundHealingImg,
     imageAlt: 'A small bronze singing bowl with a wooden mallet resting in it, on a stone block against a pale wall',
     what: [
@@ -611,10 +611,10 @@ export const practices: Practice[] = [
       { title: 'Reset body and nervous system', text: 'A restorative pause that supports your body in settling after a demanding stretch.' },
       { title: 'Carry calm into your day', text: 'Pair it with breathwork or meditation so the stillness follows you off the mat.' },
     ],
-    formats: ['studio'],
+    formats: ['offline'],
     faqs: [
-      { q: 'Do I need any experience?', a: 'No. Sound healing asks nothing of you except to listen and rest, and the studio welcomes beginners to experienced practitioners.' },
-      { q: 'Where does it take place?', a: 'In the studio at Megapolis Serenity, Rajiv Gandhi Infotech Park, Hinjawadi Phase 3, Pune.' },
+      { q: 'Do I need any experience?', a: 'No. Sound healing asks nothing of you except to listen and rest, and AadiVed welcomes beginners to experienced practitioners.' },
+      { q: 'Where does it take place?', a: 'In person in Hinjawadi Phase 3, Pune. We share the exact location when you book.' },
       { q: 'When are sessions?', a: `${site.hours.label}. ${site.hours.note} Ask us which sessions include sound healing.` },
       faq.start,
       faq.cost,

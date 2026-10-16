@@ -3,24 +3,24 @@ import { Image } from 'astro:assets';
 import SectionHeading from './SectionHeading.astro';
 import { site } from '../data/site';
 // Free stock photos (Pexels). Credits in design-source/stock-credits.md
-// TODO: replace formats-studio.webp with a real photo of the studio (Megapolis Serenity) when the client sends one
-import studio from '../assets/images/stock/formats-studio.webp';
+// TODO: replace formats-offline.webp with a real photo of an in-person AadiVed session when the client sends one
+import offline from '../assets/images/stock/formats-offline.webp';
 import online from '../assets/images/stock/formats-online.webp';
 import { linkProps } from '../data/links';
 import NewTabHint from '../components/NewTabHint.astro';
 ---
 <section class="formats">
   <div class="wrap section">
-    <SectionHeading center eyebrow="Practice your way" title="In the studio, or from your own mat" />
+    <SectionHeading center eyebrow="Practice your way" title="In person, or from your own mat" />
     <div class="grid">
-      <div class="card studio">
+      <div class="card offline">
         <div class="photo">
-          <Image src={studio} alt="Rolled grey yoga mats and a stack of folded striped blankets on a wooden shelf, with bolsters underneath"
+          <Image src={offline} alt="Rolled grey yoga mats and a stack of folded striped blankets on a wooden shelf, with bolsters underneath"
             format="webp" width={700} height={350} densities={[1, 2]} loading="lazy" />
         </div>
         <div class="body">
-          <h3>Studio sessions</h3>
-          <p>Small, unhurried classes at Megapolis Serenity in Hinjawadi Phase 3. Personal attention on every asana, with sound healing in a quiet, grounded space.</p>
+          <h3>Offline classes</h3>
+          <p>Small, unhurried in-person classes in Hinjawadi Phase 3, Pune. Personal attention on every asana, with sound healing in a quiet, grounded setting.</p>
           <a class="link-arrow" href={site.google.directions} {...linkProps(site.google.directions)}>Get directions &#8594;<NewTabHint href={site.google.directions} /></a>
         </div>
       </div>
@@ -42,7 +42,7 @@ import NewTabHint from '../components/NewTabHint.astro';
   .formats { background: var(--sand); }
   .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr)); gap: 28px; margin-top: 60px; }
   .card { border-radius: 26px; overflow: hidden; display: flex; flex-direction: column; }
-  .studio { background: var(--ivory); }
+  .offline { background: var(--ivory); }
   .online { background: var(--olive); color: var(--sand); }
   .photo { aspect-ratio: 2 / 1; overflow: hidden; background: var(--sand); }
   .photo :global(img) { width: 100%; height: 100%; object-fit: cover; display: block; }

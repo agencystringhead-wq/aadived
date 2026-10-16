@@ -20,7 +20,7 @@ const H = 630;
 const landscape = {
   about: img('aadived/beach-yoga-wide.webp'),
   anupriya: img('anupriya/anupriya-wide.webp'),
-  studio: img('stock/formats-studio.webp'),
+  'offline-classes': img('stock/formats-offline.webp'),
   'online-classes': img('stock/formats-online.webp'),
 };
 

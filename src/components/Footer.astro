@@ -7,7 +7,7 @@ const year = new Date().getFullYear();
 const cols = [
   { heading: 'Yoga', links: footerColumns.yoga },
   { heading: 'Healing & Wellness', links: footerColumns.healing },
-  { heading: 'The Studio', links: footerColumns.studio },
+  { heading: 'AadiVed', links: footerColumns.aadived },
 ];
 import { linkProps, isExternal } from '../data/links';
 import NewTabHint from '../components/NewTabHint.astro';
@@ -30,11 +30,11 @@ import NewTabHint from '../components/NewTabHint.astro';
     <div class="cols">
       <div class="brand">
         <Image src={logo} alt="AadiVed, Mind. Body. Soul" format="webp" width={170} height={142} densities={[1, 2]} loading="lazy" />
-        <p>Holistic yoga and sound healing studio in Hinjawadi, Pune. Rooted in ancient Indian wisdom, built for modern lives.</p>
+        <p>Holistic yoga and sound healing in Hinjawadi, Pune. Rooted in ancient Indian wisdom, built for modern lives.</p>
         <div class="social">
           <a href={site.instagram.url} {...linkProps(site.instagram.url)} aria-label={`AadiVed on Instagram${isExternal(site.instagram.url) ? ' (opens in a new tab)' : ''}`}><Icon name="instagram" /></a>
           <a href={site.google.profile} {...linkProps(site.google.profile)} aria-label={`AadiVed on Google${isExternal(site.google.profile) ? ' (opens in a new tab)' : ''}`}><Icon name="google" /></a>
-          <!-- TODO: confirm the studio number is on WhatsApp before launch -->
+          <!-- TODO: confirm the number is on WhatsApp before launch -->
           <a href={site.whatsapp} {...linkProps(site.whatsapp)} aria-label={`Message AadiVed on WhatsApp${isExternal(site.whatsapp) ? ' (opens in a new tab)' : ''}`}><Icon name="whatsapp" /></a>
         </div>
       </div>

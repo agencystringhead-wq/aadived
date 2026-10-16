@@ -41,17 +41,17 @@ const services: Record<string, Service> = {
   'yoga/guided-yoga': {
     topic: 'Guided Yoga',
     h1: 'Guided Yoga',
-    description: 'Guided yoga in Hinjawadi, Pune for every body, from first-timers to experienced yogis. Each asana is explained clearly. Studio or online. Book a session.',
+    description: 'Guided yoga in Hinjawadi, Pune for every body, from first-timers to experienced yogis. Each asana is explained clearly. Offline or online. Book a session.',
   },
   'yoga/beginners': {
     topic: 'Yoga for Beginners',
     h1: 'Yoga for Beginners',
-    description: 'A gentle start to yoga in Hinjawadi, Pune. Every asana is explained clearly and patiently, in the studio or live online. No experience needed. Call to ask.',
+    description: 'A gentle start to yoga in Hinjawadi, Pune. Every asana is explained clearly and patiently, offline or live online. No experience needed. Call to ask.',
   },
   'yoga/experienced': {
     topic: 'Experienced Yoga Classes',
     h1: 'Yoga for Experienced Practitioners',
-    description: 'Guided practice for regular yogis in Hinjawadi, Pune. Refine your poses, breath and stillness with clear cues, in the studio or live online. Book a session.',
+    description: 'Guided practice for regular yogis in Hinjawadi, Pune. Refine your poses, breath and stillness with clear cues, offline or live online. Book a session.',
   },
   'yoga/prenatal': {
     topic: 'Prenatal Yoga',
@@ -66,22 +66,22 @@ const services: Record<string, Service> = {
   'healing/meditation': {
     topic: 'Meditation Classes',
     h1: 'Meditation Classes',
-    description: 'Simple guided meditation in Hinjawadi, Pune to quiet a busy mind and steady the breath. Beginners welcome, in the studio or live online. Book a session.',
+    description: 'Simple guided meditation in Hinjawadi, Pune to quiet a busy mind and steady the breath. Beginners welcome, offline or live online. Book a session.',
   },
   'healing/breathwork': {
     topic: 'Breathwork Classes',
     h1: 'Breathwork Classes',
-    description: 'Guided breathwork in Hinjawadi, Pune to help steady your mind and body, taught in simple steps. In the studio or live online. Call to ask about a session.',
+    description: 'Guided breathwork in Hinjawadi, Pune to help steady your mind and body, taught in simple steps. Offline or live online. Call to ask about a session.',
   },
   'healing/sound-healing': {
     topic: 'Sound Healing',
     h1: 'Sound Healing',
-    description: 'Sound healing in Hinjawadi, Pune: deep, resonant sound to soften tension and invite rest, in a quiet studio. No experience needed. Book a session today.',
+    description: 'Sound healing in Hinjawadi, Pune: deep, resonant sound to soften tension and invite rest, in person in Hinjawadi. No experience needed. Book a session today.',
   },
   'healing/grounding': {
     topic: 'Grounding Practices',
     h1: 'Grounding Practices',
-    description: 'Slow, steady grounding practices in Hinjawadi, Pune that bring you back into the body. For busy minds, in the studio or live online. Call to ask.',
+    description: 'Slow, steady grounding practices in Hinjawadi, Pune that bring you back into the body. For busy minds, in person or live online. Call to ask.',
   },
   'programs/hormonal-balance': {
     topic: 'Hormonal Balance Yoga',
@@ -91,7 +91,7 @@ const services: Record<string, Service> = {
   'programs/stress-management': {
     topic: 'Stress Management Yoga',
     h1: 'Yoga for Stress Management',
-    description: 'Slow, grounding yoga in Hinjawadi, Pune for busy minds and long workdays. Leave lighter than you arrived. In the studio or online. Book a session.',
+    description: 'Slow, grounding yoga in Hinjawadi, Pune for busy minds and long workdays. Leave lighter than you arrived. Offline or online. Book a session.',
   },
   'programs/anxiety-relief': {
     topic: 'Yoga for Anxiety Relief',
@@ -101,12 +101,12 @@ const services: Record<string, Service> = {
   'programs/energy-reset': {
     topic: 'Energy Reset Yoga',
     h1: 'Energy Reset',
-    description: 'A restorative energy reset in Hinjawadi, Pune with slow movement, breath and stillness for body and nervous system. Studio or online. Book a session.',
+    description: 'A restorative energy reset in Hinjawadi, Pune with slow movement, breath and stillness for body and nervous system. Offline or online. Book a session.',
   },
   'programs/daily-practice': {
     topic: 'Daily Yoga Practice',
     h1: 'Build a Daily Practice',
-    description: 'Build a daily yoga practice that lasts in Hinjawadi, Pune, with breath, movement and stillness you can repeat at home. Studio or online. Book a session.',
+    description: 'Build a daily yoga practice that lasts in Hinjawadi, Pune, with breath, movement and stillness you can repeat at home. Offline or online. Book a session.',
   },
 };
 
@@ -114,13 +114,13 @@ const services: Record<string, Service> = {
 export const seo: Record<string, PageSeo> = {
   '/': {
     title: 'Yoga & Sound Healing in Hinjawadi, Pune | AadiVed',
-    description: 'Women-led yoga, meditation and sound healing studio in Hinjawadi Phase 3, Pune. Rated 5.0 on Google. Studio and live online classes. Book a session.',
+    description: 'Women-led yoga, meditation and sound healing in Hinjawadi Phase 3, Pune. Rated 5.0 on Google. Offline and live online classes. Book a session.',
     h1: 'A return to the roots of wellbeing.',
     ogImage: '/og/home.jpg',
   },
   '/about/': {
-    title: title('About AadiVed: Women-Owned Yoga Studio in Pune'),
-    description: 'AadiVed is a women-owned yoga and sound healing studio in Hinjawadi Phase 3, Pune. Aadi means beginning, Ved means knowledge. Read our story and book a session.',
+    title: title('About AadiVed: Women-Owned Yoga in Pune'),
+    description: 'AadiVed is a women-owned yoga and sound healing practice in Hinjawadi Phase 3, Pune. Aadi means beginning, Ved means knowledge. Read our story and book.',
     h1: 'About AadiVed',
     ogImage: '/og/about.jpg',
   },
@@ -133,17 +133,17 @@ export const seo: Record<string, PageSeo> = {
   },
   '/classes/': {
     title: title('Yoga & Meditation Classes in Hinjawadi, Pune'),
-    description: 'Browse every AadiVed class in Hinjawadi, Pune: yoga, meditation, breathwork, sound healing and wellness programmes, in the studio and online. Book a session.',
+    description: 'Browse every AadiVed class in Hinjawadi, Pune: yoga, meditation, breathwork, sound healing and wellness programmes, offline and online. Book a session.',
     h1: 'Yoga and wellness classes',
     h1Suffix: LOC,
     ogImage: '/og/classes.jpg',
   },
-  '/studio/': {
-    title: title('Yoga Studio in Hinjawadi Phase 3, Pune'),
-    description: `Small, unhurried yoga, meditation and sound healing classes at Megapolis Serenity, Hinjawadi Phase 3, Pune. ${site.hours.label}. Call to book.`,
-    h1: 'Yoga studio',
+  '/offline-classes/': {
+    title: title('Offline Yoga Classes in Hinjawadi Phase 3, Pune'),
+    description: `Small, unhurried in-person yoga, meditation and sound healing classes in Hinjawadi Phase 3, Pune. ${site.hours.label}. We share the location when you book.`,
+    h1: 'Offline yoga classes',
     h1Suffix: 'in Hinjawadi Phase 3, Pune',
-    ogImage: '/og/studio.jpg',
+    ogImage: '/og/offline-classes.jpg',
   },
   '/online-classes/': {
     title: title('Online Yoga & Meditation Classes'),
@@ -161,18 +161,18 @@ export const seo: Record<string, PageSeo> = {
   },
   '/pricing/': {
     title: title('Yoga Class Prices in Hinjawadi, Pune'),
-    description: 'Plans and pricing for studio yoga, live online classes and one-on-one coaching at AadiVed in Hinjawadi, Pune. Call us and we will talk you through the options.',
+    description: 'Plans and pricing for offline yoga, live online classes and one-on-one coaching at AadiVed in Hinjawadi, Pune. Call us and we will talk you through the options.',
     h1: 'Plans and pricing',
     h1Suffix: LOC,
   },
   '/reviews/': {
-    title: title('Yoga Studio Reviews in Hinjawadi, Pune'),
+    title: title('Yoga Reviews in Hinjawadi, Pune'),
     description: 'AadiVed has a 5.0 average rating on Google Reviews. Read what students in Hinjawadi, Pune say about practising yoga and meditation here, then book a session.',
     h1: 'Loved in Hinjawadi',
   },
   '/journal/': {
     title: title('Yoga & Wellbeing Journal'),
-    description: 'Practical articles on yoga, meditation, breathwork and sound healing from the AadiVed studio in Hinjawadi, Pune, with simple routines to try at home.',
+    description: 'Practical articles on yoga, meditation, breathwork and sound healing from AadiVed in Hinjawadi, Pune, with simple, practical routines you can try at home.',
     h1: 'The journal',
   },
   '/contact/': {

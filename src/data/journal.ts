@@ -59,7 +59,7 @@ export const categories: CategoryInfo[] = [
     label: 'Yoga',
     slug: 'yoga',
     seoHead: 'Yoga Articles from Hinjawadi, Pune',
-    description: 'Yoga articles from the AadiVed studio in Hinjawadi, Pune: what to expect in class, easing desk stiffness and choosing studio or online. Book a session.',
+    description: 'Yoga articles from AadiVed in Hinjawadi, Pune: what to expect in class, easing desk stiffness and choosing offline or online yoga. Book a session.',
   },
   {
     label: 'Mind & Sound',

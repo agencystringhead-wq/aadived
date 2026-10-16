@@ -10,38 +10,45 @@ import Icon from '../components/Icon.astro';
 import { site, stubPages } from '../data/site';
 import { practices } from '../data/practices';
 // Free stock photo (Pexels), a stand-in. Credits in design-source/stock-credits.md
-// TODO: replace with a real photo of the studio at Megapolis Serenity when the client sends one
-import studioImg from '../assets/images/stock/formats-studio.webp';
+// TODO: replace with a real photo of an in-person AadiVed session when the client sends one
+import offlineImg from '../assets/images/stock/formats-offline.webp';
 
-const crumbs = [{ label: 'Home', href: '/' }, { label: 'The Studio' }];
-const studioPractices = practices.filter((p) => p.formats.includes('studio'));
+const crumbs = [{ label: 'Home', href: '/' }, { label: 'Offline Classes' }];
+const offlinePractices = practices.filter((p) => p.formats.includes('offline'));
 const titleFor = (slug: string) => stubPages.find((p) => p.slug === slug)?.title ?? slug;
 const offer = [
   { title: 'Guided yoga', text: 'Small, unhurried classes with personal attention on every asana.' },
   { title: 'Meditation and breathwork', text: 'Simple, guided techniques to quiet a busy mind and steady the breath.' },
-  { title: 'Sound healing', text: 'Deep, resonant sound in a quiet, grounded space, to soften tension and invite rest.' },
+  { title: 'Sound healing', text: 'Deep, resonant sound in a quiet, grounded setting, to soften tension and invite rest.' },
   { title: 'One-on-one sessions', text: 'Private, customised practice, including prenatal yoga for each trimester.' },
 ];
+const bring = [
+  { title: 'Comfortable clothes', text: 'Anything you can move and stretch in.' },
+  { title: 'A yoga mat', text: 'Bring your own if you have one. Ask us when you book if you need one.' },
+  { title: 'Water', text: 'A bottle of water for before and after your practice.' },
+  { title: 'Anything we should know', text: 'An injury, a health condition or a pregnancy. Tell us when you book so we can adjust the practice.' },
+];
 const faqs = [
-  { q: 'Where exactly is the studio?', a: 'At Megapolis Serenity, Rajiv Gandhi Infotech Park, Hinjawadi Phase 3, Pune 411057. Use the map above or get directions in Google Maps.' },
+  { q: 'Where do offline classes take place?', a: 'In person in Hinjawadi Phase 3, Pune. We share the exact location when you book. The map on this page shows the general area.' },
   { q: 'When are sessions?', a: `${site.hours.label}. ${site.hours.note}` },
-  { q: 'Do I need experience?', a: 'No. The studio welcomes beginners to experienced practitioners.' },
+  { q: 'What should I bring?', a: 'Comfortable clothes and a bottle of water. Ask us when you book whether you need a yoga mat.' },
+  { q: 'Do I need experience?', a: 'No. Offline classes welcome beginners to experienced practitioners.' },
 ];
 const s = getSeo(Astro.url.pathname);
 import { linkProps } from '../data/links';
 import NewTabHint from '../components/NewTabHint.astro';
 ---
 <BaseLayout
-  breadcrumbs={[{ name: 'Home', path: '/' }, { name: 'The Studio', path: '/studio/' }]}
+  breadcrumbs={[{ name: 'Home', path: '/' }, { name: 'Offline Classes', path: '/offline-classes/' }]}
 >
   <div class="page-bg">
     <InnerHero
       crumbs={crumbs}
       eyebrow="Hinjawadi Phase 3"
       title={s.h1} suffix={s.h1Suffix}
-      intro="Small, unhurried classes at Megapolis Serenity in Hinjawadi Phase 3. Personal attention on every asana, with sound healing in a quiet, grounded space."
+      intro="In-person yoga, meditation, breathwork and sound healing in Hinjawadi Phase 3, Pune. Small, unhurried sessions with personal attention on every asana. We share the exact location when you book."
       variant="wide"
-      image={studioImg}
+      image={offlineImg}
       imageAlt="Rolled grey yoga mats and a stack of folded striped blankets on a wooden shelf, with bolsters underneath"
     >
       <div class="cta-row">
@@ -51,18 +58,25 @@ import NewTabHint from '../components/NewTabHint.astro';
     </InnerHero>
 
     <section class="wrap sec" aria-labelledby="offer-h">
-      <div class="eyebrow">What happens here</div>
-      <h2 id="offer-h" class="sec-title">A quiet room for the whole practice</h2>
+      <div class="eyebrow">What to expect</div>
+      <h2 id="offer-h" class="sec-title">In person, with your teacher beside you</h2>
       <Bento items={offer} variant="a" />
+    </section>
+
+    <section class="wrap sec" aria-labelledby="bring-h">
+      <div class="eyebrow">What to bring</div>
+      <h2 id="bring-h" class="sec-title">Just yourself, and a few small things</h2>
+      <Bento items={bring} variant="b" />
     </section>
 
     <section class="wrap sec split" aria-labelledby="find-h">
       <div class="info">
-        <div class="eyebrow">How to find us</div>
-        <h2 id="find-h" class="sec-title">Megapolis Serenity, Phase 3</h2>
+        <div class="eyebrow">Where we&#8217;re based</div>
+        <h2 id="find-h" class="sec-title">Hinjawadi Phase 3, Pune</h2>
         <address>
           {site.address.lines.map((l, i) => <>{i > 0 && <br />}{l}</>)}
         </address>
+        <p class="body-text">We share the exact location when you book.</p>
         <p class="body-text"><strong>{site.hours.label}.</strong> {site.hours.note}</p>
         <div class="cta-col">
           <a class="btn btn-primary" href={`tel:${site.phone.tel}`}><Icon name="phone" size={16} />Call {site.phone.display}</a>
@@ -73,10 +87,10 @@ import NewTabHint from '../components/NewTabHint.astro';
     </section>
 
     <section class="wrap sec" aria-labelledby="p-h">
-      <div class="eyebrow">Practices at the studio</div>
+      <div class="eyebrow">Offline practices</div>
       <h2 id="p-h" class="sec-title">Join us in person</h2>
       <ul class="pill-list">
-        {studioPractices.map((p) => <li><a class="pill" href={`/${p.slug}/`}>{titleFor(p.slug)}</a></li>)}
+        {offlinePractices.map((p) => <li><a class="pill" href={`/${p.slug}/`}>{titleFor(p.slug)}</a></li>)}
       </ul>
     </section>
 
