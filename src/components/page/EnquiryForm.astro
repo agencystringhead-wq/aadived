@@ -29,14 +29,14 @@ import NewTabHint from '../../components/NewTabHint.astro';
     </div>
 
     <div class="field">
-      <label for="f-email">Email <span class="opt">(optional)</span></label>
-      <input id="f-email" name="email" type="email" autocomplete="email" aria-describedby="f-email-err" />
+      <label for="f-email">Email <span class="req" aria-hidden="true">*</span></label>
+      <input id="f-email" name="email" type="email" autocomplete="email" required aria-describedby="f-email-err" />
       <p class="err" id="f-email-err" data-err="email" role="alert"></p>
     </div>
 
     <div class="field">
-      <label for="f-interest">What would you like to practise?</label>
-      <select id="f-interest" name="interest">
+      <label for="f-interest">What would you like to practise? <span class="req" aria-hidden="true">*</span></label>
+      <select id="f-interest" name="interest" required aria-describedby="f-interest-err">
         <option value="intro">A 1:1 intro session</option>
         <option value="not-sure">Not sure yet, I would like advice</option>
         {options.map((o) => (
@@ -45,15 +45,17 @@ import NewTabHint from '../../components/NewTabHint.astro';
           </optgroup>
         ))}
       </select>
+      <p class="err" id="f-interest-err" data-err="interest" role="alert"></p>
     </div>
 
-    <fieldset class="field">
-      <legend>Preferred format</legend>
+    <fieldset class="field" aria-describedby="f-format-err">
+      <legend>Preferred format <span class="req" aria-hidden="true">*</span></legend>
       <div class="radios">
-        <label class="radio"><input type="radio" name="format" value="studio" /> <span>Studio, Hinjawadi</span></label>
+        <label class="radio"><input type="radio" name="format" value="studio" /> <span>Offline Class</span></label>
         <label class="radio"><input type="radio" name="format" value="online" /> <span>Live online</span></label>
         <label class="radio"><input type="radio" name="format" value="one-on-one" /> <span>One-on-one</span></label>
       </div>
+      <p class="err" id="f-format-err" data-err="format" role="alert"></p>
     </fieldset>
 
     <div class="field">
@@ -152,7 +154,8 @@ import NewTabHint from '../../components/NewTabHint.astro';
     const q = <T extends HTMLElement>(sel: string) => root.querySelector<T>(sel);
     const setErr = (name: string, msg: string) => {
       const el = q<HTMLElement>(`[data-err="${name}"]`);
-      const input = form.elements.namedItem(name) as HTMLInputElement | null;
+      const found = form.elements.namedItem(name);
+      const input = (found instanceof RadioNodeList ? found[0] : found) as HTMLInputElement | null;
       if (el) el.textContent = msg;
       if (input) {
         if (msg) input.setAttribute('aria-invalid', 'true');
@@ -171,13 +174,20 @@ import NewTabHint from '../../components/NewTabHint.astro';
       },
       email: () => {
         const v = (form.elements.namedItem('email') as HTMLInputElement).value.trim();
-        return setErr('email', !v || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) ? '' : 'Please enter a valid email address, or leave it empty.');
+        if (!v) return setErr('email', 'Please add your email address so we can reply.');
+        return setErr('email', /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) ? '' : 'Please enter a valid email address, for example name@example.com.');
       },
+      interest: () => setErr('interest', (form.elements.namedItem('interest') as HTMLSelectElement).value ? '' : 'Please choose what you would like to practise.'),
+      format: () => setErr('format', form.querySelector('input[name="format"]:checked') ? '' : 'Please choose a preferred format.'),
       consent: () => setErr('consent', (form.elements.namedItem('consent') as HTMLInputElement).checked ? '' : 'Please tick the box so we can contact you.'),
     };
 
     // Validate a field when the visitor leaves it, and clear its error as they fix it
+    for (const radio of form.querySelectorAll<HTMLInputElement>('input[name="format"]')) {
+      radio.addEventListener('change', () => validators.format());
+    }
     for (const key of Object.keys(validators)) {
+      if (key === 'format') continue;
       const el = form.elements.namedItem(key) as HTMLInputElement | null;
       el?.addEventListener('blur', () => validators[key]());
       el?.addEventListener('input', () => { if (el.getAttribute('aria-invalid')) validators[key](); });
@@ -194,7 +204,8 @@ import NewTabHint from '../../components/NewTabHint.astro';
       const results = Object.entries(validators).map(([k, fn]) => [k, fn()] as const);
       const firstBad = results.find(([, msg]) => msg);
       if (firstBad) {
-        (form.elements.namedItem(firstBad[0]) as HTMLElement)?.focus();
+        const target = firstBad[0] === 'format' ? form.querySelector<HTMLElement>('input[name="format"]') : (form.elements.namedItem(firstBad[0]) as HTMLElement | null);
+        target?.focus();
         return;
       }
       const val = (n: string) => (form.elements.namedItem(n) as HTMLInputElement | null)?.value.trim() ?? '';
