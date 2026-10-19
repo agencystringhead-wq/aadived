@@ -14,7 +14,7 @@ import NewTabHint from '../components/NewTabHint.astro';
     <p>Book an offline or online session, or ask about one-on-one prenatal care. We usually reply within the day.</p>
     <div class="buttons">
       <a class="btn btn-ivory" href={site.bookHref} {...linkProps(site.bookHref)}>Book a session<NewTabHint href={site.bookHref} /></a>
-      <a class="btn btn-outline-light" href={`tel:${site.phone.tel}`}>Call {site.phone.display}</a>
+      <a class="btn btn-outline-light" href={`tel:${site.phone.tel}`} data-track-location="final-cta">Call {site.phone.display}</a>
     </div>
   </div>
 </section>

@@ -30,11 +30,11 @@ import NewTabHint from '../components/NewTabHint.astro';
         <dl>
           <div>
             <dt>Sessions</dt>
-            <dd>{site.hours.label}<br /><a href={`tel:${site.phone.tel}`}>{site.hours.cta}</a></dd>
+            <dd>{site.hours.label}<br /><a href={`tel:${site.phone.tel}`} data-track-location="contact-page">{site.hours.cta}</a></dd>
           </div>
           <div>
             <dt>Phone</dt>
-            <dd><a href={`tel:${site.phone.tel}`}>{site.phone.display}</a></dd>
+            <dd><a href={`tel:${site.phone.tel}`} data-track-location="contact-page">{site.phone.display}</a></dd>
           </div>
           <div>
             <dt>Instagram</dt>
@@ -45,7 +45,7 @@ import NewTabHint from '../components/NewTabHint.astro';
             <dd>{site.address.lines.map((l, i) => <>{i > 0 && <br />}{l}</>)}</dd>
           </div>
         </dl>
-        <a class="btn btn-primary" href={`tel:${site.phone.tel}`}><Icon name="phone" size={16} />Call {site.phone.display}</a>
+        <a class="btn btn-primary" href={`tel:${site.phone.tel}`} data-track-location="contact-page"><Icon name="phone" size={16} />Call {site.phone.display}</a>
         <a class="btn btn-secondary" href={site.google.directions} {...linkProps(site.google.directions)}>Get directions<NewTabHint href={site.google.directions} /></a>
       </aside>
     </section>

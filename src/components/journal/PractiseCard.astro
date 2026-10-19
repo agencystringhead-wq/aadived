@@ -20,7 +20,7 @@ import NewTabHint from '../../components/NewTabHint.astro';
     <a class="btn btn-primary" href={s.bookHref} {...linkProps(s.bookHref)}>Book a session<NewTabHint href={s.bookHref} /></a>
     <a class="btn btn-secondary" href={s.href} {...linkProps(s.href)}>Learn more<NewTabHint href={s.href} /></a>
   </div>
-  <a class="call" href={`tel:${site.phone.tel}`}><Icon name="phone" size={16} />Or call {site.phone.display}</a>
+  <a class="call" href={`tel:${site.phone.tel}`} data-track-location="blog-post"><Icon name="phone" size={16} />Or call {site.phone.display}</a>
 </aside>
 <style>
   .card { margin: 64px 0 0; padding: 36px 36px 30px; border-radius: 26px; background: var(--olive); color: var(--on-dark); display: grid; gap: 12px; justify-items: start; }

@@ -35,13 +35,13 @@ import NewTabHint from '../../components/NewTabHint.astro';
     </div>
   </dl>
   <a class="btn btn-primary" href={book} {...linkProps(book)}>Book a session<NewTabHint href={book} /></a>
-  <a class="btn btn-secondary" href={`tel:${site.phone.tel}`}><Icon name="phone" size={16} />Call {site.phone.display}</a>
+  <a class="btn btn-secondary" href={`tel:${site.phone.tel}`} data-track-location="sticky-card"><Icon name="phone" size={16} />Call {site.phone.display}</a>
   <p class="hint">New here? Start with a 1:1 intro session.</p>
 </aside>
 
 <div class="bar" role="region" aria-label="Book this session">
   <a class="btn btn-primary" href={book} {...linkProps(book)}>Book a session<NewTabHint href={book} /></a>
-  <a class="btn btn-secondary" href={`tel:${site.phone.tel}`} aria-label={`Call ${site.phone.display}`}><Icon name="phone" size={18} />Call</a>
+  <a class="btn btn-secondary" href={`tel:${site.phone.tel}`} data-track-location="mobile-bottom-bar" aria-label={`Call ${site.phone.display}`}><Icon name="phone" size={18} />Call</a>
 </div>
 
 <style>

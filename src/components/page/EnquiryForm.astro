@@ -81,7 +81,7 @@ import NewTabHint from '../../components/NewTabHint.astro';
 
     <button type="submit" class="btn btn-primary" data-submit>Send enquiry</button>
     <p class="fail" data-fail hidden role="alert">
-      Something went wrong. Please call us on <a href={`tel:${site.phone.tel}`}>{site.phone.display}</a>.
+      Something went wrong. Please call us on <a href={`tel:${site.phone.tel}`} data-track-location="form-error">{site.phone.display}</a>.
     </p>
   </form>
 
@@ -90,7 +90,7 @@ import NewTabHint from '../../components/NewTabHint.astro';
       <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>
     </span>
     <h3>Thank you, we have your enquiry.</h3>
-    <p>We usually reply within the day. If it is urgent, call <a href={`tel:${site.phone.tel}`}>{site.phone.display}</a>.</p>
+    <p>We usually reply within the day. If it is urgent, call <a href={`tel:${site.phone.tel}`} data-track-location="form-success">{site.phone.display}</a>.</p>
     <a class="btn btn-secondary" href="/classes/">Explore classes</a>
   </div>
 </div>
@@ -240,6 +240,17 @@ import NewTabHint from '../../components/NewTabHint.astro';
         });
         const data = await res.json().catch(() => ({}));
         if (!res.ok || !data.success) throw new Error(data.message || String(res.status));
+        // GA4 lead event: only after Web3Forms confirms success, and only the two dropdown values (no personal data)
+        try {
+          (window as any).aadivedTrack?.('generate_lead', {
+            form_name: 'contact',
+            interest: interestSelect.value,
+            format: formatInput?.value ?? '',
+            page_path: location.pathname,
+          });
+        } catch {
+          // tracking must never affect the form
+        }
         form.reset();
         form.hidden = true;
         success.hidden = false;

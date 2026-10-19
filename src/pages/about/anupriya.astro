@@ -60,7 +60,7 @@ import NewTabHint from '../../components/NewTabHint.astro';
         <p class="intro">AadiVed is a women-owned practice built on a simple belief: ancient practice should feel at home in a modern life.</p>
         <div class="ctas">
           <a class="btn btn-primary" href={site.bookHref} {...linkProps(site.bookHref)}>Book a session<NewTabHint href={site.bookHref} /></a>
-          <a class="btn btn-secondary" href={`tel:${site.phone.tel}`}><Icon name="phone" size={16} />Call {site.phone.display}</a>
+          <a class="btn btn-secondary" href={`tel:${site.phone.tel}`} data-track-location="anupriya-page"><Icon name="phone" size={16} />Call {site.phone.display}</a>
         </div>
       </div>
       <div class="photo">

@@ -49,7 +49,7 @@ const s = getSeo(Astro.url.pathname);
     >
       <div class="cta-row">
         <a class="btn btn-primary" href={`${site.bookHref.replace('#book', '')}?interest=intro&format=online#book`}>Book a session</a>
-        <a class="btn btn-secondary" href={`tel:${site.phone.tel}`}><Icon name="phone" size={16} />Call {site.phone.display}</a>
+        <a class="btn btn-secondary" href={`tel:${site.phone.tel}`} data-track-location="online-page"><Icon name="phone" size={16} />Call {site.phone.display}</a>
       </div>
     </InnerHero>
 
@@ -71,7 +71,7 @@ const s = getSeo(Astro.url.pathname);
       <ul class="pill-list">
         {online.map((p) => <li><a class="pill" href={`/${p.slug}/`}>{titleFor(p.slug)}</a></li>)}
       </ul>
-      <p class="note-text">Call <a class="inline-link" href={`tel:${site.phone.tel}`}>{site.phone.display}</a> to check which practices are available online.</p>
+      <p class="note-text">Call <a class="inline-link" href={`tel:${site.phone.tel}`} data-track-location="online-page">{site.phone.display}</a> to check which practices are available online.</p>
     </section>
 
     <section class="wrap sec last reveal" aria-labelledby="faq-h">

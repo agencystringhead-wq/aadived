@@ -52,8 +52,8 @@ import NewTabHint from '../components/NewTabHint.astro';
         <div class="head">Visit</div>
         <div class="links visit">
           <span>{site.address.lines.map((l, i) => <>{i > 0 && <br />}{l}</>)}</span>
-          <a href={`tel:${site.phone.tel}`}>{site.phone.display}</a>
-          <span>{site.hours.label}<br /><a href={`tel:${site.phone.tel}`}>{site.hours.cta}</a></span>
+          <a href={`tel:${site.phone.tel}`} data-track-location="footer">{site.phone.display}</a>
+          <span>{site.hours.label}<br /><a href={`tel:${site.phone.tel}`} data-track-location="footer">{site.hours.cta}</a></span>
           <a class="dir" href={site.google.directions} {...linkProps(site.google.directions)}>Get directions &#8594;<NewTabHint href={site.google.directions} /></a>
         </div>
       </div>

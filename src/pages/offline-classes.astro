@@ -53,7 +53,7 @@ import NewTabHint from '../components/NewTabHint.astro';
     >
       <div class="cta-row">
         <a class="btn btn-primary" href={site.bookHref} {...linkProps(site.bookHref)}>Book a session<NewTabHint href={site.bookHref} /></a>
-        <a class="btn btn-secondary" href={`tel:${site.phone.tel}`}><Icon name="phone" size={16} />Call {site.phone.display}</a>
+        <a class="btn btn-secondary" href={`tel:${site.phone.tel}`} data-track-location="offline-page"><Icon name="phone" size={16} />Call {site.phone.display}</a>
       </div>
     </InnerHero>
 
@@ -79,7 +79,7 @@ import NewTabHint from '../components/NewTabHint.astro';
         <p class="body-text">We share the exact location when you book.</p>
         <p class="body-text"><strong>{site.hours.label}.</strong> {site.hours.note}</p>
         <div class="cta-col">
-          <a class="btn btn-primary" href={`tel:${site.phone.tel}`}><Icon name="phone" size={16} />Call {site.phone.display}</a>
+          <a class="btn btn-primary" href={`tel:${site.phone.tel}`} data-track-location="offline-page"><Icon name="phone" size={16} />Call {site.phone.display}</a>
           <a class="btn btn-secondary" href={site.google.directions} {...linkProps(site.google.directions)}>Get directions<NewTabHint href={site.google.directions} /></a>
         </div>
       </div>

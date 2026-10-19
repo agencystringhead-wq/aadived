@@ -15,7 +15,7 @@ import { site } from '../data/site';
 
   <h2>Booking sessions</h2>
   <p>An enquiry on this website is a request, not a confirmed booking. A session is confirmed when we reply and agree a time with you. Sessions are {site.hours.label.toLowerCase()}.</p>
-  <p>For current prices, and for payment, cancellation and rescheduling, please call <a href={`tel:${site.phone.tel}`}>{site.phone.display}</a>.</p>
+  <p>For current prices, and for payment, cancellation and rescheduling, please call <a href={`tel:${site.phone.tel}`} data-track-location="terms-page">{site.phone.display}</a>.</p>
 
   <h2>Your health</h2>
   <p>Yoga, breathwork, meditation and sound practices support wellbeing. They are not medical treatment and do not replace advice from a doctor or other health professional. Please talk to your doctor before you start if you have a health condition or are unsure whether a practice suits you.</p>
@@ -31,5 +31,5 @@ import { site } from '../data/site';
   <p>We may update these terms. The date at the top shows when they last changed.</p>
 
   <h2>Contact</h2>
-  <p>Questions about these terms? Call <a href={`tel:${site.phone.tel}`}>{site.phone.display}</a> or use the <a href="/contact/">contact page</a>.</p>
+  <p>Questions about these terms? Call <a href={`tel:${site.phone.tel}`} data-track-location="terms-page">{site.phone.display}</a> or use the <a href="/contact/">contact page</a>.</p>
 </LegalPage>

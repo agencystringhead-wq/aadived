@@ -222,6 +222,8 @@ for (const { path: p, html } of pages) {
     } else if (target === '_blank') {
       err(p, `internal link opens in a new tab (target="_blank"): ${href.slice(0, 80)}`);
     }
+    // Every tel: link carries a data-track-location so GA4 phone_click events say where the click came from
+    if (/^tel:/i.test(href) && !/\sdata-track-location="[^"]+"/.test(tag)) err(p, 'tel: link without data-track-location');
   }
 }
 

@@ -59,7 +59,7 @@ import NewTabHint from '../components/NewTabHint.astro';
             {p.featured && <span class="badge">Practise from home</span>}
             <h3>{p.name}</h3>
             <p class="for">{p.for}</p>
-            <p class="price"><span class="amount">Call for pricing</span><a class="unit" href={`tel:${site.phone.tel}`}>{site.phone.display}</a></p>
+            <p class="price"><span class="amount">Call for pricing</span><a class="unit" href={`tel:${site.phone.tel}`} data-track-location="pricing-page">{site.phone.display}</a></p>
             <ul class="inc">
               {p.items.map((it) => (
                 <li><Icon name="check" size={18} stroke={1.8} /><span>{it}</span></li>
@@ -82,7 +82,7 @@ import NewTabHint from '../components/NewTabHint.astro';
       <div class="callcard">
         <h2 id="call-h" class="sec-title">Not sure which plan suits you?</h2>
         <div class="btns">
-          <a class="btn btn-primary" href={`tel:${site.phone.tel}`}><Icon name="phone" size={16} />Call {site.phone.display}</a>
+          <a class="btn btn-primary" href={`tel:${site.phone.tel}`} data-track-location="pricing-page"><Icon name="phone" size={16} />Call {site.phone.display}</a>
           <a class="btn btn-secondary" href={site.instagram.dm} {...linkProps(site.instagram.dm)}>Message on Instagram<NewTabHint href={site.instagram.dm} /></a>
         </div>
       </div>

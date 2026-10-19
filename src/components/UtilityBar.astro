@@ -12,7 +12,7 @@ import NewTabHint from '../components/NewTabHint.astro';
       <span class="item extra">{site.hours.label}</span>
     </div>
     <div class="group">
-      <a class="item" href={`tel:${site.phone.tel}`}><Icon name="phone" size={14} />{site.phone.display}</a>
+      <a class="item" href={`tel:${site.phone.tel}`} data-track-location="utility-bar"><Icon name="phone" size={14} />{site.phone.display}</a>
       <a class="item extra" href={site.instagram.url} {...linkProps(site.instagram.url)}><Icon name="instagram" size={14} />{site.instagram.handle}<NewTabHint href={site.instagram.url} /></a>
     </div>
   </div>

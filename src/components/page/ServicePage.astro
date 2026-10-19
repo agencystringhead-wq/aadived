@@ -44,7 +44,7 @@ import NewTabHint from '../../components/NewTabHint.astro';
         <p class="intro">{practice.intro}</p>
         <div class="ctas">
           <a class="btn btn-primary" href={bookHref} {...linkProps(bookHref)}>Book a session<NewTabHint href={bookHref} /></a>
-          <a class="btn btn-secondary" href={`tel:${site.phone.tel}`}><Icon name="phone" size={16} />Call {site.phone.display}</a>
+          <a class="btn btn-secondary" href={`tel:${site.phone.tel}`} data-track-location="service-page"><Icon name="phone" size={16} />Call {site.phone.display}</a>
         </div>
       </div>
       <div class="visual">

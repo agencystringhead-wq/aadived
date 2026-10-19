@@ -18,14 +18,14 @@ import NewTabHint from '../components/NewTabHint.astro';
     <div class="eyebrow">{eyebrow}</div>
     <h1>{title}</h1>
     <p>{intro}</p>
-    {showTimings && <p class="timings"><strong>{site.hours.label}.</strong> {site.hours.note} <a href={`tel:${site.phone.tel}`}>{site.hours.cta}</a></p>}
+    {showTimings && <p class="timings"><strong>{site.hours.label}.</strong> {site.hours.note} <a href={`tel:${site.phone.tel}`} data-track-location="page-hero">{site.hours.cta}</a></p>}
   </div>
 </section>
 <section class="soon" id={bookAnchor ? 'book' : undefined}>
   <div class="wrap box section">
     <div class="card">
       <h2>Content coming soon</h2>
-      <p>This page is being written. In the meantime, call <a href={`tel:${site.phone.tel}`}>{site.phone.display}</a> or message us on <a href={site.instagram.url} {...linkProps(site.instagram.url)}>Instagram<NewTabHint href={site.instagram.url} arrow /></a>.</p>
+      <p>This page is being written. In the meantime, call <a href={`tel:${site.phone.tel}`} data-track-location="page-hero">{site.phone.display}</a> or message us on <a href={site.instagram.url} {...linkProps(site.instagram.url)}>Instagram<NewTabHint href={site.instagram.url} arrow /></a>.</p>
       <a class="btn btn-primary" href={site.bookHref} {...linkProps(site.bookHref)}>Book a session<NewTabHint href={site.bookHref} arrow /></a>
     </div>
   </div>

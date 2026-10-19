@@ -48,7 +48,7 @@ import NewTabHint from '../components/NewTabHint.astro';
     >
       <div class="cta-row">
         <a class="btn btn-primary" href="/contact/?interest=intro&format=one-on-one#book">Book an intro session</a>
-        <a class="btn btn-secondary" href={`tel:${site.phone.tel}`}><Icon name="phone" size={16} />Call {site.phone.display}</a>
+        <a class="btn btn-secondary" href={`tel:${site.phone.tel}`} data-track-location="one-on-one-page"><Icon name="phone" size={16} />Call {site.phone.display}</a>
       </div>
     </InnerHero>
 
@@ -72,7 +72,7 @@ import NewTabHint from '../components/NewTabHint.astro';
           <p class="body-text">Call and tell us what you would like to feel. We will help you choose, and agree a time that suits you.</p>
         </div>
         <div class="btns">
-          <a class="btn btn-primary" href={`tel:${site.phone.tel}`}><Icon name="phone" size={16} />Call {site.phone.display}</a>
+          <a class="btn btn-primary" href={`tel:${site.phone.tel}`} data-track-location="one-on-one-page"><Icon name="phone" size={16} />Call {site.phone.display}</a>
           <a class="btn btn-secondary" href={site.instagram.dm} {...linkProps(site.instagram.dm)}>Message on Instagram<NewTabHint href={site.instagram.dm} /></a>
         </div>
       </div>
