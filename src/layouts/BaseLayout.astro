@@ -19,6 +19,7 @@ import '../styles/global.css';
 import UtilityBar from '../components/UtilityBar.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import CookieBanner from '../components/CookieBanner.astro';
 import { site } from '../data/site';
 import { getSeo, type PageSeo } from '../data/seo';
 import { websiteSchema } from '../data/schema';
@@ -102,13 +103,67 @@ if (breadcrumbs?.length) {
 
     {schemas.map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VHMFXTP57R"></script>
+    <!-- Google tag (gtag.js), loaded only after the visitor accepts analytics cookies in the banner.
+         Until then nothing is requested from Google, no cookie is set, and window.gtag does not exist.
+         The choice is kept in localStorage for a year; "Cookie settings" in the footer reopens the banner. -->
     <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-VHMFXTP57R');
+      (function () {
+        var ID = 'G-VHMFXTP57R';
+        var KEY = 'aadived-analytics-consent';
+        var YEAR = 365 * 24 * 60 * 60 * 1000;
+        var gtagFn = null;
+        function read() {
+          try {
+            var v = JSON.parse(localStorage.getItem(KEY));
+            if (v && (v.v === 'granted' || v.v === 'denied') && Date.now() - v.t < YEAR) return v.v;
+          } catch (e) {}
+          return null;
+        }
+        function write(v) {
+          try { localStorage.setItem(KEY, JSON.stringify({ v: v, t: Date.now() })); } catch (e) {}
+        }
+        function clearCookies() {
+          try {
+            var host = location.hostname;
+            var parts = host.split('.');
+            var domains = [host, '.' + host];
+            if (parts.length > 2) domains.push('.' + parts.slice(-2).join('.'));
+            document.cookie.split(';').forEach(function (c) {
+              var n = c.split('=')[0].trim();
+              if (n === '_ga' || n.indexOf('_ga_') === 0 || n === '_gid' || n.indexOf('_gat') === 0) {
+                document.cookie = n + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+                domains.forEach(function (d) { document.cookie = n + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; domain=' + d; });
+              }
+            });
+          } catch (e) {}
+        }
+        function load() {
+          window['ga-disable-' + ID] = false;
+          if (gtagFn) { window.gtag = gtagFn; return; }
+          window.dataLayer = window.dataLayer || [];
+          gtagFn = function () { window.dataLayer.push(arguments); };
+          window.gtag = gtagFn;
+          gtagFn('js', new Date());
+          gtagFn('config', ID);
+          var s = document.createElement('script');
+          s.async = true;
+          s.src = 'https://www.googletagmanager.com/gtag/js?id=' + ID;
+          document.head.appendChild(s);
+        }
+        window.aadivedConsent = {
+          get: read,
+          accept: function () { write('granted'); load(); },
+          decline: function () {
+            write('denied');
+            window['ga-disable-' + ID] = true;
+            window.gtag = undefined;
+            clearCookies();
+          },
+        };
+        // Without consent, remove any analytics cookies left from before this banner existed
+        if (read() === 'granted') load();
+        else clearCookies();
+      })();
     </script>
     <!-- Event tracking (GA4): phone_click for every tel: link, plus window.aadivedTrack() for the contact form.
          Registered once. Every call is guarded and wrapped, so a blocked GA never affects the page.
@@ -143,6 +198,7 @@ if (breadcrumbs?.length) {
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
+    <CookieBanner />
     <UtilityBar />
     <Header />
     <main id="main">

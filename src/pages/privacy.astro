@@ -10,7 +10,7 @@ import NewTabHint from '../components/NewTabHint.astro';
   description="How AadiVed Yoga and Wellness in Hinjawadi, Pune collects and uses the information you share through this website, and the choices you have."
   intro="How AadiVed handles the information you share with us on this website."
 >
-  <p class="updated">Last updated: 19 October 2026</p>
+  <p class="updated">Last updated: 20 October 2026</p>
 
   <h2>Who we are</h2>
   <p>{site.name} is a yoga and sound healing practice based at {site.address.street}, {site.address.locality}, {site.address.postalCode}. You can reach us on <a href={`tel:${site.phone.tel}`} data-track-location="privacy-page">{site.phone.display}</a>.</p>
@@ -35,10 +35,11 @@ import NewTabHint from '../components/NewTabHint.astro';
   <h2>Services we use</h2>
   <p>This website is hosted on Cloudflare, which may collect basic, anonymous traffic statistics such as page views. Newsletter sign-ups may be handled by a form service that we use to receive them.</p>
   <p>Messages you send through the contact form are delivered to us by email through Web3Forms, a form service. We use them only to reply to you and to arrange sessions. You can ask us to delete your message and details at any time by calling or messaging us (see Your choices below).</p>
-  <h2>Cookies and Google Analytics</h2>
-  <p>We use Google Analytics, a service from Google, to understand how this website is used. It sets cookies in your browser that recognise your browser from one page or visit to the next, and it records usage such as the pages you view, how you found us, your device and browser, and your approximate location. We also record two actions: when someone taps a phone number link, and when someone sends the contact form. For these we note only that it happened and on which page. We do not send your name, phone number, email address or message to Google Analytics.</p>
+  <h2 id="cookies">Cookies and Google Analytics</h2>
+  <p>We use Google Analytics, a service from Google, to understand how this website is used, but only if you accept analytics cookies in the banner that appears on your first visit. If you decline, or do not answer, Google Analytics stays switched off: nothing is loaded from Google and no analytics cookies are set. If you accept, it sets cookies in your browser that recognise your browser from one page or visit to the next, and it records usage such as the pages you view, how you found us, your device and browser, and your approximate location. We also record two actions: when someone taps a phone number link, and when someone sends the contact form. For these we note only that it happened and on which page. We do not send your name, phone number, email address or message to Google Analytics.</p>
+  <p>Your choice is saved in your browser, on your device, and we ask again after a year. You can change your mind at any time with &#8220;Cookie settings&#8221; at the bottom of every page. Declining or withdrawing also removes the analytics cookies we set.</p>
   <p>This information is used only to improve the website. We do not use it for advertising, and we do not sell it. Google processes it under its own privacy policy.</p>
-  <p>You can refuse or delete cookies in your browser settings, and you can stop Google Analytics by installing the <a href="https://tools.google.com/dlpage/gaoptout" {...linkProps('https://tools.google.com/dlpage/gaoptout')}>Google Analytics opt-out browser add-on<NewTabHint href="https://tools.google.com/dlpage/gaoptout" arrow /></a>. The website works the same either way.</p>
+  <p>You can also refuse or delete cookies in your browser settings, and you can stop Google Analytics on every site by installing the <a href="https://tools.google.com/dlpage/gaoptout" {...linkProps('https://tools.google.com/dlpage/gaoptout')}>Google Analytics opt-out browser add-on<NewTabHint href="https://tools.google.com/dlpage/gaoptout" arrow /></a>. The website works the same either way.</p>
   <p>Apart from Google Analytics, we do not use advertising or tracking cookies.</p>
 
   <h2>Google Maps and other links</h2>

@@ -63,6 +63,7 @@ import NewTabHint from '../components/NewTabHint.astro';
       <span>&#169; {year} {site.name}. All rights reserved.</span>
       <span class="legal">
         {legalLinks.map((l) => <a href={l.href} {...linkProps(l.href)}>{l.label}<NewTabHint href={l.href} /></a>)}
+        <button type="button" class="cookie-link" data-cookie-settings>Cookie settings</button>
         <span>Website by wwiser</span>
       </span>
     </div>
@@ -99,7 +100,8 @@ import NewTabHint from '../components/NewTabHint.astro';
   .bottom { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-top: 72px; padding-top: 28px; border-top: 1px solid rgba(220,215,198,0.18); font-size: 13.5px; color: #B5B09E; }
   .legal { display: flex; gap: 24px; flex-wrap: wrap; align-items: center; }
   .legal a { color: #B5B09E; display: inline-flex; align-items: center; min-height: 44px; }
-  .legal a:hover { color: #fff; }
+  .legal a:hover, .cookie-link:hover { color: #fff; }
+  .cookie-link { background: none; border: 0; padding: 0; font: inherit; color: #B5B09E; cursor: pointer; display: inline-flex; align-items: center; min-height: 44px; }
 
   @media (max-width: 1100px) { .cols { grid-template-columns: repeat(3, minmax(0, 1fr)); } .brand { grid-column: 1 / -1; max-width: 460px; } }
   @media (max-width: 768px) { .pad { padding-top: 64px; } .cols { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px 24px; } .big { font-size: 30px; } }
