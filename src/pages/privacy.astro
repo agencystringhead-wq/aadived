@@ -10,22 +10,24 @@ import NewTabHint from '../components/NewTabHint.astro';
   description="How AadiVed Yoga and Wellness in Hinjawadi, Pune collects and uses the information you share through this website, and the choices you have."
   intro="How AadiVed handles the information you share with us on this website."
 >
-  <p class="updated">Last updated: 15 October 2026</p>
+  <p class="updated">Last updated: 19 October 2026</p>
 
   <h2>Who we are</h2>
   <p>{site.name} is a yoga and sound healing practice based at {site.address.street}, {site.address.locality}, {site.address.postalCode}. You can reach us on <a href={`tel:${site.phone.tel}`} data-track-location="privacy-page">{site.phone.display}</a>.</p>
 
   <h2>What we collect</h2>
-  <p>We only collect what you choose to send us.</p>
+  <p>We collect what you choose to send us, plus basic information about how the website is used.</p>
   <ul>
     <li><strong>Enquiry form:</strong> your name, phone number, email address, the practice and format you are interested in, your preferred time and your message.</li>
     <li><strong>Newsletter sign-up:</strong> your email address.</li>
     <li><strong>Phone and Instagram:</strong> whatever you tell us when you call or message us.</li>
+    <li><strong>Website usage:</strong> through Google Analytics, which uses cookies. This covers things like the pages you view, how you arrived, your device and browser, and your approximate location. See Cookies and Google Analytics below.</li>
   </ul>
 
   <h2>How we use it</h2>
   <ul>
     <li>To reply to your enquiry and arrange a session.</li>
+    <li>To understand how people use the website, for example which pages are read and whether people call or send an enquiry, so we can improve it.</li>
     <li>To send class updates and simple practices, only if you signed up for the newsletter.</li>
   </ul>
   <p>We do not sell your information, and we do not share it except with the services we use to run this website and receive your enquiries.</p>
@@ -33,7 +35,11 @@ import NewTabHint from '../components/NewTabHint.astro';
   <h2>Services we use</h2>
   <p>This website is hosted on Cloudflare, which may collect basic, anonymous traffic statistics such as page views. Newsletter sign-ups may be handled by a form service that we use to receive them.</p>
   <p>Messages you send through the contact form are delivered to us by email through Web3Forms, a form service. We use them only to reply to you and to arrange sessions. You can ask us to delete your message and details at any time by calling or messaging us (see Your choices below).</p>
-  <p>We do not use advertising or tracking cookies.</p>
+  <h2>Cookies and Google Analytics</h2>
+  <p>We use Google Analytics, a service from Google, to understand how this website is used. It sets cookies in your browser that recognise your browser from one page or visit to the next, and it records usage such as the pages you view, how you found us, your device and browser, and your approximate location. We also record two actions: when someone taps a phone number link, and when someone sends the contact form. For these we note only that it happened and on which page. We do not send your name, phone number, email address or message to Google Analytics.</p>
+  <p>This information is used only to improve the website. We do not use it for advertising, and we do not sell it. Google processes it under its own privacy policy.</p>
+  <p>You can refuse or delete cookies in your browser settings, and you can stop Google Analytics by installing the <a href="https://tools.google.com/dlpage/gaoptout" {...linkProps('https://tools.google.com/dlpage/gaoptout')}>Google Analytics opt-out browser add-on<NewTabHint href="https://tools.google.com/dlpage/gaoptout" arrow /></a>. The website works the same either way.</p>
+  <p>Apart from Google Analytics, we do not use advertising or tracking cookies.</p>
 
   <h2>Google Maps and other links</h2>
   <p>We do not load Google Maps when you visit a page. It loads only after you click &#8220;Load map&#8221;, and Google may then receive information about your visit under its own policies. Links to Google, Instagram and other sites take you to services with their own privacy policies.</p>
